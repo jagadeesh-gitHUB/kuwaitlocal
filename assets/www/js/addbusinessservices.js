@@ -275,7 +275,7 @@ angular.module('addbizservices', [])
 
            post_data = {
                         deleteflag      : 'Servicedelete',
-                        id              : Pid
+                        id              : Pid //lkjfd jfdjlgdfgjlkdf gjldfg jldfkgj ldfg
                     };
                     return $http.post(globalVars.siteURL + 'addfreebusiness.php',{delete:post_data})
                         .then(function(data){
