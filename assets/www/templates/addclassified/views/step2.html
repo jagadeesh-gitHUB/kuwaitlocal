@@ -1,0 +1,37 @@
+<ion-content class="addbusiness_form" animation="no-animation">
+    <h2 class="blue_underlined_box">Location Information</h2>
+    <h2>Add Location</h2>
+    <div class="hasStatbar">
+        <form novalidate name="formHandler3" vn-check-validity>
+            <h2 class="mandatory">Contact number</h2>
+                <div class="group row">
+                    <input type="text" value="+965" class="mini_field col-20 margin_r_10" readonly="readonly"/>
+                    <input type="text" placeholder="xx-xx-xxxx" ng-pattern="/^(([1-9]{1}\d{0,2},(\d{3},)*\d{3})|([1-9]{1}\d{0,}))$/"  class="margin_b_10 adjacent_field col_3_input" ng-minlength="8" ng-maxlength="8" ng-model="formData2.contact_number"/>
+                </div>
+            <h2 class="mandatory">Governorate</h2>
+            <select ng-model="formData2.governorate" required class="ion-chevron-down icon-right">
+                <option value="">Select a Governorate</option>
+                <option ng-repeat="gov in govList track by $index" value="{{gov.id}}" on-finish-render ng-selected="formData2.governorate == gov.id" required>{{gov.name}}</option>
+            </select>
+            <h2 class="mandatory">Area</h2>
+            <select ng-model="formData2.city_id" required >
+                <option value="">Select an Area</option>
+                <option ng-repeat="city in cityFullList[formData2.governorate] track by $index" on-finish-city-render ng-selected="formData2.city_id == city.id" value="{{city.id}}" required>{{city.name}}</option>
+            </select>
+            <h2>Address</h2>
+            <textarea type="text" placeholder="Address" class="margin_b_10"  ng-model="formData2.land_mark"></textarea>
+            <div class="form_field margin_t_10 align_center" ng-click="openMap()">
+                <span class="icon ion-location locationBigIcon"></span>
+                <span class="v_align_mid disp_block font_roboto font_size_16 font_color_lblack align_center">Tap here to locate</span>
+            </div>
+        </form>
+    </div>
+    <div class="p70_dummybar">
+    </div>
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50 hide-on-keyboard-open" animation="no-animation">
+    <div class="row">
+        <button class="button button-block ucase blue_button col gray_button" ui-sref="menuView.addClassifieds.step1" ng-click="backbuttonclick(2);">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!cform2Valid || !latlngdone" ng-click="getForm2Data();changeformviews(2)">Next</button>
+    </div>
+</ion-footer>

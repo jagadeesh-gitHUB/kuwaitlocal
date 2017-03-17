@@ -1,0 +1,73 @@
+<ion-view title="Kuwait local" class="myblogs_view" padding="true">
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>-->
+    <!--</ion-nav-buttons>-->
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" style="height:auto;margin:0px;padding:0px;">
+
+    <div class="button-bar" style="position: relative;top:8px;width: 100%;padding: 0px;height:40px">
+        <a class="button"  class="barbuttonselted">My Comments</a>
+
+    </div>
+</div>
+    <ion-content class="tab_top full_section has-footer">
+        <ul class="notify_listing even_setting blogs_class"  style="position:relative;top:100px;display:none">
+            <li class="group" ng-if="myblogs.length" ng-repeat="listItem in myblogs | orderBy: '-created'">
+                <div data-status="{{listItem.is_active}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-close-circled' : listItem.is_active == '0' , 'ion-checkmark-circled' : listItem.is_active == '1' }">
+                </div>
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash"><span>{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</span> <span style="float:right;">{{listItem.comment_count}} Comment count</span></div>
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize"> Category:{{listItem.category}}</div>
+                </div>
+                <div class="float_right auth_list_actions col-center"><!-- ng-hide="listItem.statusid==1 || listItem.statusid==2 || listItem.statusid==4"-->
+                    <span class="tapZone ion-android-more" action-button  ng-class="{tapSet : action_active}" ng-click="setActive($index)"> <!--action_active = (action_active) ? 0 : 1 "-->
+                        <div class="action_list" ng-show="actionList[$index]">
+
+                            <div class="action_item group" ng-click="showConfirm(listItem.id)">
+                                <span class="icon_box">
+                                    <span class="icon ion-trash-b"></span>
+                                </span>
+                                <span class="icon-box-lettering">Delete</span>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </li>
+
+            <li ng-if="myblogs.length == 0" class="nolisting">
+                No Comments found
+            </li>
+        </ul>
+
+
+        <ul class="notify_listing even_setting blogscoment_class"  style="position:relative;top:100px;display:block;">
+            <li class="group" ng-if="myblogcommets.length" ng-repeat="listItem in myblogcommets | orderBy: '-created'" ng-click="showConfirmcomment(listItem.id);$event.stopPropagation();">
+                <div data-status="{{listItem.is_active}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-close-circled' : listItem.is_active == '0' , 'ion-checkmark-circled' : listItem.is_active == '1' }">
+                </div>
+                <div class="auth_list_info margin_r_10 float_left col-center" >
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize ion-trash-a"  style="float: right;position: relative;left: 25%;"></div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash"><span>{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</span> <span style="float:right;"> Category : {{listItem.category}}</span></div>
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.comments}}</div>
+
+                </div>
+            </li>
+
+            <li ng-if="myblogcommets.length == 0" class="nolisting">
+                No Comments found
+            </li>
+        </ul>
+
+    </ion-content>
+
+    <!--<ion-footer class="bar bar-footer align_center  hide-on-keyboard-open">-->
+
+            <!--<button class="button button-block ucase blue_button col" >My Gallery</button>-->
+
+    <!--</ion-footer>-->
+
+
+</ion-view>

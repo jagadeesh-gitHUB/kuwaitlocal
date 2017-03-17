@@ -1,0 +1,53 @@
+<ion-content class="addbusiness_form" animation="no-animation">
+
+
+
+        <!--<h3 class="">Delete Images</h3>-->
+        <h4 class="margin_b_5" style="text-align:center;">Logo</h4>
+        <div class="single_image_holder group margin_b_10 pos_relative">
+            <img ng-src="{{editLogo}}"  fallback-src='img/defaultuser.png' ng-click="popOverOpen(1)"/>
+        </div>
+        <p class="info_text" style="text-align:center;color: #9ea7b3;font-size: large;">Tap on logo to Add it</p>
+
+
+
+
+    <div class="margin_t_25 margin_b_25 align_center" ng-click="popOverOpen()">
+            <span class="cam_icon_holder">
+                <span class="icon ion-camera font_size_30 font_color_blue"></span>
+            </span>
+        <p class="font_roboto font_color_ash font_size_19 margin_t_10" ng-click="popOverOpen(2)">Tap here to upload  images</p>
+    </div>
+    <!--<ul class="gallery_box group" last-element-hook>-->
+<!--{{editImages.length}}-->
+
+    <!--<p>{{Adsimage_url}}</p>-->
+        <ul class="gallery_box group" >
+            <li class="deletable_gallery pos_relative" ng-repeat="img in editImages" ng-if="editImages.length>0">
+
+            <!--<img ng-src="{{'data:image/jpeg;base64,'+img.image_decode}}"/>-->
+            <img ng-src="{{Adsimage_url}}/{{img.dir}}/{{img.name}}"/>
+
+            <span class="close_button_floating icon ion-close-circled col-right" ng-click="initiateServerDelete(img.id, $index)"></span>
+        </li>
+        <li class="deletable_gallery pos_relative" ng-repeat="img in uploadableImages">
+            <img ng-src="{{'data:image/jpeg;base64,' + img}}"/>
+            <span class="close_button_floating icon ion-close-circled col-right" ng-click="initiateLocalDelete($index)"></span>
+        </li>
+        <li class="add_pics" ng-click="popOverOpen()"><span class="ion-plus-circled" ></span></li>
+    </ul>
+    <div class="search_box margin_t_5 margin_b_5 pos_relative row videourlbox" ng-hide="true">
+        <div class="icon ion-ios7-videocam col col-10 col-center margin_r_20"></div>
+        <input type="text" placeholder="Video URL" class="searchInput col col-center" ng-model="formData3.video_url"/>
+    </div>
+    <div class="p70_dummybar">
+    </div>
+
+</ion-content>
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50 hide-on-keyboard-open" animation="no-animation">
+    <div class="row">
+        <button class="button button-block ucase blue_button col gray_button" ui-sref="menuView.addClassifieds.step2" ng-click="backbuttonclick(3);">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="step3_finish" ng-click="getForm3Data();changeformviews(3)">Finish</button>
+    </div>
+</ion-footer>

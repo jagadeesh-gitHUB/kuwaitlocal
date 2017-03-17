@@ -1,0 +1,72 @@
+<ion-content class="tab_top full_section has-footer" animation="no-animation" style="margin:-1px;"  ng-style="{top:blogslists.length > 5? '0px':'0px'}">
+
+
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="BlogslistRefresh()"
+            ng-show="searchBack_btn">
+    </ion-refresher>
+
+    <div class="adsclass" ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+
+        <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+    </div>
+
+
+    <div class="list" style="position:relative;top:0px;" ng-hide="blogslistshow">
+        <div  ng-repeat="blogslist in blogslists | limitTo : Loadmore_count" ng-show="searchBack_btn">
+            <a class="item item-thumbnail-left"   ng-if='blogslist.img != "http://www.kuwaitlocal.com/img/No_image_available.png"'>
+                <img  ng-click="gotoblogdetails(blogslist)" ng-src="{{blogslist.img}}" style="border-radius: 10px;height: 85px" ng-hide='blogslist.img == "http://www.kuwaitlocal.com/img/No_image_available.png" ? true:false'>
+
+                <h2 ng-click="gotoblogdetails(blogslist)">{{blogslist.title}}</h2>
+                <p><span ng-bind="autosllidecreated(blogslist.created)" style="color:crimson;"></span><i class="icon ion-android-share-alt" ng-click="shareblog(blogslist.slug,blogslist.des);$event.stopPropagation();" style="float:right;font-size:large;"></i> </p>
+                <p>  <span  ng-bind="autoslideblogbingview(blogslist.view_count)" style="color:green;position:relative;left:0%"></span> <span  ng-bind="autoslideblogbingcom(blogslist.comments_count)" style="color:orange;position:relative;left:10%"></span></p>
+            </a>
+            <a class="item "  ng-if='blogslist.img == "http://www.kuwaitlocal.com/img/No_image_available.png"'>
+                <img  ng-click="gotoblogdetails(blogslist)" ng-src="{{blogslist.img}}" style="border-radius: 10px;height: 85px" ng-hide='blogslist.img == "http://www.kuwaitlocal.com/img/No_image_available.png" ? true:false'>
+
+                <h2  ng-click="gotoblogdetails(blogslist)">{{blogslist.title}}</h2>
+                <p><span ng-bind="autosllidecreated(blogslist.created)" style="color:crimson;"></span><i class="icon ion-android-share-alt" ng-click="shareblog(blogslist.slug,blogslist.des);$event.stopPropagation();" style="float:right;font-size:large;"></i> </p>
+                <p>  <span  ng-bind="autoslideblogbingview(blogslist.view_count)" style="color:green;position:relative;left:0%"></span> <span  ng-bind="autoslideblogbingcom(blogslist.comments_count)" style="color:orange;position:relative;left:10%"></span></p>
+            </a>
+        </div>
+
+
+
+        <div  ng-repeat="blogslist in seachblogslists | limitTo : Loadmore_count | orderBy : serach_orderby:!searchBack_btn" ng-hide="searchBack_btn">
+            <a class="item item-thumbnail-left"   ng-if='blogslist.img != "http://www.kuwaitlocal.com/img/No_image_available.png"'>
+                <img  ng-click="gotoblogdetails(blogslist)" ng-src="{{blogslist.img}}" style="border-radius: 10px;height: 85px" ng-hide='blogslist.img == "http://www.kuwaitlocal.com/img/No_image_available.png" ? true:false'>
+
+                <h2 ng-click="gotoblogdetails(blogslist)">{{blogslist.title}}</h2>
+                <p><span ng-bind="autosllidecreated(blogslist.created)" style="color:crimson;"></span><i class="icon ion-android-share-alt" ng-click="shareblog(blogslist.slug,blogslist.des);$event.stopPropagation();" style="float:right;font-size:large;"></i> </p>
+                <p>  <span  ng-bind="autoslideblogbingview(blogslist.view_count)" style="color:green;position:relative;left:0%"></span> <span  ng-bind="autoslideblogbingcom(blogslist.comments_count)" style="color:orange;position:relative;left:10%"></span></p>
+            </a>
+            <a class="item "  ng-if='blogslist.img == "http://www.kuwaitlocal.com/img/No_image_available.png"'>
+                <img  ng-click="gotoblogdetails(blogslist)" ng-src="{{blogslist.img}}" style="border-radius: 10px;height: 85px" ng-hide='blogslist.img == "http://www.kuwaitlocal.com/img/No_image_available.png" ? true:false'>
+
+                <h2  ng-click="gotoblogdetails(blogslist)">{{blogslist.title}}</h2>
+                <p><span ng-bind="autosllidecreated(blogslist.created)" style="color:crimson;"></span><i class="icon ion-android-share-alt" ng-click="shareblog(blogslist.slug,blogslist.des);$event.stopPropagation();" style="float:right;font-size:large;"></i> </p>
+                <p>  <span  ng-bind="autoslideblogbingview(blogslist.view_count)" style="color:green;position:relative;left:0%"></span> <span  ng-bind="autoslideblogbingcom(blogslist.comments_count)" style="color:orange;position:relative;left:10%"></span></p>
+            </a>
+        </div>
+
+    </div>
+
+
+
+    <!--------------blogs cATEGORIES LIST VIEW------------------->
+
+    <div  ng-show="searchBack_btn">
+
+        <ion-list ng-hide="blogcathide" >
+            <ion-item ng-repeat="blogcat in blogcatedat" ng-click="blogcategoryselect(blogcat.id)" class="blog_catClslist">
+                <a>{{blogcat.category_name}}</a>
+            </ion-item>
+        </ion-list>
+    </div>
+    <ion-infinite-scroll on-infinite="blogloadMore()"  distance="10%" ng-if="blogslists.length> 10 " icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+    <!--</ion-scroll>-->
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-content class="addbusiness_form">
+  <h2 class="blue_underlined_box">Classified Details</h2>
+  <div class="hasStatbar">
+      <form novalidate name="formHandler" vn-check-validity>
+          <div flo-List="false">
+              <h2 class="mandatory">Title</h2>
+              <input type="text" ng-model="formData.title" required placeholder="please enter a title" name="title" ng-pattern="/^[ A-Za-z0-9- ]*$/"/>
+              <h2 class="mandatory">Select a Category</h2>
+              <select ng-model="formData.selectedCategory" ng-options="type.id as type.name for type in formLoadedCategories" ng-change="loadSubCats()" required>
+                  <option value="">Select a category</option>
+              </select>
+              <h2 class="mandatory" ng-if="formLoadedSubCats">Select a Sub Category</h2>
+              <select ng-model="formData.classified_type_id" ng-options="subtype.id as subtype.name for subtype  in formLoadedSubCats" ng-if="formLoadedSubCats" ng-change="changedSubCat()"  name="class_typeid" required>
+                  <option value="">Select a Sub Category</option>
+              </select>
+
+              <h2 class="mandatory">Price KWD</h2>
+              <input type="number" ng-model="formData.search_keyword" placeholder="Enter Price" name="search_keyword" step="0.01"/>
+              <h2>Description</h2>
+              <textarea type="text" placeholder="Business Description" required class="margin_b_10" ng-model="formData.description" ng-init="setterData.formFieldText = setDescription" name="description"></textarea>
+          </div>
+          <div class="p70_dummybar">
+          </div>
+      </form>
+  </div>
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50 hide-on-keyboard-open">
+    <div class="row">
+        <button class="button button-block ucase blue_button col gray_button" ng-click="preemptiveBack()">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!cform1Valid" ng-click="getData();changeformviews(1)" >Next</button>
+    </div>
+</ion-footer>

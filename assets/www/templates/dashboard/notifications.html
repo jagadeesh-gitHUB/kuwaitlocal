@@ -1,0 +1,49 @@
+<ion-view title="Kuwait local" class="" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider row has-header has-tabs notification_zone font_roboto normal no_padding">
+        <ul ng-show="notificationList.bizCancelled.business_cancelled.length > 0 && notificationList.bizCancelled != 0">
+            <li ng-repeat="notification in notificationList.bizCancelled.business_cancelled" class="business_bg">
+                <i class="gray_type icon-left ion-briefcase margin_r_10"></i>
+                <abbr class="font_robotoM">{{notification.Business.title}}</abbr> has been cancelled
+                <div class="font_color_ash font_robotoB font_size_15">Posted on {{notification.Business.created}}</div>
+            </li>
+        </ul>
+        <ul ng-show="notificationList.bizActive.business_active.length > 0 && notificationList.bizActive != 0">
+            <li ng-repeat="notification in notificationList.bizActive.business_active" class="business_bg">
+                <i class="gray_type icon-left ion-briefcase margin_r_10"></i>
+                <abbr class="font_robotoM">{{notification.Business.title}}</abbr> is now active
+                <div class="font_color_ash font_robotoB font_size_15">Posted on {{notification.Business.active_date}}</div>
+            </li>
+        </ul>
+        <ul ng-show="notificationList.bizPending.business_pending.length > 0 && notificationList.bizPending != 0">
+            <li ng-repeat="notification in notificationList.bizPending.business_pending" class="business_bg">
+                <i class="gray_type icon-left ion-briefcase margin_r_10"></i>
+                <abbr class="font_robotoM">{{notification.Business.title}}</abbr> is pending
+                <div class="font_color_ash font_robotoB font_size_15">Created on {{notification.Business.created}}</div>
+            </li>
+        </ul>
+        <ul ng-show="notificationList.classComments.length > 0 && notificationList.classComments != 0">
+            <li ng-repeat="notification in notificationList.classComments">
+                <i class="gray_type icon-left ion-location margin_r_10"></i>
+                {{notification.FacebookCheckinNotification.message}}
+                <div class="font_color_ash font_robotoB font_size_15">on {{notification.FacebookCheckinNotification.created}}</div>
+            </li>
+        </ul>
+        <ul ng-show="notificationList.checkins.length > 0 && notificationList.checkins != 0">
+            <li ng-repeat="notification in notificationList.checkins">
+                <i class="gray_type icon-left ion-location margin_r_10"></i>
+                {{notification.FacebookCheckinNotification.message}}
+                <div class="font_color_ash font_robotoB font_size_15">on {{notification.FacebookCheckinNotification.created}}</div>
+            </li>
+        </ul>
+        <ul ng-show="notificationList.image.length > 0 && notificationList.image != 0">
+            <li ng-repeat="notification in notificationList.image">
+                <i class="gray_type icon-left ion-location margin_r_10"></i>
+                {{notification.FacebookCheckinNotification.message}}
+                <div class="font_color_ash font_robotoB font_size_15">on {{notification.FacebookCheckinNotification.created}}</div>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>

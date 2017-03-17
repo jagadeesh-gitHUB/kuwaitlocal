@@ -1,0 +1,64 @@
+<ion-content class="Editprofile_view" animation="no-animation">
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>-->
+    <!--</ion-nav-buttons>-->
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+    <div class="padding margin_t_10">
+        <div class="picture_container" ng-click="togglePhotoModal()">
+            <i class="user_logo_upload icon ion-upload" ng-if="editlogo === ''"></i>
+            <img ng-src="{{editlogo}}"  fallback-src='img/defaultuser.png' ng-if="editlogo.length > 0"/>
+        </div>
+        <div class="align_center font_roboto font_color_blue margin_b_15" style="font-size:18px;">Tap to upload your profile picture</div>
+        <form name="defaultForm" vn-check-validity novalidate class="regular_form" >
+            <input type="text" placeholder="First Name" required ng-model="Edituserstter.fname" ng-init="Edituserstter.fname=userDetails[0].first_name">
+            <input type="text" placeholder="Last Name" required ng-model="Edituserstter.lname" ng-init="Edituserstter.lname=userDetails[0].last_name">
+            <input type="text" placeholder="Screen Name" required ng-model="Edituserstter.sname" ng-init="Edituserstter.sname=userDetails[0].username">
+            <input type="date" placeholder="DOB" class="font_roboto" ng-model="Edituserstter.dob" required  ng-init="Edituserstter.dob=userDetails[0].dob =='0000-00-00'?'1970-01-01':userDetails[0].dob" style="background:white;" />
+
+
+
+            <div class="group row">
+                <input type="text" value="+965" class="mini_field col-20 margin_r_10" readonly="readonly" ng-disabled="true"/>
+                <input type="text" placeholder="Contact Number" class="margin_b_10 adjacent_field edit_cont_cls" ng-minlength="8" ng-maxlength="8" ng-model="Edituserstter.contactnum" ng-init="Edituserstter.contactnum=userDetails[0].contact_number" ng-pattern="/^[0-9]*$/"/>
+            </div>
+
+
+
+
+            <div class="group row">
+                <span class="nationalist_span">Nationality</span>
+                <select ng-model="Edituserstter.nationality" class="ion-chevron-down icon-right nationselect_class"  ng-init="Edituserstter.nationality=userDetails[0].nationality || '' ">
+                    <!--<option value="">Select Nationality</option>-->
+                    <option ng-repeat="gov in countries " value="{{gov.id}}" on-finish-render ng-selected="Edituserstter.nationality == gov.id" >{{gov.name}}</option>
+
+                </select>
+            </div>
+
+        </form>
+
+
+    </div>
+
+    <!--<div> View Address or Edit </div>-->
+
+
+
+
+
+
+</ion-content>
+
+
+<ion-footer class="bar bar-footer align_center  hide-on-keyboard-open" style="height:auto;padding:0px !important;">
+    <div class="row" >
+        <button class="button button-block ucase blue_button col" ng-click="updateuserProfile($event)">Update</button>
+
+    </div>
+</ion-footer>
+
+
+
+
+

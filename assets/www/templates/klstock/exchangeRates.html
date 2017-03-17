@@ -1,0 +1,301 @@
+<ion-view title="Kuwait local" class="ExchangeRates_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    
+    <ion-nav-buttons side="right">
+        <button ng-click="exchangerateshare();" class="button button-icon icon ion-share" style="color:white;"></button>
+    </ion-nav-buttons>
+    
+<!--    <ion-header-bar class="bar bar-subheader bar-header disable-user-behavior" style="background: none; height: auto;width: 100%;padding: 0px;">-->
+<!--      -->
+<!--        <div style="text-align: center; background: #31445e; height: 50px">-->
+<!--<span style="color:white;">Exchange Rates in Kuwait</span>-->
+<!--<div style="width: 100%;">-->
+<!--    -->
+<!--    <div style="width: 30%; float: left; border: 2px solid #E5E6EB;margin-left: 3px; background: white">-->
+<!--<!--          <img ng-src="img/countries/klflag.png" style="max-height: 25px;max-width: 25px;border-radius:0px;top:5px;">-->-->
+<!--        <input autofocus type="number" style="width: 50%;float: left;height:25px"  ng-model="user_enterRateValue" ng-init="user_enterRateValue=1" />-->
+<!--            <span style="float: left;opacity:0.4">KWD </span>-->
+<!--            </div>-->
+<!--    -->
+<!--    <div style="width: 10%;float: left; position: relative;left: 4.5%;bottom:4px">-->
+<!--        <i class="icon ion-arrow-right-a exchnage-icon-class" ></i>-->
+<!--        -->
+<!--    </div>-->
+<!--    -->
+<!--    <div style="width: 50%;float: left; border: 2px solid #E5E6EB;position: relative;left: 5%;background:white;" ng-click="openCountries()" >-->
+<!---->
+<!--<div class="item-avatar" style="border:none;background: none;min-height: 0px;padding-left:0px;">-->
+<!--    <img src="{{data.repeatSelect_logo }}" style="max-height: 25px;max-width: 25px;border-radius:0px;top:5px;">-->
+<!--        <h4 style="margin-top:0px;margin-bottom:0px;opacity:0.4" class="ion-arrow-down-b">{{data.repeatSelect}} </h4>-->
+<!--       -->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--    </div>-->
+<!--    -->
+<!--</div>-->
+<!---->
+<!--    </ion-header-bar>-->
+    <ion-content class="has-header has-footer" style="top:50px;">
+        <div class="adsclass" ng-click=" ADSlinkopen(Ads_Array.url_link)">
+            
+            
+            <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+            
+        </div>
+        
+        <div style="text-align: center; background: #31445e; height: 55px">
+            <label style="color:white;">Exchange Rates in Kuwait</label>
+            <div style="width: 100%;">
+                
+                <div style="position: relative;width: 45%; float: left; border: 2px solid #E5E6EB;margin-left: 3px;background:white;">
+                    
+                    
+                    <div class="item-avatar" style="border:none;background: none;min-height: 0px;padding-left:25px;">
+                        <img src="img/countries/kwd.png" style="max-height: 25px;max-width: 25px;border-radius:0px;top: 2px;
+                            left: 1%;">
+                            
+                            <h4 style="margin-top:0px;margin-bottom:0px;" >
+                                <input type="number"
+                                       style="width: 50%;float: left;height:25px;position: relative;left: 6px"
+                                       ng-model="user_enterRateValue"
+                                       ng-init="user_enterRateValue=1" id="usr_input" />KWD</h4>
+                            
+                            </div>
+                    
+                    
+                 
+<!--                    <label style="float: left;opacity:0.4">KWD </label>-->
+                </div>
+                
+                <div style="width: 8%; float: left; position: relative; left: 4%; top: 5px">
+                    <i class="icon ion-arrow-right-a exchnage-icon-class" style="color: white;"></i>
+                    
+                </div>
+                
+                <div style="width: 40%;float: left; border: 2px solid #E5E6EB;position: relative;left: 5%;background:white;" ng-click="openCountries()" >
+                    
+                    <div class="item-avatar" style="border:none;background: none;min-height: 0px;padding-left:0px;">
+                        <img src="{{data.repeatSelect_logo }}" style="max-height: 25px;max-width: 25px;border-radius:0px;top: 2px;
+                            left: 1%;">
+                            <h4 style="margin-top:0px;margin-bottom:0px;opacity:0.4" class="ion-arrow-down-b">{{data.repeatSelect}} </h4>
+                            
+                            </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="row list" style="text-align:center;padding:2px;margin-bottom: 0px;">
+            <div class="col col-50 exchange-item-class item" style="background:#0995d6;color:white;font-weight: bolder;" >EXCHANGE</div>
+            <div class="col col-50 rate-item-class item" style="background:#0995d6;color:white;" > <img src="{{data.repeatSelect_logo }}" style="max-height: 25px;max-width: 25px;border-radius:0px;"><label style="position: relative;
+                left: 2px;
+                bottom: 2px;
+                font-weight: bolder;">{{data.repeatSelect}}</label></div>
+        </div>
+ 
+      <div ng-repeat="exchange in exchnage_List" >
+          
+      <div class="row list" style="text-align:center;padding:0px;">
+    <div class="col col-50 exchange-item-class item"  ng-class-odd="'goldmonth-name-odd'" ng-class-even="'goldmonth-name-even'" >{{exchange.major_currency}}</div>
+              
+    <div class="col col-50 rate-item-class item"ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="data.repeatSelect_id==1">{{exchange.country1 * user_enterRateValue == 0 ? '--' : exchange.country1 * user_enterRateValue }}</div>
+              
+  <div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==2">{{exchange.country2 * user_enterRateValue == 0 ? '--' : exchange.country2 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==3">{{exchange.country3 * user_enterRateValue == 0 ? '--' : exchange.country3 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==4">{{exchange.country4 * user_enterRateValue == 0 ? '--' : exchange.country4 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==5">{{exchange.country5 * user_enterRateValue == 0 ? '--' : exchange.country5 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==6">{{exchange.country6 * user_enterRateValue == 0 ? '--' : exchange.country6 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==7">{{exchange.country7 * user_enterRateValue == 0 ? '--' : exchange.country7 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==8">{{exchange.country8 * user_enterRateValue == 0 ? '--' : exchange.country8 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==9">{{exchange.country9 * user_enterRateValue == 0 ? '--' : exchange.country9 * user_enterRateValue }}</div>
+
+<div class="col col-50 rate-item-class item" ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'" ng-if="data.repeatSelect_id==10">{{exchange.country10 * user_enterRateValue == 0 ? '--' : exchange.country10 * user_enterRateValue }}</div>
+
+          </div>
+      
+      </div>
+      
+      <div style="width: 98.3%; padding: 5px; text-align: center; background: #c8c9de; margin-left: 2px; margin-top: 6px;" >
+      
+      <label>Last updated : <i class="icon ion-calendar"></i> {{exchnage_List[0].created }} kuwait time <p>Live exchange Rates may vary from last update</p></label>
+      
+      </div>
+       
+      
+      <button class="button button-block  blue_button col" style="width:95%;margin-top:7px;margin-left:5px;background:#95cf3e;" ng-click="exchangeLocatorClick();">Curreny Exchange Locator</button>
+      
+<button class="button button-block  blue_button col" style="width:95%;margin-top:7px;margin-left:5px;background:orange;" ng-click="exchangerateSubscribe();">Subscribe Exchangerates</button>
+      
+      <h4>Comments</h4>
+      <!----------------------- comments comes here-------------------------->
+      
+      <div class="list" >
+          
+          <a class="item item-avatar"  ng-repeat="comment in Exchange_commets " style="border-width:0px;">
+              <img ng-src="{{userlog}}/{{comment.user_logo}}" fallback-src='img/defaultuser.png'/>
+              <h2>{{comment.username}}</h2>
+              <label style="white-space: pre-wrap;word-break: break-all;font-size: 12px;">{{comment.comments}}</label>
+          </a>
+      </div>
+      </div>
+   <button id="loadMore" class="button button-block ucase blue_button col" ng-if="temp_Exchange_commets.length >5" ng-click="loadmoreAdComments($event);" style="width:95%;position:relative;left:3%;">Load More</button>
+
+      <div style="height:50px;"></div>
+      
+      
+      
+      
+    </ion-content>
+    
+    
+    <footer class="bar bar-footer align_center  split_50 bizEnq_cls"  style="height:auto;">
+        <div class="row" style="padding:0px;">
+<!--            <button class="button button-block  blue_button col margin_r_10" ng-click="exchangeLocatorClick();"> Exchange Locator</button>-->
+            <button class="button button-block  blue_button col "  style="background:orange;" ng-click="ExchangeComments();">Post Comment</button>
+        </div>
+   
+
+<!--    <nav class="tabs tabs-icon-bottom tabs-positive">-->
+<!--        <a class="tab-item" href="#">-->
+<!--            Fun-->
+<!--            <i class="icon ion-game-controller-a"></i>-->
+<!--        </a>-->
+<!--        <a class="tab-item">-->
+<!--            Security-->
+<!--            <i class="icon ion-locked"></i>-->
+<!--        </a>-->
+<!--        <a class="tab-item has-badge">-->
+<!--            Light-->
+<!--            <i class="badge">3</i>-->
+<!--            <i class="icon ion-leaf"></i>-->
+<!--        </a>-->
+<!--        <a class="tab-item">-->
+<!--            Clean-->
+<!--            <i class="icon ion-waterdrop"></i>-->
+<!--        </a>-->
+<!--    </nav>-->
+     </footer>
+    
+</ion-view>
+
+
+
+<script id="exchangeCountries.html" type="text/ng-template">
+    <ion-modal-view>
+    <ion-header-bar>
+    <h1 class="title">Choose Country From List</h1>
+    <button ng-click="cityclosemodalview()" class="button button-icon icon ion-arrow-left-c" style="float:left;" side="left"></button>
+    </ion-header-bar>
+    <ion-content style="top:44px;">
+    <div class="list">
+    <div class="item item-avatar" ng-repeat="c in data.availableOptions" style="min-height: 0px;" >
+   
+   <img src="{{c.logo}}" style="max-height: 25px;max-width: 25px;border-radius: 0px;" ng-click="selectcounrty(c,$index);"/>
+
+ <button class="button ion-star" style="float:right;position: relative;bottom: 0px;line-height: 20px;border: none;background: none;"  ng-click="makefavority(c,$index);" ng-style="{color:temp_flag_id ==c.id? 'orange' : 'black'}" ></button>
+ <h3 ng-click="selectcounrty(c,$index);" ng-style="{color:temp_flag_id ==c.id? 'orange' : 'black'}">{{c.country}}</h3>
+      
+    
+    </div>
+
+    </div>
+    
+    
+    </ion-content>
+    </ion-modal-view>
+    </script>
+
+
+
+<script id="exchangeLocator.html" type="text/ng-template">
+    <div>
+
+    <select  ng-model="curreny_code_locator.exchange_rate"  ng-options="type.exchange_rate as type.exchange_rate for type in curreny_code_locator.code | unique : 'exchange_rate'"   style="width: 100%; background: white; padding: 5px; margin-bottom: 10px; border-radius: 6px;" class="select_dd-class">
+    <option value="">Select a Exchange</option>
+    </select>
+    
+    
+    <select  ng-model="curreny_code_locator.branch_link" ng-if="curreny_code_locator.exchange_rate"  ng-options="type.link as type.name for type in curreny_code_locator.code | orderBy:'name' |filter : curreny_code_locator.exchange_rate " style="width: 100%; background: white; padding: 5px; margin-bottom: 10px; border-radius: 6px;" class="select_dd-class">
+    <option value="">Select a Branch</option>
+    </select>
+    </div>
+    </script>
+
+
+<style>
+    .exchnage-icon-class:before{
+    
+   
+    
+    }
+input[type="checkbox"]{
+    -webkit-appearance: icon !important;
+}
+
+item{
+
+padding :0px !important;
+}
+
+.ion-arrow-down-b:before{
+
+float: right;
+position: relative;
+right: 10%
+
+}
+.select_dd-class{
+    background: url('img/dropdown_arrow.png') no-repeat right #FEFEFE !important;
+    
+}
+
+.kwdflag-class{
+    background: url('img/countries/klflag.png') no-repeat left #FEFEFE !important;
+    }
+footer.split_50 .button.button-block:last-child, .split_50 .button.button-block:last-child{margin-left:0px;}
+
+#usr_input {
+    -moz-animation-duration: 400ms;
+    -moz-animation-name: blink;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    
+    -webkit-animation-duration: 400ms;
+    -webkit-animation-name: blink;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    
+    animation-duration: 400ms;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@-webkit-keyframes blink {
+    from {
+        opacity: 0.9;
+        border:1px solid orange;
+    }
+    
+    to {
+        opacity: 0.6;
+       border:1px solid gray;
+    }
+}
+
+    </style>
+
+
+
+
+

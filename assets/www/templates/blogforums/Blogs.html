@@ -1,0 +1,42 @@
+<ion-view title="News">
+
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+
+    </ion-nav-buttons>
+
+
+    <ion-nav-buttons side="right" class="searchBack_btnClass">
+        <button class="button button-icon icon ion-arrow-left-c"  ng-hide="searchBack_btn" ng-click="searchBack_btn=!searchBack_btn;blogtext='';backtoindex();"></button>
+    </ion-nav-buttons>
+
+
+    <div class="bar bar-subheader search-subheader" style="height: 43px !important;padding: 0px;top: 50px;">
+
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;top:2px;">
+            <label class="item-input-wrapper" style="height:25px;top:-4px;">
+                <input placeholder="Search..."  type="search" ng-model="blogtext" ng-keyup="blogsearchkeyup($event)"/>
+                <!--<angucomplete-alt id="search"-->
+                <!--placeholder="Search Business or Keywords"-->
+                <!--pause="400"-->
+                <!--selected-object="viewResult"-->
+                <!--remote-url="http://188.166.55.96/kuwaitmobileapp/search_business.php?function=governaratesbasedsearch&input={{register.governorateId}}/{{selectgoverareaid}}/"-->
+                <!--title-field="title"-->
+                <!--match-class="highlight"-->
+                <!--input-class="form-control form-control-small"></angucomplete-alt>-->
+            </label>
+            <button class="ion-android-search kuwait-search mediaSearch_cls" ng-click="blogtitlesearch()" style="height:30px;top:2px;">
+            </button>
+        </div>
+
+
+
+
+    </div>
+
+
+    <ion-nav-view animation="slide-left-right" class="has-header has-subheader has-footer" name="tabContent">
+        <!-- Center content -->
+
+    </ion-nav-view>

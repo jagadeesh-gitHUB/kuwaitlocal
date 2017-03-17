@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="com_facebook_like_button_not_liked">I like it</string>
+    <string name="com_facebook_like_button_liked">You like</string>
+    <string name="com_facebook_loginview_log_out_button">Logout</string>
+    <string name="com_facebook_loginview_log_in_button">Login</string>
+    <string name="com_facebook_loginview_log_in_button_long">Login with FaceBook</string>
+    <string name="com_facebook_loginview_logged_in_as">Logged as</string>
+    <string name="com_facebook_loginview_logged_in_using_facebook">Logged with FaceBook</string>
+    <string name="com_facebook_loginview_log_out_action">Logout</string>
+    <string name="com_facebook_loginview_cancel_action">Cancel</string>
+    <string name="com_facebook_loading">Loading…</string>
+    <string name="com_facebook_internet_permission_error_title">Error AndroidManifest</string>
+    <string name="com_facebook_internet_permission_error_message">The logon to the App require connection to internet</string>
+    <string name="com_facebook_tooltip_default">New! You control: choose what information you want to share with applications</string>
+    <string name="com_facebook_image_download_unknown_error">An unexpected to download an image error.</string>
+    <string name="com_facebook_share_button_text">Share</string>
+    <string name="com_facebook_send_button_text">Send</string>
+    <string name="com_facebook_usersettingsfragment_log_in_button">Login</string>
+    <string name="app_name">Kuwait Local</string>
+    <string name="launcher_name">@string/app_name</string>
+    <string name="activity_name">@string/launcher_name</string>
+</resources>

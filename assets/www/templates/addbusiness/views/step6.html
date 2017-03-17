@@ -1,0 +1,62 @@
+<ion-content class="addbusiness_form" style="padding:0px !important;">
+    <button class="button button-full button-positive btnheadercls" >Business Logo/Images</button>
+
+<div flo-List class="font_roboto font_size_14 align_center ucase font_color_white line_format_normal" style="padding:10px;">
+    <div ng-if="editLogo">
+        <!--<h3 class="">Delete Images</h3>-->
+        <h4 class="margin_b_5">Logo</h4>
+            <div class="single_image_holder group margin_b_10 pos_relative">
+                <img ng-src="{{editLogo}}" ng-click="openPhotoModal(1)"/>
+            </div>
+        <p class="info_text">Tap on logo to edit it</p>
+    </div>
+    <div ng-if="editModeImages.length || mybizImages.length">
+        <!--<div ng-repeat="image in mybizImages">{{image}}</div>-->
+        <h4 class="margin_b_5">Business Images</h4>
+        <p class="info_text">Tap on any image to delete it</p>
+        <ul class="image_holder group margin_b_10">
+            <li class="deletable_gallery" ng-repeat="image in mybizImages" ng-if="mybizImages.length">
+                <img ng-src="{{'data:image/jpeg;base64,' + image}}" class=""/>
+                <span class="close_button_floating icon ion-close-circled col-right" ng-click="initiateLocalDelete($index)"></span>
+            </li>
+            <li class="deletable_gallery" ng-repeat="image in editModeImages" ng-if="editModeImages.length">
+                <img ng-src="{{image.path}}" class=""/>
+                <span class="close_button_floating icon ion-close-circled col-right" ng-click="initiateDelete($index, image.id)"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+      <div class="margin_t_25 margin_b_25 col align_center break_word" ng-click="openPhotoModal(1)">
+          <span class="cam_icon_holder">
+              <span class="icon ion-camera font_size_30 font_color_blue"></span>
+          </span>
+          <p class="font_roboto font_color_ash font_size_19 margin_t_10">upload Business logo</p>
+      </div>
+      <div class="margin_t_25 margin_b_25 col align_center break_word" ng-click="openPhotoModal(2)">
+          <span class="cam_icon_holder">
+              <span class="icon ion-camera font_size_30 font_color_blue"></span>
+          </span>
+          <p class="font_roboto font_color_ash font_size_19 margin_t_10">upload Business images</p>
+      </div>
+
+    </div>
+    <div class="align_left" style="text-align:center">
+        <p class="mandatory_before disp_iblock margin_t_15 margin_b_15 font_color_lblack"  style="color:red !important;" ng-hide ="editLogo.length == 0 ? false:true">Business Logo is mandatory</p>
+        <div class="infinite_loader" ng-if="loaderActive"></div>
+    </div>
+</div>
+</ion-content>
+
+
+<ion-footer class="bar bar-footer align_center  split_50"  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row" ng-if="!isPremium">
+        <button class="button button-block ucase blue_button col"  ng-click="backfromstep6();BackanalyticcodeforAddsteps(6,'f');" ng-hide="true">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10"  ng-click="uploadInit();analyticcodeforAddsteps(6,'f');" ng-disabled="!editLogo.length > 0">Finish</button>
+    </div>
+    <div class="row" ng-if="isPremium">
+        <button class="button button-block ucase blue_button col" ng-click="backfromstep6();BackanalyticcodeforAddsteps(10,'f');">Back</button>
+        <button class="button button-block blue_button ucase blue_button " ng-disabled="!editLogo.length > 0" ng-click="uploadInit();analyticcodeforAddsteps(6,'p');" style="width:50%;">Next</button> <!--toPremiumZone-->
+
+    </div>
+</ion-footer>
+

@@ -1,0 +1,27 @@
+
+<ion-view title="Kuwait local" class="detailservice_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="addbusiness_form">
+      <h2 class="blue_underlined_box">Coupon</h2>
+      <div class="hasStatbar">
+          <form novalidate name="defaultForm" vn-check-validity>
+              <div flo-List="false">
+                  <h2 class="mandatory">Enter Coupon Code</h2>
+                  <input type="text" placeholder="Enter Coupon Code" class="margin_b_10" ng-model="premiumData.couponCode" name="ffcoupon" required/>
+                  <h2 class="mandatory">Business Title</h2>
+                  <input type="text" placeholder="Enter Business Title" class="margin_b_10" ng-model="premiumData.couponTitle" name="fftitle" required ng-minlength="5" ng-maxlength="150"/>
+              </div>
+              <div class="p70_dummybar">
+              </div>
+          </form>
+      </div>
+    </ion-content>
+    <ion-footer class="bar bar-footer align_center padding split_50 hide-on-keyboard-open addbusiness_view">
+        <div class="row">
+            <button class="button button-block ucase blue_button col gray_button">Back</button>
+            <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!defaultFormValid" ng-click="validateCoupon()">Next</button>
+        </div>
+    </ion-footer>
+</ion-view>

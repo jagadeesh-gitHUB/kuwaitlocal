@@ -1,0 +1,53 @@
+<ion-header-bar class="logo_header" animation="no-animation">
+</ion-header-bar>
+<ion-content class="logo_content" animation="no-animation">
+<form>
+  <div class="list"  animation="no-animation" style="position: relative;margin-left:2%;">
+    <div class="logitem negate_bottom" style="background-color:none;">
+
+
+         <span class="button button-block model_btn align_left box_rounded_3 margin_b_20" ng-click="ngcordovafblogin()" ng-hide=true>
+            <span class="ion-social-facebook fb_component disp_iblock font_color_white font_size_32 v_align_mid margin_r_10"></span>
+            <span class="font_size_18 font_color_white fb_text_component disp_iblock v_align_mid">Sign in with Facebook</span>
+        </span>
+
+
+        <span class="button button-block model_btn align_left box_rounded_3 margin_b_20" ng-click="loginUsingFB()">
+            <span class="ion-social-facebook fb_component disp_iblock font_color_white font_size_32 v_align_mid margin_r_10"></span>
+            <span class="font_size_18 font_color_white fb_text_component disp_iblock v_align_mid">Sign in with Facebook</span>
+        </span>
+        <span class="button button-block model_btn align_left box_rounded_3 mail_model" ui-sref="loginMailView" ng-click="loginwithemailClick();">
+            <span class="ion-android-mail fb_component disp_iblock font_color_white font_size_21 v_align_mid margin_r_10"></span>
+            <span class="font_size_18 font_color_white fb_text_component disp_iblock v_align_mid">Sign In with Email</span>
+        </span>
+
+         <span class="button button-block model_btn align_left box_rounded_3 mailup_model" ui-sref="signupView" ng-click="singupclick();">
+            <span class="fb_component disp_iblock font_color_white font_size_21 v_align_mid margin_r_10" style="width:32px;"></span>
+            <span class="font_size_18 font_color_white fb_text_component disp_iblock v_align_mid">Sign Up</span>
+        </span>
+
+      </div>
+
+    <a href="#" class="login_link font_color_orange disp_block align_center font_size_17 font_roboto"  ui-sref="signupView" ng-hide="true"> Already have an account ? <b>Login</b></a>
+
+
+  </div>
+</form>
+    <br>
+
+    <a  class="login_link font_color_orange disp_block align_center font_size_17 font_roboto"  ng-click="continuewithoutclick()"  style="color: white !important;text-decoration: none;font-size: 150%;">Continue without login</a>
+
+    <br>
+    <br>
+    <span class="font_roboto font_size_14 disp_block w_100 padding-left padding-right align_center" style="color:white;">By Signing up, you agree to our Terms of Service</span>
+
+</ion-content>
+<ion-footer-bar class="borderless hide-on-keyboard-open ng-enter bar bar-footer" animation="no-animation" ng-hide="true">
+    <span class="font_roboto font_size_14 disp_block w_100 padding-left padding-right align_center" style="
+    position: relative;
+    top: 6px;
+" ui-sref="signupView"> SIGN UP</span>
+    <span class="font_roboto font_size_14 disp_block w_100 padding-left padding-right align_center" ng-hide="true">By Signing up, you agree to our Terms of Service</span>
+
+
+</ion-footer-bar>

@@ -1,0 +1,33 @@
+<ion-content class="addbusiness_form" style="padding:0px !important;">
+    <button class="button button-full button-positive btnheadercls" >Location Information</button>
+    <h2>Add Location</h2>
+<div class="hasStatbar" style="padding:10px">
+    <form novalidate name="formHandler4" vn-check-validity>
+        <h2 class="mandatory">Governorate</h2>
+        <select ng-model="setData.governorate" required ng-init="setterData.governorate = businessData[3].governorate" class="ion-chevron-down icon-right" ng-change="setData.city=''" style="background:white;">
+            <option value="">Select a Governorate</option>
+            <option ng-repeat="gov in govList track by $index" value="{{gov.id}}" on-finish-render ng-selected="setterData.governorate == gov.id" required>{{gov.name}}</option>
+        </select>
+        <h2 class="mandatory">Area</h2>
+        <select ng-model="setData.city" required ng-init="setterData.city = businessData[3].city" style="background:white;">
+            <option value="">Select an Area</option>
+            <option ng-repeat="city in cityFullList[setData.governorate] track by $index" on-finish-city-render ng-selected="setterData.city == city.id" value="{{city.id}}" required>{{city.name}}</option>
+        </select>
+        <h2>Address</h2>
+        <textarea type="text" placeholder="Address" class="margin_b_10"  ng-model="setData.address"  ng-init="setData.address = setAddress" style="height:85px !important;"></textarea>
+        <div class="form_field margin_t_10 align_center" ng-click="openMap()" style="background:#ddd;">
+            <span class="icon ion-location locationBigIcon"></span>
+            <span class="v_align_mid disp_block font_roboto font_size_16 font_color_lblack align_center">Tap here to locate</span>
+        </div>
+    </form>
+</div>
+<div class="p70_dummybar">
+</div>
+
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50 " style="padding:0px;"  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row">
+        <button class="button button-block ucase blue_button col"  ng-click="gofromlocationview();BackanalyticcodeforAddsteps(4,'f');">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!form4Valid || !latlngdone" ng-click="gpsAndPush(setData);analyticcodeforAddsteps(4,'f');">Next</button>
+    </div>
+</ion-footer>

@@ -1,0 +1,42 @@
+<ion-view title="Kuwait local" class="detailservice_view" padding="true" ng-init="oniniload()">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader subheader_fix">
+        <div class="item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="Search nearby" ng-model="searchterm" ng-keyup="fetchSearchRecords()">
+            </label>
+            <button class="button button-small icon ion-search" ng-click="fetchSearchRecords()">
+            </button>
+        </div>
+    </div>
+    <ion-content class="fromtop_subheaderfix row has-header padding-bottom">
+        <ul class="roboto">
+            <li ng-if="!mainListings.length > 0 && !searchterm.length > 0 && searchResult" class="align_center">No places found nearby</li>
+            <li ng-if="!mainListings.length > 0 && searchterm.length > 0 && searchResult" class="align_center">{{searchterm}} was not found, To suggest this place to us , Use the below button</li>
+            <li ng-repeat="item in mainListings" ng-click="checkinhere(item.id, item.title)" class="margin_b_10">
+                <section class="group">
+                    <div class="top_large_section">
+                        <h4>{{item.title}}</h4>
+                        <span>{{item.city_name}} , {{item.governorate_name}}</span>
+                    </div>
+                    <div class="top_small_section ion-ribbon-b" ng-hide="item.is_premium == 0">
+                    </div>
+                </section>
+                <section class="group">
+                    <div class="bot_large_section">
+                        <p class="listing_phone" ng-if="item.land_line_no.length > 0"><span class="icon ion-ipad font_color_orange margin_r_5"></span>{{item.land_line_no}}<span ng-if="item.land_line_no"> , </span>{{item.mobile_no}}</p>
+                        <span class="font_size_13 font_color_lgray">Distance : <strong class="font_color_lblack">{{item.distance_inkm + ' KM'}}</strong></span>
+                    </div>
+                </section>
+            </li>
+        </ul>
+        <div class="p70_dummybar"></div>
+    </ion-content>
+    <footer class="bar bar-footer align_center padding split_50 hide-on-keyboard-open" animation="no-animation" ng-if="!mainListings.length > 0 && searchterm.length > 0 && searchResult">
+        <div class="row">
+            <button ng-if="!mainListings.length > 0 && searchterm.length > 0 && searchResult" class="button button-block ucase green_button col marginless" ng-click="suggestaplace()">Suggest this place</button>
+        </div>
+    </footer>
+</ion-view>

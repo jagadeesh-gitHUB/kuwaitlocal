@@ -1,0 +1,26 @@
+@charset "utf-8";
+/*
+--------------------------------
+ 		Master CSS
+--------------------------------
+*/
+/**
+
+	Author : Vin
+	Created on : 04 JAN 2013
+	Site Name : New Site
+	
+ **/
+ /*
+----------------------------------
+			Imports
+----------------------------------
+*/
+	@import url('home.css');/*common for all devices*/
+	 @import url('Events.css');
+	@import url('font.css');	
+	@import url('variables.css');
+	@import url('MediaQueries.css');/*this is for the specified devices mosty 720 or above*/
+/*End of Imports*/
+
+

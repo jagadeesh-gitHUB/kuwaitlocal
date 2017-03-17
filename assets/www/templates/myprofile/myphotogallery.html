@@ -1,0 +1,87 @@
+<ion-view title="Kuwait local" class="mygallery_view" padding="true">
+
+
+    <ion-content class="has-imageslider row content_formattings has-header has-footer padding-bottom "  style="background:black;">
+
+        <ul class="rig columns-3" ng-if="publicGalleryImages.length > 0">
+            <li ng-repeat="img in publicGalleryImages |limitTo:galleryload_count" style="height:100px">
+           <div ng-click="Gallerypopimage($event,$index);" style="background-image:url({{img.image}});height:95px;background-repeat: no-repeat;background-size: cover;"></div>
+                <label class="checkbox float_right" style="position: relative;right: 0%;padding: 0px 0px !important;top:-25px;">
+
+                    <input  type="checkbox" id="myAdminChecked_id" ng-model ="myAdminChecked"  ng-click="GalleryPhotoDelet($event,$index,img.id,img.bid,img.pathname,img);" style="opacity:1;">
+
+                </label>
+            </li>
+        </ul>
+
+
+        <h3 ng-if="publicGalleryImages.length == 0" class="gallery_errorcls">Current No Gallery found</h3>
+
+        <ion-infinite-scroll on-infinite="galleryloadMore()"  distance="10%" ng-if="publicGalleryImages.length> 2" icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+    </ion-content>
+    <footer class="bar bar-footer align_center hide-on-keyboard-open" style="background:black !important;">
+
+            <!--<button class="button button-block ucase blue_button" ng-click="goBackToDetail()" style="height:62px;">back to details</button>-->
+
+    </footer>
+</ion-view>
+<script id="imgage_lrge.html" type="text/ng-template">
+<ion-pan>
+  <ion-content class="zoompzn">
+
+        <ion-slide-box>
+
+            <ion-slide ng-repeat="img in publicGalleryImages">
+
+                <div class="containerzoom" ng-if="slideVisible($index)" class="scrollCanvas">
+                    <ion-scroll class="scrollCanvas" zooming="true" min-zoom="1" direction="xy" locked="false">
+                        <div class="imagezoom" style="background-image:url({{img.image}});">
+
+                            <div class="textinbottomcls" ng-hide="false"><h3> Added By {{img.username}} on {{img.Created}}</h3></div>
+                        </div>
+                        <!--<div class="textinbottomcls"><h3> Added By {{img.username}} on {{img.Created}}</h3></div>-->
+                    </ion-scroll>
+
+                </div>
+
+                <div>&nbsp;</div>
+
+            </ion-slide>
+
+        </ion-slide-box>
+
+
+
+    </ion-content>
+    <!--<ion-footer class="bar bar-footer align_center  hide-on-keyboard-open"  style="height:50px;background: red;">-->
+
+        <!--<button class="button button-block ucase blue_button col" ui-sref="menuView.main">Delete</button>-->
+
+    <!--</ion-footer>-->
+
+</ion-pan>
+
+</script>
+<style>
+    div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    }
+
+    div.img:hover {
+    border: 1px solid #777;
+    }
+
+    div.img img {
+    width: 100%;
+    height: auto;
+    }
+
+    div.desc {
+    padding: 15px;
+    text-align: center;
+    }
+</style>

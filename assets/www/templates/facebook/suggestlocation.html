@@ -1,0 +1,37 @@
+<ion-view title="Kuwait local" class="detailservice_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class=" row has-header padding-bottom">
+        <h4 class="font_robotoM padding_bottom font_size_18 ucase font_color_black ucase">Details of the place</h4>
+        <div class="list list-inset marginless">
+            <form name="defaultForm" novalidate vn-check-validity>
+                <input type="text" placeholder="Name of the place" ng-model="checkin_enquiry.business_name" class="font_roboto font_color_gray input_for_validity margin_b_15" required ng-change="formUpdate()" ng-init="usersSuggestion">
+                <input type="text" placeholder="Suggest a Category it belongs to" ng-model="checkin_enquiry.category_name" class="input_for_validity margin_b_15">
+                <input type="phone" placeholder="Phone Number" ng-pattern="/^(([1-9]{1}\d{0,2},(\d{3},)*\d{3})|([1-9]{1}\d{0,}))$/" ng-minlength="8" ng-maxlength="8" ng-model="checkin_enquiry.phone_number" class="input_for_validity margin_b_15">
+                <input type="email" placeholder="Their email address" ng-model="checkin_enquiry.email" class=" input_for_validity margin_b_15">
+                <input type="text" placeholder="Which city it's located at" ng-model="checkin_enquiry.city_id" class="input_for_validity margin_b_15">
+                <textarea ng-model="checkin_enquiry.address" placeholder="Address" class="input_for_validity margin_b_15 placeholder_color"></textarea>
+                <!--<label class="item-input-wrapper">-->
+                    <!--<angucomplete-alt id="categories"-->
+                                      <!--placeholder="Search Area"-->
+                                      <!--pause="400"-->
+                                      <!--selected-object="viewCityResult"-->
+                                      <!--remote-url="http://188.166.55.96/kuwaitmobileapp/search_business.php?function=categorieslist&cat="-->
+                                      <!--remote-url-data-field="0"-->
+                                      <!--title-field="name"-->
+                                      <!--input-class="form-control form-control-small"></angucomplete-alt>-->
+                <!--</label>-->
+
+            </form>
+        </div>
+        <div class="content_placeholder"></div>
+        <div class="p70_dummybar"></div>
+    </ion-content>
+    <footer class="bar bar-footer align_center padding split_50 hide-on-keyboard-open">
+        <div class="row">
+            <button class="button button-block ucase blue_button col gray_button" ng-click="goBackToplaces()">Cancel</button>
+            <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!defaultFormValid" ng-click="sendSuggestion()">Suggest</button>
+        </div>
+    </footer>
+</ion-view>

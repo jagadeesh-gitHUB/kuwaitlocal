@@ -1,0 +1,40 @@
+.event_display_MainDiv {width: 100%;background: white;float: left;padding:0px;margin-bottom: 8px;border-bottom: 1px solid gray;}
+.eventImage {width: 100%;max-height: 200px;background: #d7d7d7;border: 1px solid gray;/*max-height: 200px;margin: 0;position: absolute;top: 50%;left: 5%;margin-right: -50%;*/}
+.f_left {float: left;}
+.pad_10 {padding: 10px;}
+.event_title {font-size: 14px;text-align: start;font-weight: bold;margin-left: 2px;}
+.pad_0_10 {padding: 0 10px;}
+.event_details {/*    margin-bottom: 10px;*/margin:0px;font-size: 11px;font-weight: bold;color: #949090;float: left;width: 100%;}
+.mright_5 {margin-right: 5px;}
+#event_category {float: right;padding: 4px 0;}
+.width100p{width:100%;}
+.event_logo {/*    height: 195px;*/width: 100%;overflow: hidden;/* border-radius: 3px; */position: relative;/* border-radius: 9px 9px 0 0; */background: black;}
+.event_price {/*    top: 4px;*/right: 4px;position: absolute;color: white;font-weight: bold;}
+#event_price_watermark{width: 100px;height: 100px;position: absolute;top: 8px;left: 75%;color: white;font-size: 15px;font-weight: bolder}
+.icon.ion-eye.ng-binding{float: right;font-size: large;margin-right: 50px}
+.event_title > a{color: #058ED4 !important;}
+.EventpeopleList_class {height:50px;margin:0px;padding:0px;}
+.EventpeopleList_class li > img{height:50px;max-height:50px;}
+.eventbutton_table{width:100%;margin:1px;border-bottom: 1px solid #ddd;border-top: 1px solid #ddd}
+.eventpast_watermark{
+    background: url('../img/menu/eventcomp.png')no-repeat;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0px;
+    background-position: -16px -10px;
+    
+    
+}
+.divafterlogo{
+    position: absolute;
+    width: 100%;
+    /*top: 4px;
+    margin-top: -200px;*/
+
+}
+
+.platform-android4_4 .event_price{
+
+font-weight:500 ;
+}

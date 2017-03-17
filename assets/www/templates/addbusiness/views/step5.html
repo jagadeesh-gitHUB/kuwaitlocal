@@ -1,0 +1,52 @@
+<ion-content class="addbusiness_form"  id="step_5_contentID" >
+<div class="search_box margin_t_5 margin_b_5 pos_relative" style="">
+    <input type="text" placeholder="Search for Keywords" class="margin_b_10 searchInput" ng-model="keySearch"/>
+    <span class="icons searchIcon"></span>
+</div>
+<h2 class="blue_underlined_box" style="color:orange">Business Keywords/Tags</h2>
+<ion-scroll class="floating_list font_roboto font_color_gray pos_relative">
+        <div class="align_center font_roboto font_size_15" ng-if="!keySearch.length && !mykeywordList.length">Search for Keywords</div>
+
+        <div ng-repeat="listItem in aggregateList | unique:'ID'| filter:keySearch">
+            <label class="box_holder group flexible_box" ng-show="checkVis(listItem.ID) || keySearch.length > 0">
+                <span class="disp_iblock float_left box_left">
+                    <input type="checkbox" class="v_align_mid" ng-checked="setCheck(listItem.ID)" value="{{listItem.ID}}" ng-model="keylist['id_' + listItem.ID]" ng-click="postToMylist(listItem.ID,listItem.Name)" id="Tags{{listItem.ID}}"/>
+                    <span class="checkbox_fake"></span>
+                </span>
+                <span class="disp_iblock float_right box_right" style="padding:5px;">{{listItem.Name}}</span>
+            </label>
+       </div>
+    <div ng-if="!(aggregateList | filter:keySearch).length && aggregateList" class="align_center font_roboto font_size_13 floating_msg noAnim">No results found</div>
+</ion-scroll>
+<div class="l2smblock">
+    <h2 class="blue_underlined_box">Custom Keywords</h2>
+    <div ng-repeat="tag in tagList track by $index" class="disp_iblock keyword_box">
+        <span class="tag_head">{{tag}}</span>
+        <span class="delete_me" ng-click="deleteCat($index)">
+            <span class="icon ion-ios7-close-empty"></span>
+        </span>
+    </div>
+    <h2 style="color:orange;">Add Keywords Manually</h2>
+    <form name="addtagform" novalidate>
+        <div class="inline_inputbox group" style="padding:10px">
+
+            <input type="text" id="manual_text_input_id" ng-pattern="/^[ A-Za-z0-9&-]*$/" placeholder="Restaurant, Cars, etc" class="margin_b_10 side_btn_input"  ng-keyup="CustomKeyDuplicateCheck(newTag,$event);"  ng-model="newTag" vn-clear  ng-click="manualkeyclick();this.select();"/>
+            <button class="ion-plus-circled addmore_btn ucase col-25 custome_add_clss" ng-disabled="addtagform.$invalid" ng-click="addTag(newTag,$event)"></button>
+        </div>
+    </form>
+</div>
+<div class="p70_dummybar">
+</div>
+
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50"  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row" ng-if="!isPremium">
+        <button class="button button-block ucase blue_button col"  ui-sref="menuView.addBusiness.step4" ng-click="BackanalyticcodeforAddsteps(5,'f');">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10"   ng-click="mixLists();analyticcodeforAddsteps(5,'f');" >Next</button>
+    </div>
+    <div class="row" ng-if="isPremium">
+        <button class="button button-block ucase blue_button col"  ui-sref="menuView.addBusiness.step7" ng-click="BackanalyticcodeforAddsteps(7,'p');">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-click="mixLists();analyticcodeforAddsteps(5,'p');" >Next</button>
+    </div>
+
+</ion-footer>

@@ -1,0 +1,23 @@
+<ion-view title="Kuwait local" class="detailservice_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider row content_formatting has-header has-footer has-tabs padding">
+        <!--<div ng-repeat="video in innerVideoList" class="margin_b_20">-->
+            <!--<iframe ng-src="{{video.video_url | trusted}}" width="100%" frameborder="0"></iframe>-->
+        <!--</div>-->
+
+
+        <ul class="rig columns-2" >
+            <li  ng-repeat="video in videourls"  ng-click="aboutvideoedit(video)">
+                <img ng-show="video.vurl.length > 0" src="{{video.vurl}}" style="width:100%;" />
+            </li>
+        </ul>
+
+    </ion-content>
+    <!--<footer class="bar bar-footer align_center padding" style="padding: 10px;">-->
+        <!--<div class="row">-->
+            <!--<button class="button button-block ucase blue_button" ng-click="goBackToDetail()">back to details</button>-->
+        <!--</div>-->
+    <!--</footer>-->
+</ion-view>

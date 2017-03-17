@@ -1,0 +1,323 @@
+
+
+
+<ion-view title="Events" class="eventsearch_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="gotohomeview()" class="button button-icon font_robotoM ucase back_btn">Back</button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" style="margin:0px;padding:0px;top:50px;" ng-style="{ height: classifiedlists.length > 4 ? 'auto' : '41px' }">
+        
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;" >
+            
+            <label class="item-input-wrapper">
+                <input  id="eventsearch_id" placeholder="Enter text here"  type="search"  ng-model="EventSearchText" ng-keyup="Eventsearchkeyup($event)" ng-keydown="Eventkeypress($event)" ng-click="inputclicked();" />
+            </label>
+            <button class="ion-android-search kuwait-search"  ng-click="EventsearchClick(EventSearchText)" style="top:0px;"></button>
+        </div >
+
+
+        <div class="button-bar" style="position: relative;top: 2px;width: 100%;padding: 0px;"  ng-if="EventSearchlist.length > 5">
+            <a class="button barbuttonselted" data-ng-click="eventpopular('popular',$event)" id="search_event_pop" >Pouplar</a>
+            <a class="button" data-ng-click="eventnear('nearby',$event)" >Near By</a>
+            <a class="button" data-ng-click="eventrecent('recent',$event)">Recent</a>
+        </div>
+    </div>
+    
+    
+    <ion-content class="tab_top full_section has-footer" style="top:124px;" ng-style="{top:EventSearchlist.length > 5 ?'120px':'86px'}">
+
+
+<div class="adsclass"  ng-click=" ADSlinkopen(Ads_Array.url_link)">
+    
+    <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+    
+</div>
+
+<div class="list popularEvents" ng-repeat="event in EventSearchlist | limitTo : EventLoadmore | orderBy:['-view_count'] "  >
+    
+    <div class="event_display_MainDiv"  ng-click="eventDetailnav(event.id,$index);">
+        
+        <!-- Logo -->
+
+          <div  class="divafterlogo">
+            <span class="event_price" ng-if="event.price">
+                <p>KWD {{event.price}}</p>
+            </span>
+            <span class="event_price" ng-if="event.distance != 9999999 " style="left: 3%;right:0px;">
+                <p>{{event.distance}}KM</p>
+            </span>
+            <span class="event_price" ng-hide="event.event_status" style="margin-top:16px;">
+                <p style="color:red;margin:0px">Completed</p>
+            </span>
+            
+            </div>
+
+        <img  ng-src="{{event.thumb_path}}"  class="eventImage"/>
+
+        <!--              <div class="eventpast_watermark" ng-hide="event.event_status"></div>-->
+
+            <div class="width100p f_left">
+                <div class="event_title pad_10">
+                    <a>{{event.name}}</a>
+                    
+                </div>
+                 <div class="event_details pad_0_10">
+                     <div class="f_left  mob_width100p">
+                         <!--                    <span class=" icon ion-calendar "></span>-->
+                         <span class="pos_relative icon ion-calendar" style="left:5%;font-size: 11px;margin-right: 10px">{{event.start_date}}</span>
+                     </div>
+                     
+                     <!-- comments -->
+                     <div class="f_left" style="margin-right:15px;">
+                         <!--                    <span class=" f_left mright_5 icon ion-chatbox-working"></span>-->
+                         <span class="text_span normal icon ion-chatbox-working" style="left:5%;font-size: 13px">{{event.comment_count}}</span>
+                     </div>
+                     
+                     
+                     <!-- view count -->
+                     <div id="view_count_display" class="f_left">
+                         <!--                    <span class=" mright_5 icon ion-eye"></span>-->
+                         
+                         <span class="text_span normal icon ion-eye" style="left: 5%;font-size: 13px;margin-right: 10px">{{event.view_count}}</span>
+                     </div>
+                     
+                     <div id="view_count_display" class="f_left" ng-if="event.distance != 9999999 ">
+                         <span class=" icon "></span>
+                         <span class="text_span normal" style="left: 5%;">{{event.distance}}KM</span>
+                     </div>
+                
+                    <div id="event_category">{{event.CategoryName}}</div>
+                </div>	
+            </div>	
+            
+    </div>
+</div>
+
+
+<div class="list nearEvents" ng-repeat="event in EventSearchlist |  orderBy:['distance']| limitTo : EventLoadmore "   style="display:none;">
+    
+    <div class="event_display_MainDiv"  ng-click="eventDetailnav(event.id,$index);">
+        
+        <!-- Logo -->
+
+        <div  class="divafterlogo">
+            <span class="event_price" ng-if="event.price">
+                <p>KWD {{event.price}}</p>
+            </span>
+            <span class="event_price" ng-if="event.distance != 9999999 " style="left: 3%;right:0px;">
+                <p>{{event.distance}}KM</p>
+            </span>
+            <span class="event_price" ng-hide="event.event_status" style="margin-top:16px;">
+                <p style="color:red;margin:0px">Completed</p>
+            </span>
+
+        </div>
+
+        <img  ng-src="{{event.thumb_path}}"  class="eventImage"/>
+            <div class="width100p f_left">
+                <div class="event_title pad_10">
+                    <a>{{event.name}}</a>
+                    
+                </div>
+                <div class="event_details pad_0_10">
+                    <div class="f_left  mob_width100p">
+                        <!--                    <span class=" icon ion-calendar "></span>-->
+                        <span class="pos_relative icon ion-calendar" style="left:5%;font-size: 11px;margin-right: 10px">{{event.start_date}}</span>
+                    </div>
+                    
+                    <!-- comments -->
+                    <div class="f_left" style="margin-right:15px;">
+                        <!--                    <span class=" f_left mright_5 icon ion-chatbox-working"></span>-->
+                        <span class="text_span normal icon ion-chatbox-working" style="left:5%;font-size: 13px">{{event.comment_count}}</span>
+                    </div>
+                    
+                    
+                    <!-- view count -->
+                    <div id="view_count_display" class="f_left">
+                        <!--                    <span class=" mright_5 icon ion-eye"></span>-->
+                        
+                        <span class="text_span normal icon ion-eye" style="left: 5%;font-size: 13px;margin-right: 10px">{{event.view_count}}</span>
+                    </div>
+                    
+                    <div id="view_count_display" class="f_left" ng-if="event.distance != 9999999 ">
+                        <span class=" icon "></span>
+                        <span class="text_span normal" style="left: 5%;">{{event.distance}}KM</span>
+                    </div>
+                    
+                    <div id="event_category">{{event.CategoryName}}</div>
+                </div>
+            </div>
+            
+            </div>
+</div>
+
+
+<div class="list recentEvents" ng-repeat="event in EventSearchlist | limitTo : EventLoadmore  "   style="display:none;">
+    
+    <div class="event_display_MainDiv"  ng-click="eventDetailnav(event.id,$index);">
+        
+        <!-- Logo -->
+
+        <div  class="divafterlogo">
+            <span class="event_price" ng-if="event.price">
+                <p>KWD {{event.price}}</p>
+            </span>
+            <span class="event_price" ng-if="event.distance != 9999999 " style="left: 3%;right:0px;">
+                <p>{{event.distance}}KM</p>
+            </span>
+            <span class="event_price" ng-hide="event.event_status" style="margin-top:16px;">
+                <p style="color:red;margin:0px">Completed</p>
+            </span>
+
+        </div>
+
+        <img  ng-src="{{event.thumb_path}}"  class="eventImage"/>
+            <div class="width100p f_left">
+                <div class="event_title pad_10">
+                    <a>{{event.name}}</a>
+                    
+                </div>
+                <div class="event_details pad_0_10">
+                    <div class="f_left  mob_width100p">
+                        <!--                    <span class=" icon ion-calendar "></span>-->
+                        <span class="pos_relative icon ion-calendar" style="left:5%;font-size: 11px;margin-right: 10px">{{event.start_date}}</span>
+                    </div>
+                    
+                    <!-- comments -->
+                    <div class="f_left" style="margin-right:15px;">
+                        <!--                    <span class=" f_left mright_5 icon ion-chatbox-working"></span>-->
+                        <span class="text_span normal icon ion-chatbox-working" style="left:5%;font-size: 13px">{{event.comment_count}}</span>
+                    </div>
+                    
+                    
+                    <!-- view count -->
+                    <div id="view_count_display" class="f_left">
+                        <!--                    <span class=" mright_5 icon ion-eye"></span>-->
+                        
+                        <span class="text_span normal icon ion-eye" style="left: 5%;font-size: 13px;margin-right: 10px">{{event.view_count}}</span>
+                    </div>
+                    
+                    <div class="f_left" ng-if="event.distance != 9999999 ">
+                        <span class=" icon "></span>
+                        <span class="text_span normal" style="left: 5%;">{{event.distance}}KM</span>
+                    </div>
+                    
+                    <div id="event_category">{{event.CategoryName}}</div>
+                </div>
+            </div>
+            
+            </div>
+</div>
+
+
+<ion-infinite-scroll on-infinite="Eventserachloadmore()"  distance="10%" ng-if="EventSearchlist.length> 10 " icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+    </ion-content>
+
+<ion-footer class="bar bar-footer " ng-hide="keyboardOpen"  style="border: 0px solid white;width: 30%;background:none;left:35%" ng-click="OpenfilterView();">
+    
+    <button class="button col " style="border: 1px solid orange;color:orange;font-weight:bold;font-size:18px;background:white;"><i class="my-filter" style="top:4px;position: relative;left: -10%;vertical-align: none;"></i>Filter</button>
+    
+    
+</ion-footer>
+</ion-view>
+
+
+<script id="eventFilter.html" type="text/ng-template">
+    <ion-modal-view>
+    <ion-header-bar style="background: black;color: white">
+    <div class="buttons" side="left">
+    <button class="button button-clear button-primary"  ng-click="modal.hide();" style="font-weight: bolder;">Close</button>
+    </div>
+    <h1 class="title" style="color:white;font-size:20px;">kuwait Local</h1>
+    <div class="buttons">
+    
+    <button class="button button-clear button-primary" ng-click="FilterApplyclick();" style="font-weight: bolder;">Apply</button>
+    </div>
+    </ion-header-bar>
+    <ion-content style="top:44px;">
+    
+    <div class="list">
+
+    
+    <ion-checkbox class="item-checkbox-right eventbg_color " ng-model="data.remember" ng-checked="data.remember">Only Free Events</ion-checkbox>
+    
+    
+    </div>
+    
+    <div class="list">
+    
+    <div class="item item-divider eventbg_color ">Date<i class="icon ion-chevron-down" style="float: right; color:#4db9eb"></i></div>
+    
+    <ion-radio class="item-checkbox-right "  name="date"   ng-click="chooseDateclick('All Dates',$event);" value="All Dates"  ng-model="data.ChooseDateText">All Dates</ion-radio>
+    <ion-radio class="item-checkbox-right "  name="date"  ng-click="chooseDateclick('Today',$event);" value="Today" ng-model="data.ChooseDateText">Today</ion-radio>
+    <ion-radio class="item-checkbox-right "  name="date"  ng-click="chooseDateclick('Tomorrow',$event);" value="Tomorrow" ng-model="data.ChooseDateText">Tomorrow</ion-radio>
+    <ion-radio class="item-checkbox-right "  name="date"  ng-click="chooseDateclick('Weekend',$event);" value="Weekend" ng-model="data.ChooseDateText">Weekend</ion-radio>
+    <ion-radio class="item-checkbox-right "  name="date"  ng-click="chooseDateclick('Choose Date',$event);" value="Choose Date" ng-model="data.ChooseDateText">Choose Date</ion-radio>
+   <div ng-hide="data.choosedateDiv">
+   <label class="item item-input" >
+    
+    <span class="input-label">From Date</span>
+    
+    <input type="date" placeholder="Choose Date" class="font_roboto"  ng-model="filterData.fromDate"  />
+
+  </label>
+
+<label class="item item-input">
+
+<span class="input-label" >To Date</span>
+
+<input type="date" placeholder="Choose Date" class="font_roboto"  ng-model="filterData.toDate"  />
+
+</label>
+
+</div>
+
+    </div>
+    
+    
+    <div class="list">
+    
+    <div class="item item-divider eventbg_color" ng-click="eventcathide= !eventcathide;">Event Categories <i class="icon ion-chevron-down" style="float: right;"></i>
+    </div>
+    <div ng-hide="!eventcathide">
+     <ion-radio class="item-checkbox-right" value="All Categories" ng-model="data.eventcatstxt">All Categories</ion-radio>
+     
+     <ion-radio class="item-checkbox-right" ng-repeat="cat in EventCatArray" value="{{cat.name}}" ng-model="data.eventcatstxt"  ng-click="choseCatfromlist(cat,$event);">{{cat.name}}</ion-radio>
+    </div>
+     </div>
+    
+    
+    
+    </ion-content>
+    </ion-modal-view>
+    </script>
+
+
+<style>
+    .eventbg_color{background: #129ce0 !important;color:white; font-weight: bold}
+    
+    .item:nth-child(even){background: white;}
+    .item:nth-child(odd){background:white;}
+    .item :hover{color:orange !important;}
+    .input-label{padding:0px;width:27%;text-align: center;}
+    input[type="date"]{text-align: center;
+        border: 0.5px solid gray !important;}
+    .platform-android4_4  input[
+    type="date"]{text-align: center;
+    border: 1px solid gray !important;}
+    </style>
+
+
+
+
+
+
+
+
+
+
+

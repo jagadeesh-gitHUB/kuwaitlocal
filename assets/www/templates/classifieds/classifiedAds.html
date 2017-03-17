@@ -1,0 +1,92 @@
+<ion-view title="Classifieds" class="classrecent_View popback" animation="no-animation">
+
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader"  style="height:8px;padding:0px;top:50px;"  >
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;" ng-click="openclassifiedsearchview($event)">
+            <label class="item-input-wrapper" style="opacity:0.6">
+                {{currentgname}}
+            </label>
+            <button class="ion-android-search kuwait-search" ng-click="flashSearch()" style="height:20px;top:2px;"></button>
+        </div >
+        <div class="button-bar" style="position: relative;top: 2px;width: 100%;padding: 0px;">
+            <a class="button barbuttonselted" data-ng-click="recentclasslistsortbybuttonclick('recent',$event)" >Recent</a>
+            <a class="button" data-ng-click="recentclasslistsortbybuttonclick('popular',$event)" >Popular</a>
+            <a class="button" data-ng-click="recentclasslistsortbybuttonclick('near',$event)">Near By</a>
+        </div>
+
+    </div>
+    <div class="fixedlisticondiv" ng-click="opengridcatlist();$event.stopPropagation();" ng-hide="gridcatlistdiv"><button class="button button-icon icon ion-grid"></button></div>
+
+    <ion-content style="top: 125px;margin: -1px;">
+        <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="RecentAdsdoRefresh()">
+        </ion-refresher>
+
+        <div class="adsclass"  ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+            <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+        </div>
+<!-----------------------------------popular Ads(recent Ads)---------------------------------------------->
+        <div class="list classpop" style="top:-5px;display:none;">
+
+            <a class="item " ng-repeat="item in recentAds | orderBy:['-is_premium','-view_count'] | limitTo:RecentAdsLoadmore_count"   ng-click="openclassifiedlistdetail(item);$event.stopPropagation();">
+
+                <img ng-src="{{item.Ads_logo}}" ng-if="item.Ads_logo.length > 0" ng-style='{display: item.Ads_logo == "http://www.kuwaitlocal.com/img/No_image_available.png" ? "none" : "block"}'  class="classifed_imgcls"/>
+                <h2 style="color:#31b3eb;">{{item.title}}</h2>
+                <p style="color:black;"><span>{{item.type}}/{{item.view_count}}</span><span style="float:right;color:#31b3eb;"  ng-hide="item.distance == 99999">{{item.distance}} Km</span> </p>
+                <p style="color:black;">  <span style="color:#de716f;" ng-if="item.price">KWD : {{item.price}}</span> <span style="float:right" ng-bind="createddatebind(item.created)"></span> </p>
+                <p style="color:black;"><span>{{item.address}}</span> <span  class="my_klverified" ng-hide="item.is_premium == 0" style="float:right;position:relative;"></span></p>
+
+
+            </a>
+
+        </div>
+
+
+        <!-----------------------------------near Ads(recent Ads)---------------------------------------------->
+        <div class="list classnear" style="display:none;top:-5px;">
+
+            <a class="item " ng-repeat="item in recentAds | orderBy:'distance' | limitTo:RecentAdsLoadmore_count"   ng-click="openclassifiedlistdetail(item);$event.stopPropagation();">
+
+                <img ng-src="{{item.Ads_logo}}" ng-if="item.Ads_logo.length > 0" ng-style='{display: item.Ads_logo == "http://www.kuwaitlocal.com/img/No_image_available.png" ? "none" : "block"}'  class="classifed_imgcls"/>
+                <h2 style="color:#31b3eb;">{{item.title}}</h2>
+                <p style="color:black;"><span>{{item.type}}</span><span style="float:right;color:#31b3eb;"  ng-hide="item.distance == 99999">{{item.distance}} Km</span> </p>
+                <p style="color:black;">  <span style="color:#de716f;" ng-if="item.price">KWD : {{item.price}}</span> <span style="float:right" ng-bind="createddatebind(item.created)"></span> </p>
+                <p style="color:black;"><span>{{item.address}}</span> <span  class="my_klverified" ng-hide="item.is_premium == 0" style="float:right;position:relative;"></span></p>
+
+
+            </a>
+
+        </div>
+
+
+        <!-----------------------------------recent Ads(recent Ads)---------------------------------------------->
+        <div class="list classrecent" style="top:-5px;">
+
+            <a class="item " ng-repeat="item in recentAds | orderBy:'-created' | limitTo:RecentAdsLoadmore_count"   ng-click="openclassifiedlistdetail(item);$event.stopPropagation();">
+
+                <img ng-src="{{item.Ads_logo}}" ng-if="item.Ads_logo.length > 0"  ng-style='{display: item.Ads_logo == "http://www.kuwaitlocal.com/img/No_image_available.png" ? "none" : "block"}'  class="classifed_imgcls"/>
+                <h2 style="color:#31b3eb;">{{item.title}}</h2>
+                <p style="color:black;"><span>{{item.type}}</span><span style="float:right;color:#31b3eb;"  ng-hide="item.distance == 99999">{{item.distance}} Km</span> </p>
+                <p style="color:black;">  <span style="color:#de716f;" ng-if="item.price">KWD : {{item.price}}</span> <span style="float:right" ng-bind="createddatebind(item.created)"></span> </p>
+                <p style="color:black;"><span>{{item.address}}</span> <span  class="my_klverified" ng-hide="item.is_premium == 0" style="float:right;position:relative;"></span></p>
+
+
+            </a>
+
+        </div>
+
+
+        <ion-infinite-scroll on-infinite="RecentADSlimitarrload()"  distance="10%" ng-if="recentAds.length> 10 " icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+        <!--<button class="button  button-positive loadmorelistclass" data-ng-click="RecentADSlimitarrload()"style="width:100%;" ng-hide="loadmoreAdsbtn" >load More</button>-->
+
+    </ion-content>
+    </ion-view>
+

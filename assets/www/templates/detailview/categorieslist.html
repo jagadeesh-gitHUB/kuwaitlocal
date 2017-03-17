@@ -1,0 +1,27 @@
+<ion-view title="Kuwait local" class="category_View popback" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="getingfromlist()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" ng-click="searchfiledclickd()" style="height:41px;top:50px;padding:0px">
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;" >
+            <label class="item-input-wrapper" style="opacity:0.6">{{currentgname}}</label>
+            <button class="ion-android-search kuwait-search" ng-click="flashSearch()" style="top:0px;"></button>
+        </div >
+        <div class="item-input-inset"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;top: 8px;display:none;" id="areaseltid"></div>
+    </div>
+    <div class="fixedlisticondiv" ng-click="opengridcatlist();$event.stopPropagation();" ng-hide="gridcatlistdiv"><button class="button button-icon icon ion-grid"></button></div>
+    <ion-content style="top:26px;">
+        <ion-list class="listpopcategoryclass">
+            <ion-item ng-repeat="popularCat in popularCategories | orderBy: 'name' " ng-click="gotosubCategories(popularCat,'popList')" class="popularCat_clss">
+                <a>{{popularCat.name}}<i class="icon ion-chevron-right" style="float:right;"></i>
+                    <!--                <img ng-if="popularCat.logo != null" ng-src="{{popularCat.logo}}" style="float:left;width:15%;"/>-->
+                    <!--                <img src="img/no-img.png" ng-if="popularCat.logo == null" style="float:left;width:15%;"/>-->
+                    <!--                <label style="text-align: center;position:relative;left:7%;top:15px;">{{popularCat.name}}</label>-->
+                </a>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

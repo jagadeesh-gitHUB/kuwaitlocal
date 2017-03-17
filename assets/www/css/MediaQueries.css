@@ -1,0 +1,35 @@
+
+@media (device-width:800px){
+.maincatimgclass{height:300px;}//this for subcategories
+}
+@media (device-width:720px){
+.maincatimgclass{height:280px;}
+.col-33{display: block !important;padding: 10px !important;width: 50% !important;}
+.workinghours_clss h4 {padding:15px;}
+.col-67{padding:6px !important;}
+.nationalist_span{display:block;}
+.edit_cont_cls{display:inline !important;width:260px !important;}
+.col_3_input{display: inline !important; width: 220px !important;}
+.col_2_input{display: inline !important;width:280px !important};
+.addmore_btn {display:block !important;}
+.mobileaddmore_btn{display:block !important;}
+.step3_number_inputcls{width:260px !important;}
+}
+
+@media (device-width: 480px){
+//.maincatimgclass{height:280px;}//this for subcategories
+}
+
+@media (device-width: 420px){
+//.maincatimgclass{height:280px;}//this for subcategories
+}
+
+@media  (device-width: 360px){
+//.maincatimgclass{height:280px;}//this for subcategories
+}
+
+@media (device-width: 320px){
+//.maincatimgclass{height:280px;}//this for subcategories
+}
+
+

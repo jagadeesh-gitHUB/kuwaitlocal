@@ -1,0 +1,82 @@
+<ion-view title="Forums">
+
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right" class="searchBack_btnClass">
+        <button class="button button-icon icon ion-arrow-left-c"  ng-hide="searchBack_btn" ng-click="forumbacktoindex();"></button>
+    </ion-nav-buttons>
+
+    <div class="bar bar-subheader search-subheader" style="height: 43px !important;padding: 0px;top: 50px;">
+
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;top:2px;">
+            <label class="item-input-wrapper" style="height:25px;top:-4px;">
+                <input placeholder="Search..."  type="search" ng-model="forumtext" ng-keyup="forumsearchkeyup($event)"/>
+                <!--<angucomplete-alt id="search"-->
+                <!--placeholder="Search Business or Keywords"-->
+                <!--pause="400"-->
+                <!--selected-object="viewResult"-->
+                <!--remote-url="http://188.166.55.96/kuwaitmobileapp/search_business.php?function=governaratesbasedsearch&input={{register.governorateId}}/{{selectgoverareaid}}/"-->
+                <!--title-field="title"-->
+                <!--match-class="highlight"-->
+                <!--input-class="form-control form-control-small"></angucomplete-alt>-->
+            </label>
+            <button class="ion-android-search kuwait-search mediaSearch_cls" ng-click="forumsearchlist()" style="height:30px;top:2px;">
+            </button>
+        </div>
+
+
+
+
+    </div>
+
+
+    <ion-nav-view animation="slide-left-right" class="has-header has-subheader has-footer" name="tabContent">
+        <!-- Center content -->
+
+    </ion-nav-view>
+
+    <!--<footer class="bar bar-footer blue_footer hide-on-keyboard-open" ng-click="openpostforum()" style="background:white !important;">-->
+        <!--<a href="#" class="checkmein" ></a>-->
+        <!--<span class="checkin_text ucase" style="position:relative;background:#85ad1d">Post Your Topic</span>-->
+        <!--<footer>-->
+
+            <ion-footer class="bar bar-footer align_center height_auto  split_50 hide-on-keyboard-open" animation="no-animation"ng-click="openpostforum()" style="background:white !important;">
+                <button class="button button-block ucase green_button col marginless " >Post Forum</button>
+            </ion-footer>
+
+
+            <!------------------------forum add model template script---------------------------------------->
+            <script id="forumadd.html" type="text/ng-template">
+            <ion-modal-view>
+            <ion-header-bar>
+            <h1 class="title">Add New Forum</h1>
+                <!--<button ng-click="closemodalview()" class="button button-icon icon ion-arrow-left-c" style="float:left;"></button>-->
+            </ion-header-bar>
+            <ion-content class="addbusiness_form">
+                <form  novalidate  name="forum_add">
+                    <div class="list list-inset marginless" style="padding:10px;">
+                     <select name="repeatSelect" id="repeatSelect" ng-model="catdata.selectid" ng-options="forumcat.id as forumcat.category_name for forumcat in catdata.forumcats" style="width:97%;height:40px;">
+
+                        <option value=''> Please Choose Category </option>
+                    </select>
+                     <input type="text" id="form_input_id"  placeholder="Title" ng-minlength="5" ng-maxlength="150"  ng-model="postmodel.tilte" class="font_roboto font_color_gray input_for_validity margin_b_15" required  style="margin: 5px;position: relative;right: 2%;" ng-pattern="/^[ A-Za-z0-9-,.]*$/">
+                    <textarea id="form_textrarea_id" placeholder="Description" ng-minlength="5" ng-model="postmodel.description" required  class=" input_for_validity margin_b_15" style="min-height: 300px;"></textarea>
+                    </div>
+
+                    <!--<button class="button button-block ucase font_robotoB font_size_21 yellow_bg marginless font_color_white" ng-click="Addfroumfrommodal()">Post</button>-->
+                    <!--<button class="button ion-images button-block capitalize align_center font_robotoM" ng-click="postreset()">Clear Data</button>-->
+                </form>
+            </ion-content>
+
+                <ion-footer class="bar bar-footer align_center  split_50 hide-on-keyboard-open" style="height:55px;">
+                    <div class="row">
+                        <button class="button button-block ucase blue_button col"  ng-click="Addfroumfrommodal()">Post</button>
+                        <button class="button  button-block ucase blue_button col margin_r_10"  ng-click="closemodalview();postmodel.tilte=undefiend;postmodel.description=undefined; ">Close </button>
+                    </div>
+                </ion-footer>
+            </ion-modal-view>
+            </script>

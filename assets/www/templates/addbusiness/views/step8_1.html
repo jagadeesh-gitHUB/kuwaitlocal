@@ -1,0 +1,20 @@
+
+<ion-content class="addbusiness_form padding" animation="no-animation">
+<form vn-check-validity name="defaultForm" novalidate>
+    <input type="text" placeholder="Title" ng-required="true" ng-model="product.title" class="margin_b_10 margin_t_10" ng-init="product.title = productList[editIndex].title"/>
+    <input type="text" placeholder="KWD" ng-pattern="/^\d*\.{0,1}\d+$/" ng-required="true" ng-model="product.amount" class="margin_b_10 margin_t_10" ng-init="product.amount = productList[editIndex].amount"/>
+    <div class="margin_t_25 margin_b_25 align_center" ng-click="toggleProdPhotoModal()">
+        <span class="cam_icon_holder">
+            <span class="icon ion-camera font_size_30 font_color_blue"></span>
+        </span>
+        <p class="font_roboto font_color_ash font_size_19 margin_t_10">Tap here to upload images</p>
+    </div>
+    <img ng-if="currentPicPath.length > 0" src="{{baseImg}}" class="margin_b_20 product_image60"/>
+</form>
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50" animation="no-animation"  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row">
+        <button class="button button-block ucase blue_button col gray_button" ng-click="clearStatuses()">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!defaultFormValid" ng-click="addProduct()">{{btnText}}</button>
+    </div>
+</ion-footer>

@@ -1,0 +1,37 @@
+<ion-header-bar class="logo_header" animation="no-animation">
+</ion-header-bar>
+<ion-content class="logo_content" animation="no-animation" overflow-scroll="true">
+  <div class="list">
+    <div class="logitem negate_bottom regular_form">
+        <form name="defaultForm" vn-check-validity novalidate>
+            <input type="email" placeholder="Email" class="font_roboto" required ng-model="user.uname"/>
+            <input type="password" placeholder="Password" class="font_robot" required ng-model="user.pword"/>
+        </form>
+    </div>
+  </div>
+
+    <div class="logitem negate_bottom" style="background-color:none;">
+
+
+         <span class="button button-block model_btn align_left box_rounded_3 margin_b_20" ng-click="logmein()" style="background:#f79d1e;">
+            <span class="ion-log-in fb_component disp_iblock font_color_white font_size_32 v_align_mid margin_r_10" style="float:right;border-left: 1px solid #b2b2b2;"></span>
+            <span class="font_size_18 font_color_white fb_text_component disp_iblock v_align_mid" style="text-align:center;width: 100%;font-size: 20px">Login</span>
+        </span>
+
+
+        <div class="button-bar" style="background:black;">
+            <a class="button extrabtnclslogin" ng-click="forgotpassword()">Forgot Password.?</a>
+            <a class="button extrabtnclslogin" ui-sref="signupView" ng-click="createAccountclick();">Create Account</a>
+
+        </div>
+
+
+ </div>
+
+
+</ion-content>
+<!--<ion-footer-bar class=" login_bar bar-footer align_center padding hide-on-keyboard-open" animation="no-animation">-->
+    <!--<div class="row">-->
+        <!--<button class="button button-block ucase blue_button" ng-disabled="!defaultFormValid" ng-click="logmein()">login</button>-->
+    <!--</div>-->
+<!--</ion-footer-bar>-->

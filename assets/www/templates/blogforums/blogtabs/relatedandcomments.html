@@ -1,0 +1,48 @@
+<ion-view title="{{viewtitle}}" class="relatedblog_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider" animation="no-animation">
+        <!--<ion-list ng-hide="relatedblogs_class">-->
+            <!--<ion-item ng-repeat="blogslist in relatedblogs" ng-click="gotoblogdetails(blogslist)">-->
+                <!--&lt;!&ndash;<div class="badge_placement" style="float:right;"></div>&ndash;&gt;-->
+                <!--<img ng-if="blogslist.img!=null" ng-src="{{imgeurl}}/{{blogslist.id}}/{{blogslist.img}}" style="width:0.6in;height:0.6in;float:left;position:relative;right:12px;">-->
+                <!--<img  ng-if="blogslist.img==null" src="img/no-img.png" style="width:0.6in;height:0.6in;float:left;position:relative;right:12px;">-->
+                <!--<a>{{blogslist.title}}</a>-->
+                <!--<p>views : {{blogslist.view_count}}  Created : {{blogslist.created}}</p>-->
+                <!--&lt;!&ndash;<h3 ng-bind="blogdes(blogslist.des)"></h3>&ndash;&gt;-->
+                <!--<button ng-click="shareblog(blogslist.title,blogslist.des)">share</button>-->
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+
+        <div class="adsclass" ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+
+            <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+        </div>
+
+        <div class="list" style="position:relative;top:-9px;" ng-hide="relatedblogs_class">
+
+            <a class="item item-thumbnail-left" ng-repeat="blogslist in relatedblogs track by $index" ng-click="gotoblogdetails(blogslist)">
+                <img  ng-src="{{blogslist.img}}" style="border-radius: 10px;height: 85px">
+
+                <h2>{{blogslist.title}}</h2>
+                <p><span ng-bind="autosllidecreated(blogslist.created)" style="color:crimson;"></span><i class="icon ion-android-share-alt" ng-click="shareblog(blogslist.slug,blogslist.des);$event.stopPropagation();" style="float:right;font-size:large;"></i> </p>
+                <p>  <span  ng-bind="autoslideblogbingview(blogslist.view_count)" style="color:green;position:relative;left:10%"></span> <span  ng-bind="autoslideblogbingcom(blogslist.comments_count)" style="color:orange;position:relative;left:40%"></span></p>
+            </a>
+
+
+        </div>
+
+
+
+        <!--<div ng-show="!blogcomments.length > 0">No Comments given yet</div>-->
+    </ion-content>
+
+
+
+</ion-view>

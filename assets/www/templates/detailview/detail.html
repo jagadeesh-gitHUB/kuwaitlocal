@@ -1,0 +1,359 @@
+<ion-view title="Kuwait local" class="detail_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+
+
+
+
+    <ion-content class="has-imageslider" animation="no-animation" overflow-scroll="true"  >
+
+        <div class="detailtilteheader">
+            <h3 class="header_3 font_robotoM line_format_medium detailhrdercls">{{detailData.title}}</h3>
+            </div>
+<div >
+        <div class="detailclassimg"  ng-hide="hidecategories" style="text-align:center">
+            <img ng-src="{{detailData.Logo_Thumbnail}}"  id="adsimgsid" ng-click="imglargeclick($event)"/>
+        </div>
+    <div ng-if="detailData.is_premium" id="watermark"></div>
+</div>
+
+        <div class="font_roboto reset_anchors detailtitlediv">
+            <div class="pos_relative " style="top:10px;">
+                <table class="detailtabledis">
+
+                    <tr>
+                        <td> <p  ng-hide="basedonrate">No ratings</p>
+                            <div class="star-rating" star-rating rating-value="bizrating" data-max="5" ng-hide="otherratng"></div>
+                        </td>
+                        <td>{{detailData.view_count}} views</td>
+                        <td browse-to="{{geo_directions}}" ng-hide="distance == 99999?true:false" ng-click="openMapclick();">{{distance + " KM"}}</td>
+                        <td browse-to="{{geo_directions}}" class="icon ion-model-s" style="color:white;" ng-hide="distance == 99999?true:false" ng-click="openMapclick();"></td>
+                        <td browse-to="{{geo_directions}}" ng-hide="distance == 99999?true:false" ng-click="openMapclick();">Directions</td>
+                        <td ng-hide="distance == 99999?false:true">Distance not available </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+</div>
+
+        <table style="width:100%;border-bottom: 1px solid #ddd;">
+            <tr>
+                <td ng-click="sharethisbiz(detailData)"><a class="tab-item custometab-cls">
+                    <i class="icon my-share" style="color:orange;"></i>
+                    Share
+                </a></td>
+                <td ng-click="sendToRatingDetail()"><a class="tab-item custometab-cls">
+                    <i class="icon my-rate detailiconcls" style="color:orange;"></i>
+                    Rate
+                </a></td>
+                <td ng-click="isfavselet==true?'':makeitasfav(irem)">
+                    <a class="tab-item custometab-cls" ng-hide="isfavselet">
+                    <i class="icon my-fav" id="isfavid" ></i>
+                   Favorites
+                </a>
+                    <a class="tab-item custometab-cls" ng-show="isfavselet" style="opacity:0.5">
+                        <i class="icon my-fav" id="isfavid" ></i>
+                       Favorited
+                    </a>
+
+                </td>
+               <td ng-click="checkinhere()" ng-hide="true"><a class="tab-item custometab-cls">
+                    <i class="icon my-checkin detailiconcls"></i>
+                    Checkin
+                </a></td>
+                <td ng-hide="detailData.affiliate_useremail == 0 " ><a class="tab-item custometab-cls" ng-click="bizownthis()">
+                    <i class="icon my-own detailiconcls" style="color:orange;"></i>
+                    Own This
+                </a></td>
+
+            </tr>
+
+
+        </table>
+      <div class="divider_bottom pos_relative" ng-hide="nullStateData.business_timings !='none'?false:true" ng-click=" BizOPenstaus.length == 5 ? '' :sendToHourView();$event.stopPropagation();">
+
+            <span class="ion-clock left_icon_bar" style="color: #27acd9;"></span>
+            <p class="disp_iblock padding_l_35 font_roboto font_color_gray margin_t_15 iconpaddcls klpcls" style="text-align:left;" ng-bind-html="BizOPenstaus"></p>
+           <div class="detailviewhours_cls"> <a  ng-hide="BizOPenstaus.length == 5 ? true : false">View hours </a></div>
+    </div>
+            <div class="divider_bottom pos_relative" ng-if="detailData.Address.landmark.length > 0" browse-to="{{geo_directions}}" ng-click="openMapclick();">
+                <span class="ion-home left_icon_bar " style="color: #27acd9;"></span>
+                <p class="disp_iblock padding_l_35  font_roboto font_color_gray margin_t_15 iconpaddcls" style="display: block;">{{detailData.Address.landmark + ', ' + detailData.Address.city_name + ', ' + detailData.Address.governorate_name}}
+                </p>
+            </div>
+
+
+        <div class="divider_bottom pos_relative" ng-if="detailData.Address.landmark.length == 0" browse-to="{{geo_directions}}" ng-click="openMapclick();">
+            <span class="ion-home left_icon_bar " style="color: #27acd9;"></span>
+            <p class="disp_iblock padding_l_35  font_roboto font_color_gray margin_t_15 iconpaddcls">{{detailData.Address.city_name + ', ' + detailData.Address.governorate_name}}
+            </p>
+        </div>
+
+
+            <div class="divider_bottom pos_relative" ng-if="detailData.mobile_no.length > 0"  >
+                <span class=" left_icon_bar detailiconcls "    ng-click="phonecall(detailData.mobile_no)" ng-class="{detailicons_clss : showmore_text == 'less'}">
+                    <i class="icon ion-iphone" style="font-size:25px;top:3px;position:absolute;padding-left:3px;"></i>
+              </span>
+                <p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls" >
+                    <a ng-click="phonecall(detailData.mobile_no)">{{detailData.mobile_no}}</a>
+                    <label class="morelabel_clss" ng-if="detailData.more_contacts.length > 0" ng-click="showMore('contacts',$event);" style="color:orange;">more</label>
+
+                </p>
+
+                <a class="item item-icon-left mobile_Cls" ng-click="phonecall(more,$index)"  ng-if="detailData.more_contacts.length > 0"  ng-repeat="more in detailData.more_contacts track by $index" style="display:none;font-size: 14px;">
+
+                    <i class="icon ion-iphone" style="color:#00a6ff;width:20px;font-size: 18px;" ></i> {{more}}
+
+                </a>
+
+
+
+
+                   </div>
+            <div class="divider_bottom pos_relative" ng-if="detailData.land_line_no.length > 0">
+                <span class=" left_icon_bar detailiconcls"  ng-click="phonecall(detailData.land_line_no)"><i class="icon ion-android-call" style="font-size:18px;top: 4px;position: absolute;"></i>
+              </span>
+                <p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls" ng-click="phonecall(detailData.land_line_no)" style="position: relative;" ng-class="{clearance: detailData.more_contacts.length > 0}">
+                    <a href="tel:{{detailData.land_line_no}}">{{detailData.land_line_no}}</a></p>
+            </div>
+            <div class="divider_bottom pos_relative" ng-if="detailData.toll_free_no.length > 0">
+                <span class="ion-fireball left_icon_bar detailiconcls "  ng-class="{detailicons_clss : showmoretoll_text == 'less'}" style="font-size:18px;"></span>
+                <p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls"    ng-class="{clearance: detailData.mobile_no.length > 0}" style="position: relative;">
+                    <a ng-click="phonecall(detailData.toll_free_no)">{{detailData.toll_free_no}}</a>
+                    <label class="morelabel_clss" ng-if="detailData.more_tollfree.length > 0" ng-click="showMore('tollfree',$event);" style="color:orange;">more</label>
+                   </p>
+                <a class="item item-icon-left tollfree_Cls" ng-click="phonecall(more,$index)" ng-if="detailData.more_tollfree.length > 0"  ng-repeat="more in detailData.more_tollfree track by $index" style="display:none;font-size: 14px;">
+
+                    <i class="icon ion-fireball" style="color:#00a6ff;width:20px;font-size: 18px;" ></i> {{more}}
+
+                </a>
+               </div>
+            <div class="divider_bottom pos_relative" ng-if="detailData.fax_no.length > 0">
+                <span class="ion-printer left_icon_bar detailiconcls "  ng-class="{detailicons_clss : showmorefax_text == 'less'}" style="float:right;"></span>
+                <p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls" ng-class="{clearance: detailData.more_tollfree.length > 0}">
+                <a >{{detailData.fax_no}}</a>
+                    <label class="morelabel_clss" ng-if="detailData.more_fax.length > 0" ng-click="showMore('fax',$event);" style="color:orange;">more</label>
+                    </p>
+
+                <a class="item item-icon-left fax_Cls"  ng-if="detailData.more_fax.length > 0"  ng-repeat="more in detailData.more_fax track by $index" style="display:none;font-size: 14px;">
+
+                    <i class="icon ion-printer" style="color:#00a6ff;width:20px;font-size: 18px;" ></i> {{more}}
+
+                </a>
+
+             </div>
+            <div class="divider_bottom pos_relative" ng-if="detailData.email.length > 0 && detailData.email !=' ' "  >
+                <span class=" left_icon_bar detailiconcls "  ng-class="{detailicons_clss : showmoremail_text == 'less'}" > <i class="icon ion-email detailiconcls"></i>
+               </span>
+                <p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls"  ng-class="{clearance: detailData.more_fax.length > 0}" style="position:relative;">
+                <a ng-click="detailendquert(detailData.email)" >{{detailData.email}}</a>
+                    <label class="morelabel_clss"  ng-if="detailData.more_email.length > 0" ng-click="showMore('email',$event);" style="color:orange;">more</label>
+                </p>
+                <a class="item item-icon-left email_Cls"  ng-if="detailData.more_email.length > 0"  ng-repeat="more in detailData.more_email track by $index" style="display:none;font-size: 14px;">
+
+                    <i class="icon ion-email" style="color:#00a6ff;width:20px;font-size: 18px;" ></i> {{more}}
+
+                </a>
+                </div>
+            <div class="divider_bottom pos_relative" ng-if="detailData.url.length > 0">
+                <span class="ion-earth left_icon_bar" style="color: #27acd9;"></span>
+                <p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls"    ng-class="{clearance: detailData.more_email.length > 0}" >
+                    <a ng-click="openurlwithin(detailData.url)" class="serverAClass">{{detailData.url}}</a>
+                </p>
+            </div>
+        <div class="padding button_section">
+            <button class="button ion-images button-block capitalize align_center font_robotoM detailgallerycls" ng-click="sendToGalleryDetail()" >Gallery</button>
+
+        </div>
+        <div class="font_robotoB font_size_15 ucase font_color_blue flat_bar light_gray_bg group margin_b_10" style="background:#dbdbdb !important;">
+            <span class="float_left m_width_40" style="color:#3a5b94 !important;">Follow us on</span>
+            <span class="float_right">
+                <button ng-if="detailData.facebook_link.length > 0"  class="round_icon  ion-social-facebook" ng-click="SocialMediaClick(detailData.facebook_link,'Facebook');"></button>
+
+                <button ng-if="detailData.google_plus_link.length > 0" class="round_icon ion-social-googleplus" ng-click="SocialMediaClick(detailData.google_plus_link,'Google plus');"></button>
+
+                <button ng-if="detailData.twitter_link.length > 0" class="round_icon  ion-social-twitter" ng-click="SocialMediaClick(detailData.twitter_link,'Twitter');"></button>
+
+                 <button ng-if="detailData.you_tube_link.length > 0"  class="round_icon  ion-social-youtube" ng-click="SocialMediaClick(detailData.you_tube_link,'Youtube');"></button>
+
+                  <button ng-if="detailData.linkedin_link.length > 0"  class="round_icon  ion-social-linkedin" ng-click="SocialMediaClick(detailData.linkedin_link,'LinkedIn');"></button>
+
+                   <button ng-if="detailData.instagram_link.length > 0"  class="round_icon  ion-social-instagram" ng-click="SocialMediaClick(detailData.instagram_link,'Instagram');"></button>
+                </span>
+        </div>
+        <div class="padding">
+            <div class="row align_center tab_holder">
+                <div class="col col-50"><button class="button button-block font_color_lblack font_robotoM font_size_15 ucase" ng-class="{activeTab : tabPage==0}" ng-click="changeTab(0)">Ratings</button></div>
+                <div class="col col-50"><button class="button button-block font_color_lblack font_robotoM font_size_15 ucase" ng-class="{activeTab : tabPage==1}" ng-click="changeTab(1)">About us</button></div>
+            </div>
+            <ion-slide-box show-pager="false" on-slide-changed="tabHoldChange($index)" delegate-handle="rating-tabs" style="min-height: 150px;">
+                <ion-slide>
+                    <div class="box blue box_default">
+                        <div  ng-repeat="review in detailData.Business_reviews"  ng-click="sendToRatingDetail()" ng-if="detailviewratelength.length > 0">
+                            <a class="item item-avatar"  style="border-width:0px;">
+                                <img ng-src="{{logourl}}{{review.user_logo}}" fallback-src='img/defaultuser.png'/>
+                                <h2>{{review.rater_name}} <vn-ratings value={{review.rater_star}} class="disp_iblock margin_r_5" style="position:relative;float:right;"></vn-ratings>
+                                </h2>
+                                <p>{{review.rater_message}}</p>
+                            </a>
+                          <!--<h5 class="font_robotoM font_size_16 font_color_lblack marginless margin_t_5 margin_b_5">{{review.rater_name}} <vn-ratings ng-show="review.rater_star > 0" value={{review.rater_star}} class="disp_iblock float_right"></vn-ratings></h5>-->
+                          <!--<p class="font_size_14 font_roboto font_color_gray">{{review.rater_message}}</p>-->
+                        </div>
+
+                        <button ng-show="detailData.rating_review_count > 2" class="btn button-block blue_button font_roboto font_size_17" ng-click="sendToRatingDetail()" style="height:25px;line-height: 0px;width: 55%;float: right;padding: 0px 0px;">More Review(s)</button>
+                    </div>
+
+                    <div ng-if="detailviewratelength.length==0" style="color:red;font-size:larger;text-align: center;">No ratings given yet</div>
+
+                </ion-slide>
+                <ion-slide>
+                    <div class="box yellow box_default">
+                        <p class="font_roboto font_color_gray">{{detailData.description}}</p>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+
+        <div class="p350_dummybar"></div>
+    </ion-content>
+    <footer class="bar bar-footer dark_footer align_center"  ng-if="detailData.is_premium" style="background:orange;">
+
+        <div class="action_box"  ng-click="nullStateData.business_products != 'none'?sendToProductDetail():''" style="background:orange;border-right: 1px solid gray;">
+            <div class="icon ion-clipboard"></div>
+            <span>Products</span>
+        </div>
+        <div class="action_box"  ng-click="nullStateData.business_services != 'none'?sendToServiceDetail():''" style="background:orange;border-right: 1px solid gray;">
+            <div class="icon ion-person-stalker"></div>
+            <span>Service</span>
+        </div>
+        <div class="action_box"    ng-click="nullStateData.business_videos != 'none'?sendToVideoView():''" style="background:orange;border-right: 1px solid gray;">
+            <div class="icon ion-social-youtube"></div>
+            <span>Videos</span>
+        </div>
+
+        <div class="action_box"     ng-hide="detailData.is_24by7==1?true:false"   ng-click="business_timings != 'none'?sendToHourView():''" style="background:orange;border-right: 1px solid gray;">
+            <div class="icon ion-clock "></div>
+            <span>Hours</span>
+        </div>
+
+        <div class="action_box"  ng-hide="detailData.is_24by7==1?false:true"  style="background:orange;border-right: 1px solid gray;">
+            <div class="icon ion-clock "></div>
+            <span>24/7 Open</span>
+        </div>
+
+
+        <!--<div class="action_box">-->
+            <!--<div class="icon ion-android-star"></div>-->
+            <!--<span>Rate this</span>-->
+        <!--</div>-->
+        <!--<div class="action_box">-->
+            <!--<a browse-to="{{geo_directions}}">-->
+                <!--<div class="icon ion-android-location"  browse-to="{{geo_directions}}"></div>-->
+                <!--<span>Directions</span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="action_box" ui-sref="menuView.Enquiry">-->
+            <!--<div class="icon ion-compose"></div>-->
+            <!--<span>Enquiry</span>-->
+        <!--</div>-->
+        <!--<div class="action_box">-->
+            <!--<div class="icon ion-bookmark"></div>-->
+            <!--<span>Own this</span>-->
+        <!--</div>-->
+    </footer>
+</ion-view>
+
+<!-------------------------image enlarge templated (pop)--------------------------->
+
+
+<script id="imgagelrge.html" type="text/ng-template">
+
+   <ion-content class="zoompzn">
+
+            <ion-slide-box>
+
+                <ion-slide>
+
+                    <div class="containerzoom"  class="scrollCanvas">
+                        <ion-scroll class="scrollCanvas" zooming="true" min-zoom="1" direction="xy" locked="false">
+                            <div class="imagezoom" style="background-image: url('{{detailData.Biz_Logo}}')"></div>
+                            <!--<img ng-src="{{detailData.Biz_Logo}}" style="width: 100%;height: 100%;">-->
+                        </ion-scroll>
+
+                    </div>
+
+                    <div>&nbsp;</div>
+
+                </ion-slide>
+
+            </ion-slide-box>
+
+
+
+        </ion-content>
+
+
+</script>
+
+
+
+<!--------------------------------mobile more popup---------------------------------------------------->
+<script id="detialmoreinfo.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">More</h1>
+            <button ng-click="moremodalclose()" class="button button-icon icon ion-arrow-left-c" style="float:right;"></button>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list mobilemodallcist" style="display:none;">
+
+
+                <a class="item item-icon-left" ng-repeat="detailNumber in detailData.more_contacts" ng-click="phonecall(detailNumber)">
+                   {{detailNumber}}
+                    <i class="icon ion-android-call"></i>
+                </a>
+
+                </div>
+
+            <div class="list tollmodallcist" style="display:none;">
+
+
+                <a class="item item-icon-left" ng-repeat="detailNumber in detailData.more_tollfree" ng-click="phonecall(detailNumber)">
+                    {{detailNumber}}
+                    <i class="icon ion-android-call"></i>
+                </a>
+
+            </div>
+
+            <div class="list faxmodallcist" style="display:none;">
+
+                <a class="item item-icon-left" ng-repeat="detailNumber in detailData.more_fax" ng-click="phonecall(detailNumber)">
+                    {{detailNumber}}
+                    <i class="icon ion-android-call"></i>
+                </a>
+
+            </div>
+
+            <div class="list mailmodallcist" style="display:none;">
+
+
+                <a class="item item-icon-left" ng-repeat="detailNumber in detailData.more_email" >
+                    {{detailNumber}}
+
+                </a>
+
+            </div>
+
+
+
+
+        </ion-content>
+    </ion-modal-view>
+</script>
+

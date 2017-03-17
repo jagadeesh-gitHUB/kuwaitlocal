@@ -1,0 +1,113 @@
+<ion-view title="Kuwait local" class="detailservice_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-camera"  ng-click="togglePhotoModal()"></button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-imageslider row content_formattings has-header has-footer padding-bottom "  style="background:black;top:64px;"  >
+
+        <ul class="rig columns-3" ng-if="GalleryList.length > 0">
+            <li ng-repeat="img in GalleryList " ng-click="Gallerypopimage($event,$index);" style="background-image:url('{{img.gallery_thumbnail}}');height:100px;background-repeat: no-repeat;background-size: cover;">
+            <!--<li ng-repeat="img in publicGalleryImages |limitTo:galleryload_count" ng-click="Gallerypopimage($event,$index);">-->
+            <!--<img src="{{img.image}}" id="selectedimgsrc" style="max-width:200px; max-height:200px" />-->
+                <!--<p>added by {{img.username}}</p>-->
+            </li>
+        </ul>
+
+        <!--<div class="img"  ng-if="publicGalleryImages.length > 0">-->
+            <!--<a ng-repeat="img in publicGalleryImages |limitTo:galleryload_count" ng-click="Gallerypopimage($event,$index);" >-->
+                <!--<img src="{{img.image}}" alt="{{img.image}}" width="300" height="200">-->
+            <!--</a>-->
+            <!--<!--<div class="desc">Add a description of the image here</div>-->-->
+        <!--</div>-->
+
+
+        <h3 ng-if="GalleryList.length == 0" class="gallery_errorcls">Current No Gallery found</h3>
+
+
+        <img id="Temp_imageID" src="" style="display:none;"/>
+
+
+        <ion-infinite-scroll on-infinite="galleryloadMore()"  distance="10%" ng-if="publicGalleryImages.length> 2" icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+    </ion-content>
+<!--    <footer class="bar bar-footer align_center hide-on-keyboard-open" style="background:black !important;">-->
+<!---->
+<!--            <button class="button button-block ucase blue_button" ng-click="goBackToDetail()" style="height:62px;">Back</button>-->
+<!---->
+<!--    </footer>-->
+
+    <footer class="bar bar-footer align_center" style="height:auto;background:black !important;">
+        <div class="row" style="padding:0px;">
+         <button class="button button-block ucase blue_button" ng-click="goBackToDetail()">Back</button>
+        </div>
+    </footer>
+    
+</ion-view>
+<script id="imgage_lrge.html" type="text/ng-template">
+<ion-pan>
+
+<!--<ion-header-bar align-title="center" class="bar-dark enlargeview_class">-->
+<!--<div class="buttons">-->
+<!--<button class="button" ng-click="doSomething()" style="display:none">Left Button</button>-->
+<!--</div>-->
+<!--<h1 class="title">Kuwait local</h1>-->
+<!--<div class="buttons">-->
+<!--<button class="button " ng-click="backfromslide()">Back</button>-->
+<!--</div>-->
+<!--</ion-header-bar>-->
+
+  <ion-content class="zoompzn">
+
+        <ion-slide-box>
+
+            <ion-slide ng-repeat="img in GalleryList">
+
+                <div class="containerzoom" ng-if="slideVisible($index)" class="scrollCanvas">
+                    <ion-scroll class="scrollCanvas" zooming="true" min-zoom="1" direction="xy" locked="false">
+                        <div class="imagezoom" style="background-image:url('{{img.image}}');">
+
+                            <div class="textinbottomcls" ng-hide="false"><h3> Added By {{img.username}} on {{img.created}}</h3></div>
+                        </div>
+                        <!--<div class="textinbottomcls"><h3> Added By {{img.username}} on {{img.created}}</h3></div>-->
+                    </ion-scroll>
+
+                </div>
+
+                <div>&nbsp;</div>
+
+            </ion-slide>
+
+        </ion-slide-box>
+
+
+
+    </ion-content>
+</ion-pan>
+
+</script>
+<style>
+    div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    }
+
+    div.img:hover {
+    border: 1px solid #777;
+    }
+
+    div.img img {
+    width: 100%;
+    height: auto;
+    }
+
+    div.desc {
+    padding: 15px;
+    text-align: center;
+    }
+</style>

@@ -1,0 +1,106 @@
+<ion-side-menus>
+  <ion-pane ion-side-menu-content class="kuwait_header">
+    <ion-nav-bar class="bar-stable" animation="no-animation">
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
+
+  <ion-side-menu side="left" class="kuwait_menu">
+    <ion-header-bar class="sidemenu_header" style="background:orange;">
+      <h1 class="title" style="background:orange;">
+
+          <span class="user_portrait margin_r_10" ><img ng-src="{{userLogo}}" id="menu_userlog" data-userlogo="{{userLogo}}" fallback-src='img/defaultuser.png' /></span>{{userName =="undefined undefined"?"Non User" : userName}}
+      </h1>
+    </ion-header-bar>
+
+
+    <ion-content class="has-header has-custom-header" overflow-scroll="true">
+
+  <ion-list class="sidebar_list">
+
+
+            <ion-item nav-clear menu-close class="sub_item " ui-sref="menuView.listingView.categorytabs.search" ng-click="menuhomeclick();" >
+                <i class="icon my-home my-menu">  </i>
+                Home
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.profile.home"  ng-hide="userName == 'undefined undefined'?true:false" ng-click="menuprofileclick();">
+                <i class="icon my-listing my-menu">  </i>
+                My Profile
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.classifieds.categorytabs.recentads" ng-click="menuAdsclick();">
+                <i class="icon my-classified my-menu">  </i>
+                Classifieds
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.forumlist.tabs.recent" ng-click="menuforumclick();">
+                <i class="icon my-forums my-menu">  </i>
+                Forums
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.blogslist.tabs.recent" ng-click="menunewsclick();">
+                <i class="icon my-blogs my-menu">  </i>
+                News
+            </ion-item>
+      <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.EventsHome" ng-click="menuevents();">
+          <i class="icon my-events my-menu">  </i>
+          Events
+      </ion-item>
+
+      <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.ExchangeRates" ng-click="menuexchange();">
+          <i class="icon my-exchange my-menu">  </i>
+          Exchange Rates
+      </ion-item>
+
+      <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.GoldRates" ng-click="menugold();">
+          <i class="icon my-goldprices my-menu">  </i>
+          Gold Rates
+      </ion-item>
+                                   <!--this is user checked business list-->
+            <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.facebookcheckins" ng-hide="true" ng-click="menucheckinclick();">
+                <i class="icon my-checkins my-menu">  </i>
+                My Check-in list
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item"  ng-click="menufavbizlist()" ui-sref="#">
+                <i class="icon my-favorite my-menu"></i>
+                Favorite
+            </ion-item>
+
+
+            <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.friendlist" ng-hide="true" ng-click="menufriendsclick();">
+                <i class="icon my-invitefrnds my-menu">  </i>
+                Invite Friends & Friends
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item" ng-click="menuaddNewBusiness()" ui-sref="menuView.main">
+                <i class="icon my-addbiz my-menu">  </i>
+                Add New Business
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item" ng-click="menushareit()" ui-sref="#">
+                <i class="icon my-sharekl my-menu">  </i>
+                Share KL
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item"  ui-sref="menuView.AboutUsview" ng-click="menuAboutusclick();">
+                <i class="icon my-aboutus my-menu">  </i>
+                About Us
+            </ion-item>
+
+            <ion-item nav-clear menu-close class="sub_item" ui-sref="menuView.ContactUsview" ng-click="menucontactusclick();" >
+                <i class="icon my-contactus my-menu">  </i>
+                Contact Us
+            </ion-item>
+            <ion-item nav-clear menu-close href="" ng-click="userName=='undefined undefined'? menulogin():hitLogout()" ui-sref="#">
+                <i class="icon my-logout my-menu">  </i>
+                {{userName =="undefined undefined"?"Login" : "Sign out"}}
+                </ion-item>
+        </ion-list>
+
+
+
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+       <!--<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">-->
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <meta http-equiv="Content-Security-Policy">
+    <title>Kuwait Local</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/angular-carousel.css" rel="stylesheet">
+      <link href="css/angular-accordion.css" rel="stylesheet">
+      <link href="lib/ionic/css/ionicons.min.css" rel="stylesheet">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/jquery-1.11.1.min.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <script src="lib/angular-touch.min.js"></script>
+
+      <!-- cordova script (this will be a 404 during development) -->
+
+      <script src="ng-cordova.min.js"></script>
+
+    <script src="cordova.js"></script>
+      <script src="js/app.js"></script>
+      <script src="js/facebookConnectPlugin.js"></script>
+      <!-- Include YT library and this directive -->
+      <script src="https://www.youtube.com/iframe_api"></script>
+      <script src="js/angular-youtube-embed.js"></script>
+      <script src="js/ionic.swipecards.js"></script>
+      <!--<script src="js/admob_simple.js"></script>-->
+
+     <!-- <script src="js/facebookConnectPlugin-angular.js"></script>-->
+
+    <script src="lib/angular-carousel.js"></script>
+    <script src="lib/angucomplete-alt.js"></script>
+    <script src="lib/angular-md5.js"></script>
+    <script src="lib/angular-local-storage.js"></script>
+    <script src="lib/dynamic-forms.js"></script>
+      <script src="lib/angular-accordion.js"></script>
+
+    <!-- your app's js -->
+
+    <script src="js/globalservices.js"></script>
+    <script src="js/cordovaservice.js"></script>
+    <script src="js/listingservices.js"></script>
+    <script src="js/addbusinessservices.js"></script>
+    <script src="js/logincontrollers.js"></script>
+    <script src="js/mvcontrollers.js"></script>
+    <script src="js/addbusinesscontroller.js"></script>
+    <script src="js/classifiedscontroller.js"></script>
+    <script src="js/classifiedsservices.js"></script>
+    <script src="js/addclassifiedcontroller.js"></script>
+    <script src="js/facebookcontroller.js"></script>
+    <script src="js/facebookservices.js"></script>
+    <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&libraries=places"></script>-->
+      <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+
+      <script src="js/directives.js"></script>
+    <script src="js/addbusinessdirectives.js"></script>
+      <script src="js/MyProfilecontroller.js"></script>
+    <script src="js/myprofileservices.js"></script>
+      <script src="js/klStockcontroller.js"></script>
+      <script src="js/Eventscontroller.js"></script>
+      <!--<script async src="js/adsbygoogle.js"></script>-->
+      <script  src="js/json-arrays.js"></script>
+      <script  src="js/highstock.js"></script>
+      <script  src="js/highcharts-more.js"></script>
+
+
+  </head>
+
+
+
+  <body ng-app="kuwaitlocal" class="platform-android platform-cordova platform-webview" id="jagadesh" >
+
+
+   <ion-nav-view animation="no-animation"></ion-nav-view>
+
+      <vn-loader ng-if="miniLoader"></vn-loader>
+   <!--<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>-->
+     <vn-getpic-modal class="loader_backdrop" ng-if="isBackdropActive"></vn-getpic-modal>
+
+   <vn-map-modal class="map_backdrop" ng-if="mapModal"></vn-map-modal>
+  <script type="text/javascript">
+
+document.addEventListener('keydown', function(e) {
+  //window.focus()
+  $(':focus').focus()
+});
+
+</script>
+
+ </body>
+</html>

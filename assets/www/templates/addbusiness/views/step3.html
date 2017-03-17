@@ -1,0 +1,75 @@
+<ion-content class="addbusiness_form" style="padding:0px !important;">
+    <button class="button button-full button-positive btnheadercls" >Contact Information</button>
+
+    <div class="hasStatbar" style="padding:10px;">
+        <form novalidate name="formHandler3" vn-check-validity>
+            <h2>Website URL</h2>
+            <input type="text" placeholder="Enter your website's url" class="margin_b_10"  ng-model="setterData.formFieldSite" ng-init="setterData.formFieldSite = setURL" ng-pattern="URLregex"  />
+
+            <h2>Landline no</h2>
+            <div class="group row">
+                <input type="text" value="+965" class="mini_field col-20 margin_r_10" readonly="readonly" ng-disabled="true" />
+                <input type="text" placeholder="xx-xx-xxxx" class="margin_b_10 adjacent_field step3_number_inputcls" ng-minlength="8" ng-maxlength="8" ng-model="setterData.formFieldLline" ng-init="setterData.formFieldLline = setLline" ng-pattern="/^[0-9]*$/"/>
+            </div>
+            <h2>Mobile no</h2>
+            <div class="group row">
+                <input type="text" value="+965" class="mini_field col-20 margin_r_10" readonly="readonly" ng-disabled="true"/>
+                <input type="text" placeholder="xx-xx-xxxx" class="margin_b_10 adjacent_field col_3_input " ng-minlength="8" ng-maxlength="8" ng-model="setterData.formFieldMob" ng-init="setterData.formFieldMob = setMob" ng-pattern="/^[0-9]*$/" ng-keyup="validationformore('Mobile',$event);"/>
+                <button class="ion-plus-circled addmore_btn mobileaddmore_btn ucase col-10 margin_l_5 " ng-disabled="!setterData.formFieldMob" ng-click="morebuttonclick('Mobile more');enableMobButton = (enableMobButton) ? 0 : 1 "></button>
+            </div>
+            <div class="fadeAnim row" ng-show="enableMobButton || setterData.formFieldMobextra.length">
+                <input type="text" value="+965" class="mini_field col-20 margin_r_10" readonly="readonly" ng-disabled="true"/>
+                <input type="text" ng-pattern="/(^\d{8}(?:,\d{8})*$)/" placeholder="xx-xx-xxxx,xx-xx-xxxx" class="margin_b_10 adjacent_field step3_number_inputcls" ng-model="setterData.formFieldMobextra" ng-init="setterData.formFieldMobextra = setMobextra"/>
+            </div>
+
+            <h2>Fax</h2>
+            <div class="group row">
+                <input type="text" placeholder="xx-xx-xxxx" class="margin_b_10 col_2_input  " ng-minlength="8" ng-maxlength="8"  ng-model="setterData.formFieldFax" ng-init="setterData.formFieldFax = setFax" ng-pattern="/^[0-9]*$/"/>
+                <button class="ion-plus-circled addmore_btn  ucase col-10 margin_l_5 " ng-disabled="!setterData.formFieldFax" ng-click="morebuttonclick('Fax more'); enableFaxButton = (enableFaxButton) ? 0 : 1 "></button>
+            </div>
+
+            <div class="fadeAnim" ng-show="enableFaxButton || setterData.formFieldFaxextra.length">
+                <input type="text" placeholder="xx-xx-xxxx,xx-xx-xxxx" ng-pattern="/(^\d{8}(?:,\d{8})*$)/" class="margin_b_10 step3_number_inputcls" ng-model="setterData.formFieldFaxextra" ng-init="setterData.formFieldFaxextra = setFaxExtra"/>
+            </div>
+
+            <h2>Hot Line no</h2>
+            <div class="group row">
+                <input type="text" placeholder="xx-xx-xxxx" class="margin_b_10 col_2_input " ng-minlength="3" ng-maxlength="7"  ng-model="setterData.formFieldToll" ng-init="setterData.formFieldToll = setToll" ng-keyup="checkingtollvalid($event)" ng-pattern="/^[0-9]*$/"/>
+                <button class="ion-plus-circled addmore_btn ucase col-10 margin_l_5 " ng-disabled="!setterData.formFieldToll" ng-click="morebuttonclick('HotNumber more');enableTollButton = (enableTollButton) ? 0 : 1 "></button>
+            </div>
+            <div class="fadeAnim" ng-show="enableTollButton || setterData.formFieldTollextra.length">
+                <input type="text"  placeholder="xx-xx-xxxx,xx-xx-xxxx" class="margin_b_10 step3_number_inputcls" ng-model="setterData.formFieldTollextra" ng-init="setterData.formFieldTollextra = setTollextra" ng-pattern="/(^\d{7}(?:,\d{7})*$)/" ng-minlength="3" />
+            </div>
+
+            <h2 class="mandatory">Email ID <i class="asterisk_style"> </i></h2>
+            <div class="group row">
+                <input type="email" placeholder="example@example.com" class="margin_b_10 col_2_input "  ng-model="setterData.formFieldEmail"   ng-init="setterData.formFieldEmail = setEmail" ng-pattern='/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'/>
+                <button class="ion-plus-circled addmore_btn ucase col-10 margin_l_5 " ng-disabled="!setterData.formFieldEmail" ng-click="morebuttonclick('Mail more');enableMailButton = (enableMailButton) ? 0 : 1 "></button>
+            </div>
+            <div class="fadeAnim" ng-show="enableMailButton || setterData.formFieldEmailextra.length">
+                <input type="text" placeholder="name@email.com,name2@email.com"  multiple-emails ng-model="setterData.formFieldEmailextra" ng-init="setterData.formFieldEmailextra = setEmailExtra"/>
+            </div>
+            <h2>Facebook</h2>
+            <input type="url" placeholder="Facebook URL" class="margin_b_10"  ng-model="setterData.formFieldFB" ng-init="setterData.formFieldFB = setFB" ng-pattern="/^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?facebook\.com(/.*)?$/"/>
+            <h2>Twitter</h2>
+            <input type="url" placeholder="Twitter URL" class="margin_b_10"  ng-model="setterData.formFieldTwit" ng-init="setterData.formFieldTwit = setTwit" ng-pattern="/^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?twitter\.com(/.*)?$/"/>
+            <h2>Google +</h2>
+            <input type="url" placeholder="Google Plus URL" class="margin_b_10"  ng-model="setterData.formFieldGPlus"  ng-init="setterData.formFieldGPlus = setGPlus" ng-pattern="/^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?plus.\google\.com(/.*)?$/"/>
+            <h2>Instagram</h2>
+            <input type="url" placeholder="Instagram URL" class="margin_b_10"  ng-model="setterData.formFieldInsta" ng-init="setterData.formFieldInsta = setInsta" ng-pattern="/^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?instagram\.com(/.*)?$/"/>
+            <h2>Youtube</h2>
+            <input type="url" placeholder="Youtube URL" class="margin_b_10"  ng-model="setterData.formFieldYoutube" ng-init="setterData.formFieldYoutube = setYoutube" ng-pattern="/^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?youtube\.com(/.*)?$/"/>
+            <h2>LinkedIn</h2>
+            <input type="url" placeholder="LinkedIn URL" class="margin_b_10"  ng-model="setterData.formFieldLinked"  ng-init="setterData.formFieldLinked = setLinked" ng-pattern="/^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?linkedin\.com(/.*)?$/"/>
+        </form>
+    </div>
+    <div class="p70_dummybar">
+    </div>
+
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50" ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row">
+        <button class="button button-block ucase blue_button col" ui-sref="menuView.addBusiness.step2" ng-click="BackanalyticcodeforAddsteps(3,'f');">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!form3Valid" ng-click="getData(setterData, 2);analyticcodeforAddsteps(3,'f');">Next</button>
+    </div>
+</ion-footer>

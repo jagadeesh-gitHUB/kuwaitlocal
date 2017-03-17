@@ -1,0 +1,57 @@
+<ion-view title="Kuwait local" class="detailservice_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider row content_formattingz has-header  padding-bottom" style="background:black;">
+        <button class="button button-full button-positive btnheadercls" >Services</button>
+
+
+
+        <ul class="rig columns-2" >
+            <li ng-repeat="item in innerServiceList | limitTo : serviceLimit" ng-click="ServiceZoomPop($event,$index)">
+                <img ng-src="{{logoURL+item.id + '_' + item.logo}}" fallback-src='img/defaultuser.png' style="height:100px;"/> <!-- /ServiceLogo/logo_folder/ -->
+                <p>{{item.title}}</p>
+                <p>KWD{{item.amount}}</p>
+
+            </li>
+        </ul>
+
+        <ion-infinite-scroll on-infinite="ServiceLoadMore()"  distance="10%" ng-if="innerServiceList.length> 10 " icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+    </ion-content>
+    <!--<footer class="bar bar-footer align_center hide-on-keyboard-open" style="background:black !important;">-->
+        <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+            <!--&lt;!&ndash;<button class="button button-block ucase blue_button" ng-click="goBackToDetail()">back to details</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</footer>-->
+</ion-view>
+<script id="imgage_lrge.html" type="text/ng-template">
+    <ion-pan>
+        <ion-content class="zoompzn">
+
+            <ion-slide-box>
+
+                <ion-slide ng-repeat="img in innerServiceList">
+
+                    <div class="containerzoom" ng-if="slideVisible($index)" class="scrollCanvas">
+                        <ion-scroll class="scrollCanvas" zooming="true" min-zoom="1" direction="xy" locked="false">
+                            <div class="imagezoom" style="background-image:url('{{logoURL+img.id + '_' + img.logo}}');">
+
+                            </div>
+                          <div class="textinbottomcls"><h3>{{img.title}} <br/>KWD:{{img.amount}} </h3></div>
+                        </ion-scroll>
+
+                    </div>
+
+                    <div>&nbsp;</div>
+
+                </ion-slide>
+
+            </ion-slide-box>
+
+
+
+        </ion-content>
+    </ion-pan>
+
+</script>

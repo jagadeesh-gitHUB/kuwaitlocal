@@ -1,0 +1,168 @@
+ <div class="bar bar-subheader search-subheader" style="top:45px;padding:0px;height:auto;">
+        <!--<h1 class="user_name_class">{{userDetails[0].username}}</h1>-->
+
+        <img ng-src="{{user_log}}"  fallback-src='img/defaultuser.png' style="position: relative;width:100%;height:225px;">
+        <div class="divider_bottom floating_classified_detail padding">
+            <h3 class="header_3 classified_header_3 font_roboto line_format_medium" >{{userDetails[0].username}}</h3>
+
+            <table class="myprofile_dashboard_cls">
+                <tr>
+                <td class="my_profile_cls" ng-click="userdashboard($event)">Dash Board</td>
+                <td class="my_profile_cls" ng-click="editprofilefun($event)"> Edit Profile</td>
+                <td class="my_profile_cls" ng-click="managepassword($event)" ng-hide="ISFBlogged"> Change Password</td>
+</tr>
+            </table>
+
+        </div>
+    </div>
+
+
+<ion-content class="tab_top full_section has-footer" animation="no-animation"   style="top:180px !important;height:auto;" >
+
+    <!--------------------main dashboard div---------------------------------->
+    <div style="position:relative;padding:5px;height:999px;" ng-hide="hideDashBoardDIV">
+
+        <!-------------------dashboard biz listings----------------------->
+
+
+    <ul class="notify_listing even_setting " ng-if="LatestDashBoard.Bussiness.length" style="position:relative;top:100px;box-shadow: 0px 0px 10px 0px gray; padding: 5px">
+        <li class="aboutfrom_cls">Business Listings</li>
+        <li class="group"  ng-repeat="listItem in LatestDashBoard.Bussiness | orderBy: '-created' ">
+            <div data-status="{{listItem.status}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-android-clock' : listItem.status == 3,'ion-close-circled' : listItem.status == 5 || listItem.status == 6,'ion-ribbon-b' : listItem.status == 1, 'ion-checkmark-circled' : listItem.status== 2 ,'ion-social-usd' : listItem.status == 4}">
+            </div>
+            <div class="auth_list_info margin_r_10 float_left col-center">
+                <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</div>
+            </div>
+
+            </li>
+        </ul>
+
+
+        <!-------------------dashboard Ads listings----------------------->
+
+
+
+        <ul class="notify_listing even_setting " ng-if="LatestDashBoard.Ads.length" style="position:relative;top:100px;box-shadow: 0px 0px 10px 0px gray; padding: 5px">
+            <li class="aboutfrom_cls">Classifieds </li>
+            <li class="group"  ng-repeat="listItem in LatestDashBoard.Ads | orderBy: '-created' ">
+                <div data-status="{{listItem.is_active}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-close-circled' : listItem.is_active == 0 , 'ion-checkmark-circled' : listItem.is_active== 1}">
+                </div>
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</div>
+                </div>
+
+            </li>
+        </ul>
+
+        <!-------------------dashboard blogs listings----------------------->
+
+
+        <ul class="notify_listing even_setting " ng-if="LatestDashBoard.Blogs.length" style="position:relative;top:100px;box-shadow: 0px 0px 10px 0px gray; padding: 5px">
+            <li class="aboutfrom_cls">Bogs</li>
+            <li class="group"  ng-repeat="listItem in LatestDashBoard.Blogs | orderBy: '-created' ">
+                <div data-status="{{listItem.is_active}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-close-circled' : listItem.is_active == 0 , 'ion-checkmark-circled' : listItem.is_active== 1}">
+                </div>
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</div>
+                </div>
+
+            </li>
+        </ul>
+
+        <!-------------------dashboard forums listings----------------------->
+
+        <ul class="notify_listing even_setting " ng-if="LatestDashBoard.Forums.length" style="position:relative;top:100px;box-shadow: 0px 0px 10px 0px gray; padding: 5px">
+            <li class="aboutfrom_cls">Forums </li>
+            <li class="group"  ng-repeat="listItem in LatestDashBoard.Forums | orderBy: '-created' ">
+                <div data-status="{{listItem.is_active}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-close-circled' : listItem.is_active == 0 , 'ion-checkmark-circled' : listItem.is_active== 1}">
+                </div>
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</div>
+                </div>
+
+            </li>
+        </ul>
+
+        <!-------------------dashboard blogs comments listings----------------------->
+
+
+        <ul class="notify_listing even_setting " ng-hide="blogComemtshide"  style="position:relative;top:100px;box-shadow: 0px 0px 10px 0px gray; padding: 5px">
+            <li class="aboutfrom_cls">Blog comment alerts </li>
+            <li class="group"  ng-repeat="listItem in LatestDashBoard.Blogcommets_arr ">
+
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">Total Comments : {{listItem.comment_count}}</div>
+                </div>
+
+            </li>
+        </ul>
+
+        <!-------------------dashboard forums comment listings----------------------->
+
+        <ul class="notify_listing even_setting " ng-hide="forumComemtshide" style="position:relative;top:100px;box-shadow: 0px 0px 10px 0px gray; padding: 5px">
+            <li class="aboutfrom_cls">Forum comment alerts </li>
+            <li class="group"  ng-repeat="listItem in LatestDashBoard.Forumcommets_arr ">
+            <div class="auth_list_info margin_r_10 float_left col-center">
+                <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                <div class="floating_date font_roboto font_size_12 font_color_ash">Total Comments : {{listItem.comment_count}}</div>
+            </div>
+
+            </li>
+        </ul>
+
+        <!-------------------dashboard Ads commets listings----------------------->
+
+
+        <ul class="notify_listing even_setting "  ng-hide="AdsComemtshide" style="position:relative;top:100px;box-shadow: 0px 0px 10px 0px gray; padding: 5px">
+            <li class="aboutfrom_cls">Classified comment alerts </li>
+            <li class="group"  ng-repeat="listItem in LatestDashBoard.Adscommets_arr ">
+
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">Total Comments : {{listItem.comment_count}}</div>
+                </div>
+
+            </li>
+        </ul>
+
+ </div>
+
+    <h3 ng-show="hideDashBoardDIV" style="position: relative;top: 100px;text-align: center; padding: 40px;width: 100%;"> Not found any recent activities from you</h3>
+
+</ion-content>
+<footer class="bar bar-footer dark_footer align_center" style="background:orange;">
+
+
+    <div class="action_box"    style="background:orange;border-right: 1px solid gray;" ng-click="mylistingclick()">
+        <div class="icon ion-clipboard"></div>
+        <span>Listings</span>
+    </div>
+    <div class="action_box"    style="background:orange;border-right: 1px solid gray;"  ng-click="myAdsclick()">
+        <div class="icon ion-android-search"></div>
+        <span>Classifieds</span>
+    </div>
+    <div class="action_box"     style="background:orange;border-right: 1px solid gray;"  ng-click="myblogclick()">
+        <div class="icon ion-social-rss"></div>
+        <span>News</span>
+    </div>
+
+    <div class="action_box"    style="background:orange;border-right: 1px solid gray;"  ng-click="myforumclick()">
+        <div class="icon ion-chatbubbles"></div>
+        <span>Forums</span>
+    </div>
+
+    <div class="action_box"    style="background:orange;border-right: 1px solid gray;"  ng-click="myeventclick()">
+        <div class="icon ion-calendar"></div>
+        <span>Events</span>
+    </div>
+
+</footer>
+<!--</ion-view>-->
+
+
+

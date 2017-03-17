@@ -1,0 +1,365 @@
+<ion-view title="Kuwait local" class="EventDetail_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+    
+ <ion-content class="has-header" overflow-scroll="true"  style="top:44px;">
+ 
+ 
+ <div >
+     <div class="detailclassimg"  ng-hide="hidecategories" style="text-align:center">
+         <img ng-src="{{EventDetail.logo}}"  id="adsimgsid" ng-click="imglargeclick($event)"/>
+     </div>
+     <div ng-if="EventDetail.price" id="event_price_watermark"> KWD  {{EventDetail.price}}</div>
+     
+      <div class="eventpast_watermark" ng-hide=" Eventcomplete_Ckc == null ?false:true"></div>
+ </div>
+ 
+ 
+ <div class="font_roboto reset_anchors detailtitlediv">
+     <div class="pos_relative " style="top:10px;">
+         <table class="detailtabledis">
+             
+             <tr>
+                 <td> <p  ng-hide="EventDetail.rating == '0' ?false:true ">No ratings</p>
+                     <div class="star-rating" star-rating rating-value="EventDetail.rating" data-max="5" ng-hide="EventDetail.rating == '0' ? true:false"></div>
+                 </td>
+                 <td>{{EventDetail.view_count}} views</td>
+                 <td browse-to="{{geo_directions}}" ng-hide="Eventdistance == 99999?true:false" ng-click="openMapclick();">{{Eventdistance + " KM"}}</td>
+                 <td browse-to="{{geo_directions}}" class="icon ion-model-s" style="color:white;" ng-hide="aboutDistance" ng-click="openMapclick();"></td>
+                 <td browse-to="{{geo_directions}}" ng-hide="aboutDistance" ng-click="openMapclick();">Directions</td>
+                 <td ng-hide="!aboutDistance">Distance not available </td>
+
+             </tr>
+             
+         </table>
+         
+     </div>
+ </div>
+ 
+ 
+ <h3 style="margin-top: 0px; text-align: center; font-size: 15px;">{{EventDetail.name}}</h3>
+ 
+ 
+   <ul class="list EventpeopleList_class" ng-if="EventPeople">
+         
+         <li ng-repeat="people in EventPeople | orderBy:'-created' |limitTo:5" style="width: 53px;height: 40px; float: left; position: relative; overflow: hidden; margin-right: 5px;margin-left:5px;">
+             <img ng-src="http://www.kuwaitlocal.com/img/users/user_logo_folder/sml_{{people.user_logo}}"  fallback-src='img/defaultuser.png' style="width:100%;">
+                 
+                 </li>
+         
+         
+         </ul>
+   
+   
+   <div ng-if="EventPeople">
+       
+       <div class="item item-button-left button-item" style="padding: 5px;background: white;border: none">
+           
+          <div ng-repeat="people in EventPeople | limitTo :-1 "   style="width: 100%; position: relative; left: 26%; padding: 0px; margin: 0px; color:#00a6ff " class="going-divcls"> {{people.first_name}}<p > and <span style="color:#00a6ff;">{{EventPeople.length - 1 }}</span> other people {{ Eventcomplete_Ckc == null ? 'were went' : ' are going'}} </p></div>
+          <button class="button button-positive event_peoplebutnClass" style="background:orange;padding: 0 6px;left: 2%;border:none;width:73px;font-size:14px;border-radius:5px"  ng-show="isGoing_or_not " ng-click="eventpeopeclick(EventDetail.id,$event,'not going')" >
+             {{ Eventcomplete_Ckc == null ? 'Not went' : 'Not going'}}
+           </button>
+           
+           <button class="button button-positive event_peoplebutnClass" style="background:orange;left: 2%;border:none;width:73px;border-radius:5px;height:30px;" ng-hide="isGoing_or_not " ng-click="eventpeopeclick(EventDetail.id,$event,'going')" >
+              {{ Eventcomplete_Ckc == null ? 'Went' : 'Going'}}
+           </button>
+       </div>
+       
+      
+       
+   </div>
+   
+   
+   
+   <div ng-if=" !EventPeople">
+       
+           <button class="button button-positive event_peoplebutnClass" style="background:orange;padding: 0 6px;left: 2%;border:none;width:73px;font-size:14px;border-radius:5px;line-height: 30px" ng-show="isGoing_or_not" ng-click="eventpeopeclick(EventDetail.id,$event,'not going')"  >
+               {{ Eventcomplete_Ckc == null ? 'Not went' : 'Not going'}}
+           </button>
+
+           <button class="button button-positive event_peoplebutnClass" style="background:orange;left: 2%;border:none;width:73px;border-radius:5px;height:30px;line-height: 30px;" ng-hide="isGoing_or_not " ng-click="eventpeopeclick(EventDetail.id,$event,'going')"  >
+               {{ Eventcomplete_Ckc == null ? 'Went' : 'Going'}}
+           </button>
+     
+       
+       
+       
+   </div>
+   
+ 
+   <table class="eventbutton_table">
+       <tr>
+           <td ng-click="openeventgallery(EventDetail)" ><a class="tab-item custometab-cls">
+               <i class="icon my-gallery detailiconcls"></i>
+             Gallery
+           </a></td>
+           <td ng-click="shareEvent(EventDetail.slug)"><a class="tab-item custometab-cls">
+               <i class="icon my-share" style="color:orange;"></i>
+               Share
+           </a></td>
+           <td ng-click="sendToRatingDetail(EventDetail.id)"><a class="tab-item custometab-cls">
+               <i class="icon my-rate detailiconcls" style="color:orange;height:20px;width:20px;"></i>
+               Rate  This
+           </a></td>
+          
+          
+           
+           
+       </tr>
+       
+       
+   </table>
+   
+   <div style="width: 100%;background: #f8f8f8;padding-left:10px;white-space: normal;">
+       
+       <span>Hosted by :<span style="color:orange"> {{EventDetail.organiser_name}}</span></span>
+       <br>
+       <span>Category : <span style="color:orange">{{EventDetail.catName}}</span></span>
+       
+   
+   </div>
+   
+   
+   
+   <ul ng-if="EventDates" style="position: relative;padding: 5px;text-align: center;">
+       
+       <li  ng-repeat="date in EventDates | orderBy:'start_date'" >
+           
+           <i ng-class="{'icon ion-calendar': $first}" style="float: left;
+               color: #00a6ff;
+               font-size: 18px;"></i>
+           
+           <label> <p style="font-size:12px;position:relative;float:left;" ng-class="{'event_date_pCls':$first}"
+               
+               ng-style="{left:date.txt.length <= 33 && !$first ? '7%' : '3%'}">
+               {{date.txt}}</p>
+           </label>
+       </li>
+       
+<!--       <p style="color: #00a6ff;position: relative;float: left;top: 15px;right: 55%;padding: 5px" ng-if="EventdayDiff">{{EventdayDiff  == 0  ? "Today" : EventdayDiff +  "Days from Now"  }}</p>-->
+
+<p style="color: #00a6ff;position: relative;float: right;padding: 5px;right: 27%;margin: 0px;width: 100%;" ng-if="EventdayDiff">{{EventdayDiff}}</p>
+       
+   </ul>
+
+<!--   <div class="list">-->
+<!--       <a ng-repeat="date in EventDates | orderBy:'start_date'" >{{date.txt}}</a>-->
+<!--       -->
+<!--   </div>-->
+
+   
+   
+   
+   <div class="list" style="padding: 0x 0px 10px 0px;">
+       
+       <a class="item item-icon-left"  browse-to="{{geo_directions}}" style="white-space: normal;display: inline-flex;width: 100%;">
+           <i class="icon  ion-location" style="color:#00a6ff;font-size: 20px;"> </i>
+          <span> {{EventDetail.land_mark}} {{EventDetail.city_name}},{{EventDetail.gover_name}}</span>
+       </a>
+      
+       <a class="item item-icon-left " ng-click="phonecall(EventDetail.mobile_no)"  ng-if="EventDetail.mobile_no.length  > 0 ">
+           
+           <i class="icon ion-android-call" style="color:#00a6ff;width:20px;font-size: 18px;" ></i>
+           
+           {{EventDetail.mobile_no}}
+    <label  ng-hide="more_contacts_Array.length == 0 ? true:false " ng-click="showmore();$event.stopPropagation();" ng-model="moreText" style="float:right;color: orange; font-weight: bold">{{moreText}}</label>
+    
+    
+           <a class="item item-icon-left mobile_Cls" ng-click="phonecall(more,$index)"  ng-if="more_contacts_Array.length > 0   " ng-repeat="more in more_contacts_Array track by $index" style="display:none;">
+               
+               <i class="icon ion-android-call" style="color:#00a6ff;width:20px;font-size: 18px;" ></i> {{more}}
+               
+               </a>
+          
+           
+       </a>
+       
+       
+       
+       <a class="item item-icon-left" ng-click="phonecall(EventDetail.whatsapp_no)"  ng-if="EventDetail.whatsapp_no.length  > 0 ">
+           
+           <i class="icon ion-social-whatsapp"  style="color:#00a6ff;width:20px;font-size: 18px;"></i>
+           
+           {{EventDetail.whatsapp_no}}
+       </a>
+       
+       <a class="item item-icon-left"  ng-if="EventDetail.email.length  > 0 " ng-click="sendEnQuiry(EventDetail.email);">
+           <i class="icon ion-email" style="color:#00a6ff;font-size: 20px;"></i>
+           {{EventDetail.email}}
+           
+            <label  ng-hide="more_email_event_Array.length == 0 ? true:false " ng-click="showemailmore();$event.stopPropagation();" ng-model="emailMoretxt" style="float:right;color: orange; font-weight: bold">{{emailMoretxt}}</label>
+           
+           
+           <a class="item item-icon-left email_Cls" ng-repeat="more in more_email_event_Array" style="display:none;">
+               <i class="icon ion-email" style="color:#00a6ff;font-size: 20px;"></i>
+               {{more}}
+               
+               </a>
+           
+       </a>
+       
+       
+       <a class="item item-icon-left"  ng-if="EventDetail.payment_url.length  > 0 "  ng-click="openurlwithin(EventDetail.payment_url,$event);" style="color:#00a6ff !important;">
+           <i class="icon ion-card" style="color:#00a6ff;font-size: 20px;"></i>
+           {{EventDetail.payment_url}}
+       </a>
+       <a class="item item-icon-left" ng-click="openurlwithin(EventDetail.website_url,$event);" ng-if="EventDetail.website_url.length  > 0 ">
+           <i class="icon ion-earth" style="color:#00a6ff;font-size: 20px;"></i>
+           
+           <span style="color:#00a6ff">{{EventDetail.website_url}}</span>
+        </a>
+      
+   </div>
+   
+   
+    <div id="event_desid" class="demo blog_keyboardshowhide_cls" style="width:100%;padding: 10px;font-family: serif;text-align: justify;" ></div>
+   
+   <div ng-hide="EventsComments.length==0?true:false" class="blog_commentcls blog_keyboardshowhide_cls">
+       <h3 style="font-weight: bold;">Comments <p style="color: #00a6ff;margin: 0px;float: right;font-weight: normal">Count : {{total_eventComments.length}} </p></h3>
+       <!-----------------------blogs comments commes here------------------------>
+       
+       <div class="list">
+           
+           <a class="item item-avatar"  ng-repeat="comment in EventsComments " style="border-width:0px;">
+               <img ng-src="{{userlog}}/{{comment.user_logo}}" fallback-src='img/defaultuser.png'/>
+               <h2>{{comment.username}}</h2>
+               <label style="white-space: pre-wrap;margin-right: 50px;">{{comment.comments}}</label>
+           </a>
+       </div>
+   </div>
+ <button id="loadMore" class="button button-block ucase blue_button col" ng-if="total_eventComments.length >5" ng-click="loadmoreAdComments($event);" style="width:95%;position:relative;left:3%;">Load More</button>
+
+ </div>
+ 
+ 
+ 
+ <div class="list">
+    <p style="font-weight: bold;text-align:center;top: 5px;">Related Events</p>
+     <a class="item item-thumbnail-left" ng-repeat="event in RelatedEvents | orderBy:'-view_count' " ng-click="relatedeventclick(event.id,$index)">
+         <img ng-src="{{eventlogo}}/sml_{{event.logo}}" style="top:25px;">
+             
+             <h2>{{event.name}}</h2>
+             
+             <p style="margin:0px;"><span  style="color:crimson;">{{event.start_date}}</span>
+             
+             <i class="icon ion-eye" style="float:right;font-size:12px;position:relative;left:5%">{{event.view_count}}</i>
+             
+             <i class="icon ion-chatbox-working" style="float:right;font-size:12px;">{{event.comment_count}}</i>
+             
+             </p>
+             
+             <p style="margin:0px;">Category : {{event.catName}}  </p>
+             </a>
+     
+     </div>
+
+   <div class="p350_dummybar" style="height:50px;"></div>
+   
+ </ion-content>
+ 
+ <ion-footer class="bar bar-footer bar-balanced blogd_cls" >
+    
+         <button class="button  ucase col" ng-click="getuserComments()"  style="border: 1px solid #66cc33;">Post Comments</button>
+     
+     
+ </ion-footer>
+ 
+ 
+</ion-view>
+
+
+<!-------------------------image enlarge templated (pop)--------------------------->
+
+
+<script id="imgagelrge.html" type="text/ng-template">
+    
+    <!--<ion-header-bar align-title="center" class="bar-dark enlargeview_class">-->
+    <!--<div class="buttons">-->
+    <!--<button class="button" ng-click="doSomething()" style="display:none">Left Button</button>-->
+    <!--</div>-->
+    <!--<h1 class="title">Kuwait local</h1>-->
+    <!--<div class="buttons">-->
+    <!--<button class="button " ng-click="backfromslide()">Back</button>-->
+    <!--</div>-->
+    <!--</ion-header-bar>-->
+    
+    <ion-content class="zoompzn">
+    
+    <ion-slide-box>
+    
+    <ion-slide>
+    
+    <div class="containerzoom"  class="scrollCanvas">
+    <ion-scroll class="scrollCanvas" zooming="true" min-zoom="1" direction="xy" locked="false">
+    <div class="imagezoom" style="background-image: url('{{EventDetail.logo}}')"></div>
+    <!--<img ng-src="{{detailData.Biz_Logo}}" style="width: 100%;height: 100%;">-->
+    </ion-scroll>
+    
+    </div>
+    
+    <div>&nbsp;</div>
+    
+    </ion-slide>
+    
+    </ion-slide-box>
+    
+    
+    
+    </ion-content>
+    
+    
+    </script>
+
+
+<style>
+    .event_peoplebutnClass.ng-click-active.activated {
+    
+    
+    background:#0995d6 !important;
+    color:white !important;
+    
+    
+    }
+    
+    .item :hover{
+   
+   /*color : white !important;*/
+    }
+.list{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0;
+    margin-bottom: 0px;
+
+}
+
+.event_date_pCls {
+    text-align: start;
+    left: 4%;
+    position: relative
+
+
+}
+.mobile_Cls{
+
+/*width: 75%;
+left: 15%;*/
+margin-top: 5px;
+border: none
+}
+
+ .button-item :hover{color:white !important;}
+ 
+ .going-divcls :hover{
+ color:orange !important;
+ 
+ }
+ 
+    </style>
+
+
+

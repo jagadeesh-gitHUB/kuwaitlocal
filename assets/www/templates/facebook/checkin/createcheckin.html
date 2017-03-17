@@ -1,0 +1,57 @@
+<ion-content class="addbusiness_form padding" animation="no-animation">
+    <h4 class="font_size_20 font_robotoM">Check in {{checkinBusinessTitle}}</h4>
+    <textarea class="lineheight_fix" placeholder="Like something about this place ? Share it!" ng-model="currentCheckin.text"></textarea>
+    <div class="row yellow_icons">
+        <div class="col align_left" ng-click="friendPicker()"><i class="icon ion-android-friends font_size_30 v_align_mid margin_r_5"></i>Tag with</div>
+        <div class="col align_right" ng-click="addPhoto()"><i class="icon ion-camera font_size_30 v_align_mid margin_r_5"></i>Add photo</div>
+    </div>
+    <ul class="list enabled_checkbox">
+        <li class="item item-checkbox">
+           <label class="checkbox">
+               <input type="checkbox" ng-model="currentCheckin.tip_flag">
+           </label>
+           Mark as tip
+        </li>
+        <li class="item borderless paddingless facebook_toggle">
+            <label class="toggle">
+                <input type="checkbox" ng-model="currentCheckin.shareonFacebook" ng-disabled="facebookDisable">
+                <div class="track">
+                    <div class="handle ion-social-facebook"></div>
+                </div>
+            </label>
+           Share on Facebook
+        </li>
+        <li class="item borderless paddingless facebook_toggle twitter_toggle">
+            <label class="toggle">
+                <input type="checkbox" ng-model="currentCheckin.shareonTwitter" ng-disabled="twitterDisable">
+                <div class="track">
+                    <div class="handle ion-social-twitter"></div>
+                </div>
+            </label>
+            Share on Twitter
+        </li>
+    </ul>
+    <div class="marker" ng-show="currentCheckin.postImageList.length > 0">
+        Attached Photos
+    </div>
+    <ul ng-show="currentCheckin.postImageList.length > 0" class="photoattachments group">
+        <li ng-repeat="photo in currentCheckin.postImageList" class="item image_item" ng-click="removePhoto($index)">
+            <img ng-src="{{'data:image/jpeg;base64,' + photo}}"/>
+            <span class="close_button_floating icon ion-close-circled col-right" ng-click="removeImagedata($index)"></span>
+        </li>
+    </ul>
+    <div class="marker" ng-show="currentCheckin.tagged_friends.length > 0">
+        Tagged friends
+    </div>
+    <ul ng-show="currentCheckin.tagged_friends.length > 0" class="friendlist_item group">
+        <li ng-repeat="friend in currentCheckin.tagged_friends" class="item group" ng-click="checkmein(friend.id, friend.name)">
+            {{friend.name}}
+            <span class="close_button_floating icon ion-close-circled col-right"></span>
+        </li>
+    </ul>
+    <div class="p350_dummybar"></div>
+</ion-content>
+
+<ion-footer class="bar bar-footer align_center height_auto padding split_50 hide-on-keyboard-open" animation="no-animation">
+    <button class="button button-block ucase green_button col marginless" ng-click="check_in_activation()">Check in</button>
+</ion-footer>

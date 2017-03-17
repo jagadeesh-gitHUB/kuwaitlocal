@@ -1,0 +1,89 @@
+<ion-view title="News Details" class="Blogdetail_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider blogDetailview_content" animation="no-animation"  scroll="true" overflow-scroll="true" >
+        <div id="header_blog_detaildiv" >
+            <div class="detailclassimg"  style="text-align:center;height:250px;width: 100%;max-height:250px;" ng-style="{ 'background': 'url(' + slideimgs + ')','background-repeat':'round','background-size':'cover' }">
+                <!--<img ng-src="{{slideimgs}}" class="blog_detail_img_clss" />-->
+
+            </div>
+
+        </div>
+
+        <div class="font_roboto reset_anchors detailtitlediv">
+            <div class="pos_relative " style="top:10px;">
+                <table class="detailtabledis" style="table-layout: fixed;">
+
+                    <tr>
+                        <td  ng-bind="autosllidecreated(blogdetailed.created)"></td>
+                        <td class="icon ion-android-share-alt" style="color:white;position: relative;left: 10%;" ng-click="shareblog(blogdetailed.slug,blogdetailed.des);$event.stopPropagation();"></td>
+                        <td ng-bind="autoslideblogbingview(blogdetailed.view_count)"></td>
+                        <td ng-bind="autoslideblogbingcom(temp_Blogcomments.length)"></td>
+
+
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+
+
+        <div style="position: relative;width:100%;" class="blog_detail_textclss">
+<h3 style="margin:0px;text-align:center;color:green;position: relative;">{{blogdetailed.title}}</h3>
+
+        <h4>Category : {{blogdetailed.cat_name}}</h4>
+ <!--<div ng-bind-html="blogdetailed.des | to_trusted"  class="demo blog_keyboardshowhide_cls" style="width:100%;padding: 10px;font-family: serif;text-align: justify;" ></div>-->
+
+            <div id="blog_desid" class="demo blog_keyboardshowhide_cls" style="width:100%;padding: 10px;font-family: serif;text-align: justify;" ></div>
+
+
+<div ng-hide="blogdetailed.video_url.length == 0 ? true:false" class="blog_keyboardshowhide_cls" style="padding: 9px;">
+
+
+        <img style="width:100%" ng-src="{{video_url}}" ng-click="playblogvideo(blogdetailed.video_url)"/>
+  </div>
+   <div class="icon ion-social-youtube blog_keyboardshowhide_cls" style="position: relative;float: right;right: 45%;bottom: 165px;font-size: xx-large;color: red;" ng-hide="blogdetailed.video_url.length == 0 ? true:false"  ng-click="playblogvideo(blogdetailed.video_url)"></div>
+<div ng-hide="blogcomments.length==0?true:false" class="blog_commentcls blog_keyboardshowhide_cls">
+  <h3 style="font-weight: bold;">Comments</h3>
+       <!-----------------------blogs comments commes here-------------------------->
+
+        <div class="list">
+
+            <a class="item item-avatar"  ng-repeat="comment in blogcomments " style="border-width:0px;">
+                <img ng-src="{{userlog}}/{{comment.user_logo}}" fallback-src='img/defaultuser.png'/>
+                <h2>{{comment.username}}</h2>
+                <label style="white-space: pre-wrap;">{{comment.comments}}</label>
+            </a>
+            </div>
+        </div>
+            <button id="loadMore" class="button button-block ucase blue_button col" ng-if="temp_Blogcomments.length >5" ng-click="loadmoreAdComments($event);" style="width:95%;position:relative;left:3%;">Load More</button>
+
+  <!--<h3 style="font-size:100%" class="blog_keyboardshowhide_cls" ng-show="check_gustornot">Post comment here</h3>-->
+        <!--<div class="blog_keyboardtxt_cls"  style="height:560px;" >-->
+            <!--<form novalidate name="formHandlerblog" style="width:100%" ng-show="check_gustornot">-->
+
+            <!--<textarea ng-model="postcomnet.comment" type="text" placeholder=" Enter comment" class="blogpost_cls" required ng-change="checkcomment()" ng-focus="blogtxtfocus($event);" ng-blur="blogtxtblur($event)"></textarea>-->
+            <!--</form>-->
+            <!--<button class="button postsend_cls" ng-show="check_gustornot" ng-disabled="postcomnet.comment.length==0" ng-click="BlogPostcomments()" style="top:5px;"><p style="position: relative;top: -5px;">post</p></button>-->
+            <!--</div>-->
+<div class="p350_dummybar" style="height:50px;"></div>
+        </div>
+
+
+
+    </ion-content>
+
+    <ion-footer class="bar bar-footer bar-balanced blogd_cls" >
+        <div class="row"  style="padding:0px">
+            <button class="button  ucase col" ng-click="getuserComments()"  style="border: 1px solid #66cc33;border-right-color: ivory; ">Post Comments</button>
+            <button class="button  ucase  col margin_r_10"  ng-click="getrelatedblogd()" style="border:none;">Related News</button>
+        </div>
+    </ion-footer>
+
+
+</ion-view>

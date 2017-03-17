@@ -1,0 +1,49 @@
+<ion-header class="addbusiness_form sub_header_offset" style="padding:0px !important;height:auto;">
+    <button class="button button-full button-positive btnheadercls">Categories</button>
+    <h3 style="text-align:center;">Search Business Category</h3>
+        <div class="search_box pos_relative addsearchcls">
+            <input type="text" placeholder="Search Desired Category" ng-change="checkedCat = (catSearch) ? '' : 1" class="margin_b_10 searchInput" id="catsearch_ID" ng-model="catSearch"/>
+            <span class="icons searchIcon"></span>
+        </div>
+</ion-header>
+<ion-content class="addbusiness_form has-header has-subheader" overflow-scroll="true">
+
+
+    <!-- IN CASE OF ABOVE COLLECTION REPEAT FAILS, USE THIS SECTION BELOW -->
+    
+    <div  class="floating_list item_list group pos_relative" style="height: auto !important;">
+      <div ng-if="!(categoryList | filter:catSearch).length && categoryList" class="align_center font_roboto font_size_15 floating_msg noAnim">No results found</div>
+      <div ng-if="!catSearch.length > 0 && !cidArray.length > 0" class="align_center font_roboto font_size_15 floating_msg noAnim">Search for categories</div>
+        <div id="wrapper" class="group" >
+
+            <ion-checkbox ng-repeat="cat in categoryList | filter:{name : catSearch, checked: checkedCat} | limitTo:catlistLimit track by $index" on-catlist-finish-render
+                          ng-click="calcCat(cat.id,cat.name)"
+                          ng-init="checkCat['id_'+cat.id] = checkIndex(cat.id)"
+                          ng-checked="crossCat(cat.id)" ng-class="{selected_category:crossCat(cat.id)}"
+                          value="{{cat.id}}"
+                          ng-model="checkCat['id_'+cat.id]"
+                          style="white-space: normal;"
+                          class="CatItem-class">
+                {{ cat.name }}
+            </ion-checkbox>
+
+        </div>
+    </div>
+
+
+
+
+
+
+<div class="p70_dummybar">
+</div>
+
+    <ion-infinite-scroll on-infinite="limitRelease()"  distance="10%" ng-if="catlistLimit.length> 10 " icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50 " ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row">
+        <button class="button button-block ucase blue_button col "  ui-sref="menuView.addBusiness.step1" ng-click="BackanalyticcodeforAddsteps(2,'f');" >Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!loadComplete || !cidArray.length"  ng-click="sendData();analyticcodeforAddsteps(2,'f');">Next</button>
+    </div>
+</ion-footer>

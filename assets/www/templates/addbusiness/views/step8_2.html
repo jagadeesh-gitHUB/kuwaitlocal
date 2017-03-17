@@ -1,0 +1,100 @@
+<ion-header class="addbusiness_form sub_header_offset" style="padding:0px !important;">
+    <form  name="defaultForm" novalidate>
+        <div class="listview_div">
+            <span class="names_span" style="margin-left: 34px;top: 28px;position: relative;">Image</span>
+            <!--Choosefile_div--->
+            <div class="Choosefile_div" ng-click="toggleProdPhotoModal()">
+                <input type="text" placeholder="Choose file" style="padding: 7px 6px;width: 100%;" readonly/>
+            </div>
+            <!--Choosefile_div--->
+            <span class="names_span" style="margin-left: 44px;top: 28px;position: relative;">Title<sup style="color:red;" >*</sup></span>
+            <!--Title_div--->
+            <div class="Title_div">
+                <input type="text" placeholder="Enter Your text" class="form-control validationproduct_cls"  ng-model="product.title" ng-init="product.title = productList[editIndex].title" ng-pattern="/^[ A-Za-z0-9&-]*$/"  ng-change="duplicatetiltechecking(editproductList,$event);"/> <!-- class="text_filed" -->
+            </div>
+            <!--Title_div--->
+            <span class="names_span" style="margin-left: 44px;top: 27px;position: relative;">Price<sup style="color:red;" >*</sup></span>
+            <!--Price_div--->
+            <div class="Price_div">
+                <input type="number" placeholder="Price" class="text_filed validationproduct_cls" ng-pattern="/^\d*\.{0,1}\d+$/"  ng-model="product.amount" ng-init="product.amount = productList[editIndex].amount"/>
+            </div>
+            <!--Price_div--->
+            <button class="btn btn-default" ng-click="addProduct()" style="left:16%">Add Product</button>
+        </div>
+    </form>
+</ion-header>
+<ion-content class="addbusiness_form no_edges" animation="no-animation" style="top:300px;">
+    <ul class="rig columns-2">
+        <li ng-repeat="item in editproductList track by $index" class="row" style="width: 31.5% !important;margin:2px 0 0px 3px;" ng-click="productaction(item,$event);">
+            <img ng-show="item.image.length > 0" src="{{item.image}}" style="height:70px;width:100% !important;"/>
+            <h3>{{item.title}}</h3>
+            <p class="cost_entry disp_block">KWD : {{item.amount}}</p>
+        </li>
+    </ul>
+    <div class="content_placeholder">
+    </div>
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50  product_footercls" animation="no-animation"  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row">
+        <button class="button button-block ucase blue_button col" ui-sref="menuView.addBusiness.step5" ng-click="Analyticscodestep8('b');">Back</button>
+
+        <button class="button button-block ucase blue_button col" ng-click="submitProduct();Analyticscodestep8('n')">Next</button>
+    </div>
+</ion-footer>
+
+<script id="productedit.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">Product Edit</h1>
+            <button ng-click="cityclosemodalview()" class="button button-icon icon ion-arrow-left-c" style="float:right;"></button>
+        </ion-header-bar>
+        <ion-content>
+
+            <div class="padding margin_t_10">
+                <div class="picture_container" ng-click="toggleProdPhotoModal()">
+                    <i class="user_logo_upload icon ion-upload" ng-if="baseImg === ''"></i>
+                    <img ng-src="{{baseImg}}" ng-if="baseImg.length > 0"/>
+                </div>
+                <div class="align_center font_roboto font_color_blue margin_b_15" style="font-size:18px;">Tap to upload your Product Logo</div>
+            </div>
+            <form vn-check-validity name="defaultForm" novalidate>
+                <div class="listview_div">
+
+
+                    <!--Choosefile_div--->
+                    <span class="names_span" style="margin-left: 44px;top: 28px;position: relative;">Title</span>
+                    <!--Title_div--->
+                    <div class="Title_div">
+                        <input type="text" placeholder="Enter Your text" class="form-control" ng-required="true" ng-model="editproduct.title" ng-init="product.title = editproduct.title" ng-pattern="/^[ A-Za-z0-9&-]*$/" /> <!-- class="text_filed" -->
+                    </div>
+                    <!--Title_div--->
+                    <span class="names_span" style="margin-left: 44px;top: 27px;position: relative;">Price</span>
+                    <!--Price_div--->
+                    <div class="Price_div">
+                        <input type="text" placeholder="Price" class="text_filed" ng-pattern="/^\d*\.{0,1}\d+$/" ng-required="true" ng-model="editproduct.amount" ng-init="product.amount = editproduct.amount"/>
+                    </div>
+                    <!--Price_div--->
+                    <button class="btn btn-default" ng-click="updateEditproduct()" style="left:16%">Update Product</button>
+                </div>
+            </form>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

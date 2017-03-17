@@ -1,0 +1,20 @@
+<ion-view title="Classifieds">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader"  style="height:41px;padding: 0px;top: 50px;" ng-click="openclassifiedsearchview($event)">
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;" >
+            <label class="item-input-wrapper" style="opacity:0.6">
+                {{currentgname}}
+            </label>
+            <button class="ion-android-search kuwait-search"  style="top:0px;"></button>
+        </div >
+    </div>
+    <div class="fixedlisticondiv" ng-hide="popularcatlistdiv" ng-click="openrecntAds();$event.stopPropagation();"><button class="button button-icon icon ion-navicon-round"></button></div>
+    <ion-nav-view animation="no-animation" class="has-header has-subheader " name="tabContent">
+        <!-- Center content -->
+    </ion-nav-view>
+    <ion-footer class="bar bar-footer align_center height_auto split_50 hide-on-keyboard-open" animation="no-animation">
+        <button class="button button-block ucase green_button col marginless "  ng-click="clickonpostADS();">Post Ads</button>
+    </ion-footer>
+</ion-view>

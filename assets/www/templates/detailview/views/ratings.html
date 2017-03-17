@@ -1,0 +1,91 @@
+<ion-view title="Kuwait local" class="ratings" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider row content_formatting has-header has-footer inner-footer padding-bottom">
+        <h4 class="font_robotoM padding_bottom font_size_18 ucase font_color_black ucase" style="text-align:center;">Average user rating</h4>
+        <div class="rating_value_graph border_top font_roboto margin_b_10" style="text-align: center;">
+            <vn-ratings value="{{currentSingleRating}}" class="disp_iblock"></vn-ratings>
+            <span class="v_align_mid disp_iblock margin_l_5">{{currentSingleRating}}/5</span>
+            <span class="ucase font_color_ash v_align_mid disp_iblock">- Based on {{totalRatingUsers}} reviews</span>
+        </div>
+        <div class="rating_actual_data font_roboto group">
+            <div class="rating_count">5</div>
+            <div class="progress_bar">
+                <div class="progress_color" style="width:{{user_percentile_5 + '%'}}"></div>
+            </div>
+            <div class="user_count">{{innerGraphData.rates_user_5 + ' Users '}}</div>
+        </div>
+        <div class="rating_actual_data font_roboto group">
+            <div class="rating_count">4</div>
+            <div class="progress_bar">
+                <div class="progress_color" style="width:{{user_percentile_4 + '%'}}"></div>
+            </div>
+            <div class="user_count">{{innerGraphData.rates_user_4 + ' Users '}}</div>
+        </div>
+        <div class="rating_actual_data font_roboto group">
+            <div class="rating_count">3</div>
+            <div class="progress_bar">
+                <div class="progress_color" style="width:{{user_percentile_3 + '%'}}"></div>
+            </div>
+            <div class="user_count">{{innerGraphData.rates_user_3 + ' Users '}}</div>
+        </div>
+        <div class="rating_actual_data font_roboto group">
+            <div class="rating_count">2</div>
+            <div class="progress_bar">
+                <div class="progress_color" style="width:{{user_percentile_2 + '%'}}"></div>
+            </div>
+            <div class="user_count">{{innerGraphData.rates_user_2 + ' Users '}}</div>
+        </div>
+        <div class="rating_actual_data font_roboto group margin_b_20">
+            <div class="rating_count">1</div>
+            <div class="progress_bar">
+                <div class="progress_color" style="width:{{user_percentile_1 + '%'}}"></div>
+            </div>
+            <div class="user_count">{{innerGraphData.rates_user_1 + ' Users '}}</div>
+        </div>
+        <button class="button ion-edit blue_button button-block ucase align_center font_robotoM"  ng-click="writereviewclick()" style="width: 98%;position: relative;left:1%;">write a review</button>
+        <h4 class="font_robotoM padding_bottom font_size_18 ucase font_color_black ucase" style="text-align:center;">user reviews</h4>
+        <div class="border_top">
+            <!--<div ng-repeat="review in innerRatings.reviews" class="margin_b_20">-->
+              <!--<h5 class="font_robotoM font_size_17 font_color_lblack marginless margin_t_5 margin_b_5"><span class="font_color_ash">By</span> {{review.rater_name}}</h5>-->
+              <!--<div>-->
+                  <!--<vn-ratings value={{review.rater_star}} class="disp_iblock margin_r_5"></vn-ratings>-->
+                  <!--<span class="font_robotoM font_size_16">Good</span>-->
+              <!--</div>-->
+              <!--<p class="font_size_15 font_roboto font_color_gray">{{review.rater_message}}</p>-->
+            <!--</div>-->
+
+            <div class="list" ng-show="innerRatings.reviews.length > 0">
+
+                <a class="item item-avatar"  ng-repeat="review in innerRatings.reviews " style="border-width:0px;">
+                    <img ng-src="{{logourl}}{{review.user_logo}}" fallback-src='img/defaultuser.png'/>
+                    <h2>{{review.rater_name}} <vn-ratings value={{review.rater_star}} class="disp_iblock margin_r_5" style="position:relative;float:right;"></vn-ratings>
+                    </h2>
+                     <p>{{review.rater_message}}</p>
+                </a>
+            </div>
+  <div class="margin_b_20" ng-show="!innerRatings.reviews || !innerRatings.reviews.length > 0">
+                <p class="font_size_15 font_roboto font_color_gray align_center padding_tb_8"  ng-click="writereviewclick()">No user has rated this business, Be the first by rating this business, Tap this to rate</p>
+            </div>
+        </div>
+        <h4 class="font_robotoM padding_bottom font_size_18 ucase font_color_black ucase" style="text-align:center;display:none;">user comments</h4>
+        <div class="border_top">
+            <div ng-repeat="review in innerRatings.comments" class="margin_b_20" ng-show="innerRatings.comments.length > 0" style="display:nne;position: relative;left: 5%;">
+                <h5 class="font_robotoM font_size_17 font_color_lblack marginless margin_t_5 margin_b_5">{{review.first_name}}</h5>
+                <p class="font_size_15 font_roboto font_color_gray">{{review.comments}}</p>
+            </div>
+            <div class="margin_b_20" ng-show="!innerRatings.comments || !innerRatings.comments.length > 0" style="display:none;">
+                <p class="font_size_15 font_roboto font_color_gray align_center padding_tb_8">No user has posted a comment, Check into this business to be the first</p>
+            </div>
+        </div>
+        <div class="content_placeholder"></div>
+    </ion-content>
+
+
+    <footer class="bar bar-footer align_center "  style="height:auto;">
+        <div class="row" style="padding:0px">
+            <button class="button button-block ucase blue_button" ng-click="goBackToDetail()">back</button>
+        </div>
+    </footer>
+</ion-view>

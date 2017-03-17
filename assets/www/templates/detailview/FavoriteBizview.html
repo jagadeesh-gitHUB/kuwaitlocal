@@ -1,0 +1,29 @@
+<ion-view title="Kuwait local" class="Favoritebiz_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="getingfromlist()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider" animation="no-animation">
+        <div class="list">
+
+            <a class="item item-avatar" ng-repeat="item in favlists track by $index | orderBy : '-fav_id'" ng-click="gotoMainDetail(item.id)">
+
+                <img ng-src="{{item.buslogo}}">
+                <h2>{{item.title}}</h2>
+                <button class="button ion-thumbsdown" ng-click="unfavrate(item); $event.stopPropagation();" style="float:right;position: relative;bottom: 20px;line-height: 20px;"></button>
+                <p>{{item.city_name}},{{item.governorate_name}}</p>
+
+            </a>
+        </div>
+
+        <h3 ng-if="favlists.length == 0" class="align_center" style="font-size:larger;"> No Favorites Business present</h3>
+        <div googleAdsense ng-if="favlists.length == 0"  style="position: relative; width: 100%; top: 20px;">
+        <!--<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6635403237665178" data-ad-slot="4352874841" data-ad-format="auto"></ins>-->
+        <!--<script>-->
+        <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+        <!--</script>-->
+        </div>
+    </ion-content>
+</ion-view>

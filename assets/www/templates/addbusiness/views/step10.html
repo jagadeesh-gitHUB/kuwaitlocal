@@ -1,0 +1,24 @@
+<ion-content class="addbusiness_form">
+<h2 class="blue_underlined_box">Add Video URL</h2>
+<form novalidate name="defaultForm" vn-check-validity>
+    <div class="search_box margin_t_5 margin_b_5 pos_relative row videourlbox">
+          <div class="icon ion-ios7-videocam col col-10 col-center margin_r_20"></div>
+          <input type="url" placeholder="Video URL" class="searchInput col col-center" ng-model="premVideoUrl.video" ng-pattern="/^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?youtube\.com(/.*)?$/"/>
+    </div>
+</form>
+
+    <ul class="rig columns-2">
+    <li ng-repeat="item in videourls track by $index" class="row" data-playurk="{{item.playurl}}" ng-click="VideoEventsCallfunc(item,$index)" >
+        <img ng-show="item.videourl.length > 0" src="{{item.videourl}}" style="width:100%;" />
+    </li>
+</ul>
+<div class="p70_dummybar">
+</div>
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50 " animation="no-animation"  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row">
+        <button class="button button-block ucase blue_button col" ui-sref="menuView.addBusiness.step6" data-ng-click="finalclick('b')">Back</button>
+
+        <button class="button button-block ucase blue_button col" ng-click="submitService();finalclick('f');" ng-disabled="!defaultFormValid">Finish</button>
+    </div>
+</ion-footer>

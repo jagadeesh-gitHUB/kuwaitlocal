@@ -1,0 +1,121 @@
+<ion-view title="Kuwait local" class="myAds_view" padding="true">
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>-->
+    <!--</ion-nav-buttons>-->
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" style="height:auto;margin:0px;padding:0px;">
+
+    <div class="button-bar" style="position: relative;top:8px;width: 100%;padding: 0px;height:40px">
+        <a class="button barbuttonselted" data-ng-click="myAdsfun($event)" >Classifieds</a>
+
+            <a class="button" data-ng-click="myAdsenquiresfun($event)">Enquires</a>
+
+    </div>
+</div>
+    <ion-content class="tab_top full_section has-footer">
+        <ul class="notify_listing even_setting blogs_class"  style="position:relative;top:100px;">
+            <li class="group" ng-if="Ads.length" ng-repeat="listItem in Ads | orderBy: '-created'">
+                <div data-status="{{listItem.is_active}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-close-circled' : listItem.status == '0' , 'ion-checkmark-circled' : listItem.status == '1' }">
+                </div>
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash"><span>{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</span></div>
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize"> Category:{{listItem.category}}</div>
+                </div>
+
+                <div class="float_right auth_list_actions col-center"><!-- ng-hide="listItem.statusid==1 || listItem.statusid==2 || listItem.statusid==4"-->
+                    <span class="tapZone ion-android-more" action-button  ng-class="{tapSet : action_active}" ng-click="setActive($index)"> <!--action_active = (action_active) ? 0 : 1 "-->
+                        <div class="action_list" ng-show="actionList[$index]">
+                            <div class="action_item group" ng-click="sendToEdit(listItem.id, listItem.is_premium)" >
+                                <span class="icon_box">
+                                    <span class="icon ion-edit"></span>
+                                </span>
+                                <span class="icon-box-lettering">Edit</span>
+                            </div>
+                            <div class="action_item group" ng-click="sendToUpdate(listItem.id, listItem.is_premium)" ng-hide="true">
+                                <span class="icon_box">
+                                    <span class="icon ion-pricetag" style="color:red;"></span>
+                                </span>
+                                <span class="icon-box-lettering" style="color:red;">Upgrade</span>
+                            </div>
+                            <div class="action_item group" ng-click="showConfirm(listItem.id, listItem.title)">
+                                <span class="icon_box">
+                                    <span class="icon ion-trash-b"></span>
+                                </span>
+                                <span class="icon-box-lettering">Delete</span>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+
+
+
+
+            </li>
+
+            <li ng-if="Ads.length == 0" class="nolisting">
+                No Classified found
+            </li>
+        </ul>
+
+
+        <!--<ul class="notify_listing even_setting blogscoment_class"  style="position:relative;top:100px;display:none;">-->
+            <!--<li class="group" ng-if="myAdsEnqueries.length" ng-repeat="listItem in myAdsEnqueries track by $index | orderBy: '-created'">-->
+
+                <!--<div class="auth_list_info margin_r_10 float_left col-center">-->
+                    <!--<div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.Ads_name}}</div>-->
+                    <!--<div class="floating_date font_roboto font_size_12 font_color_ash"><span>{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</span></div>-->
+                    <!--<div class="font_size_16 font_robotoM font_color_lblack capitalize"> Category:{{listItem.Ads_category}}</div>-->
+                    <!--&lt;!&ndash;<div class="font_size_16 font_robotoM font_color_lblack capitalize"> User:{{listItem.user}}</div>&ndash;&gt;-->
+                    <!--<div class="font_size_16 font_robotoM font_color_lblack capitalize"> Contanct:{{listItem.contacts}}</div>-->
+                    <!--<div class="font_size_16 font_robotoM font_color_lblack capitalize"> {{listItem.message}}</div>-->
+                <!--</div>-->
+
+            <!--</li>-->
+
+            <!--<li ng-if="myAdsEnqueries.length == 0" class="nolisting">-->
+                <!--No Classified Enqueries found-->
+            <!--</li>-->
+
+        <!--</ul>-->
+
+        <div class="notify_listing even_setting blogscoment_class"  style="position:relative;top:95px;display:none;">
+            <a class="item item-avatar" ng-if="myAdsEnqueries.length" ng-repeat="listItem in myAdsEnqueries track by $index | orderBy:'-created' ">
+
+
+                <img ng-src="{{listItem.logo}}"  />
+                <h2 >{{listItem.Ads_name}}</h2>
+
+                <p style="margin:0px !important;float: right !important;">{{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}</p>
+
+                <p style="margin:0px !important;">{{listItem.user}}</p>
+
+                <p style="margin:0px !important;white-space:normal !important;"> {{listItem.message}}</p>
+
+
+
+            </a>
+
+
+
+            <p ng-if="myAdsEnqueries.length == 0 " style="text-align: center;top: 10px;position: relative" >No Classified Enqueries found</p>
+
+
+
+        </div>
+
+
+
+
+    </ion-content>
+
+    <ion-footer class="bar bar-footer align_center  hide-on-keyboard-open"  style="height:50px;background: orange;">
+
+        <button class="button button-block ucase blue_button col"ui-sref="menuView.addClassifieds.step1" ng-click="clickonpostADS();" style="background: orange;">POST ADS </button>
+
+    </ion-footer>
+
+
+</ion-view>

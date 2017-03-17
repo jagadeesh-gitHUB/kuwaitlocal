@@ -1,0 +1,178 @@
+<ion-view title="Kuwait local" class="mylistings_view" padding="true">
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>-->
+    <!--</ion-nav-buttons>-->
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" style="height:auto;margin:0px;padding:0px;">
+
+    <div class="button-bar" style="position: relative;top:8px;width: 100%;padding: 0px;height:40px">
+        <a class="button barbuttonselted" data-ng-click="mylistingsfun($event)" >Listings</a>
+        <a class="button" data-ng-click="myreviewsfun($event)">Reviews</a>
+            <a class="button" data-ng-click="myenquiresfun($event)">Enquires</a>
+            <a class="button" data-ng-click="mygalleryfun($event)">Gallery</a>
+
+    </div>
+</div>
+    <ion-content class="tab_top full_section has-footer">
+
+                          <!-----------listing view------------->
+
+        <ul class="notify_listing even_setting listing_class"  style="position:relative;top:100px;">
+            <li class="group" ng-if="allLists.length" ng-repeat="listItem in allLists | filter:search | orderBy: '-created'">
+                <div data-status="{{listItem.statusid}}" class="float_left status_info_icon icon margin_r_10 col-center" ng-class="{'ion-android-clock' : listItem.statusid == 3,'ion-close-circled' : listItem.statusid == 5 || listItem.statusid == 6,'ion-ribbon-b' : listItem.statusid == 1, 'ion-checkmark-circled' : listItem.statusid == 2 ,'ion-social-usd' : listItem.statusid == 4}">
+                </div>
+
+                <div class="auth_list_info margin_r_10 float_left col-center">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">
+                        <i class="icon  ion-ribbon-a" style="color:orange;" ng-hide="listItem.is_premium == '0' ?true:false"></i>
+                        {{listItem.created | DateFormatter | date:'dd-MM-yyyy'}}
+                        <p style="color:red;" ng-hide="listItem.is_premium == '0' ?true:false">Expire Date : {{listItem.premium_end_date}}</p>
+                        <p style="color:red;" ng-hide="listItem.logo">unfortunately your business logo not added , add business logo</p>
+
+                    </div>
+                </div>
+                <div class="float_right auth_list_actions col-center"><!-- ng-hide="listItem.statusid==1 || listItem.statusid==2 || listItem.statusid==4"-->
+                    <span class="tapZone ion-android-more" action-button  ng-class="{tapSet : action_active}" ng-click="setActive($index)"> <!--action_active = (action_active) ? 0 : 1 "-->
+                        <div class="action_list" ng-show="actionList[$index]">
+                            <div class="action_item group" ng-click="sendToEdit(listItem.id, listItem.is_premium)">
+                                <span class="icon_box">
+                                    <span class="icon ion-edit"></span>
+                                </span>
+                                <span class="icon-box-lettering">Edit</span>
+                            </div>
+                            <div class="action_item group" ng-click="sendToUpdate(listItem.id, listItem.is_premium)" ng-hide="listItem.is_premium == '0' ?false:true">
+                                <span class="icon_box">
+                                    <span class="icon ion-pricetag" style="color:red;"></span>
+                                </span>
+                                <span class="icon-box-lettering" style="color:red;">Upgrade</span>
+                            </div>
+
+                            <div class="action_item group" ng-click="sendToGallery(listItem.id)" ng-hide="listItem.Gallery_count > 0 ?false:true">
+                                <span class="icon_box">
+                                    <span class="icon ion-images"></span>
+                                </span>
+                                <span class="icon-box-lettering" >Gallery</span>
+                            </div>
+
+                            <div class="action_item group" ng-click="showConfirm(listItem.id, listItem.title)">
+                                <span class="icon_box">
+                                    <span class="icon ion-trash-b"></span>
+                                </span>
+                                <span class="icon-box-lettering">Delete</span>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </li>
+
+            <li ng-if="allLists.length == 0" class="nolisting ">
+                No listings found
+
+
+
+            </li>
+        </ul>
+        <!--------------listing end here--------------------->
+        <!-----------review view------------->
+ <ul class="notify_listing even_setting review_class" style="position:relative;top:100px;display:none;">
+            <li class="group" ng-if="allLists.length" ng-repeat="listItem in myreviews |  orderBy: '-created'">
+
+                <div class="auth_list_info margin_r_10 float_left col-center" style="width:100%;">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.biz_title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">
+                        <span ng-bind="datevalue(listItem.created)"></span>
+                        <span style="position:relative;float:right;"><vn-ratings value="{{listItem.rater_star}}"></vn-ratings></span>
+
+                    </div>
+                   <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.rater_message}}</div>
+                </div>
+
+            </li>
+
+            <li ng-if="myreviews.length == 0 " class="nolisting ">
+                No Reviews found
+            </li>
+        </ul>
+        <!--------------reviews end here--------------------->
+
+
+
+
+
+
+        <!-----------enquires view------------->
+
+        <ul class="notify_listing even_setting enquiry_class" style="position:relative;top:100px;display:none;">
+            <li class="group" ng-if="allLists.length" ng-repeat="listItem in myenquires |  orderBy: '-created'">
+
+                <div class="auth_list_info margin_r_10 float_left col-center" style="width:100%;">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.biz_title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">
+
+
+                    </div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.enquirer_message}}</div>
+                </div>
+
+            </li>
+
+            <li ng-if="myenquires .length == 0 " class="nolisting">
+                No Enquiries found
+            </li>
+        </ul>
+        <!--------------enquires end here--------------------->
+
+        <div class="list classnear gallery_class" style="top:95px;display:none">
+
+            <!--<a class="item " ng-repeat="item in mygallery | orderBy:'-gallery_created'">-->
+
+                <!--<img ng-src="{{item.gallery_img_path}}"  class="classifed_imgcls"/>-->
+                <!--<h2 style="color:#31b3eb;">{{item.biz_title}}</h2>-->
+                <!--<p ng-bind="datevalue(item.gallery_created)"></p>-->
+                <!--<button style="position: relative;width: 50%; text-align: center;left: 10%;" ng-click="showimgaedelete(item.gallery_bizid,item.gallery_name,item.biz_id,item.biz_title)">Remove</button>-->
+                <!--&lt;!&ndash;<p style="color:black;">Posted By : {{item.gallery_postedby}}</p>&ndash;&gt;-->
+                <!--&lt;!&ndash;<p style="color:black;">{{item.gallery_user_email}}</p>&ndash;&gt;-->
+
+
+            <!--</a>-->
+
+
+
+            <a class="item item-avatar" ng-repeat="item in mygallery | orderBy:'-gallery_created'">
+
+                <img ng-src="{{item.gallery_img_path}}"  />
+                <h2>{{item.biz_title}}</h2>
+                <button class="button ion-trash-a" ng-click="showimgaedelete(item.gallery_bizid,item.gallery_name,item.biz_id,item.biz_title)" style="float:right;position: relative;bottom: 20px;line-height: 20px;"></button>
+
+                <p ng-bind="datevalue(item.gallery_created)"></p>
+
+
+            </a>
+
+
+
+            <a ng-if="mygallery.length == 0 " class="nolisting noresultfound_cls">
+                No Gallery list found
+            </a>
+
+
+        </div>
+
+
+<div class="p350_dummybar"></div>
+
+
+    </ion-content>
+
+    <!--<ion-footer class="bar bar-footer align_center  hide-on-keyboard-open" ng-if="allLists.length == 0" style="height:50px;background: orange;">-->
+        <ion-footer class="bar bar-footer align_center  hide-on-keyboard-open"  style="height:50px;background: orange;">
+
+            <button class="button button-block ucase blue_button col" ui-sref="menuView.main" style="background: orange;">Add Listing</button>
+
+    </ion-footer>
+
+
+</ion-view>

@@ -1,0 +1,28 @@
+
+<ion-view title="dev mode" class="detailservice_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider row has-header padding-bottom">
+        <button class="button button-positive button-block" ng-click="shareonFacebook()">Share to Facebook</button>
+        <button class="button button-positive button-block" ng-click="shareonTwitter()">Share to Twitter</button>
+        <button class="button button-positive button-block" ng-click="getFb()">Login to Facebook</button>
+        <button class="button button-positive button-block" ng-click="inviteFriends()">Invite people</button>
+        {{fbFriends}}
+        <div class="align_center">
+            <img src="{{fbPic}}"/>
+        </div>
+        <div class="row">
+            <span class="col-33 align_left">ID</span>
+            <span class="col-66 align_left">{{fbResponse.id}}</span>
+        </div>
+        <div class="row">
+            <span class="col-33 align_left">Name</span>
+            <span class="col-66 align_left">{{fbResponse.name}}</span>
+        </div>
+        <div class="row">
+            <span class="col-33 align_left">Email</span>
+            <span class="col-66 align_left">{{fbResponse.email}}</span>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+
+<ion-content class="tab_top full_section has-footer cathomeclass" overflow-scroll="true" has-bouncing="true"
+             style="top:0px;margin:-2px;">
+    <div class="adsclass"  ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+        <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+    </div>
+<ul class="rig columns-2" ng-hide="hidecategories" style="height:420px;">
+        <li  ng-repeat="cat in mobilecatimgs" ng-hide="hidecategories" ng-click="gotosubCategories(cat)">
+            <img ng-src="{{cat.logo}}"/>
+
+        </li>
+    </ul>
+
+    <div class="p350_dummybar"></div>
+</ion-content>

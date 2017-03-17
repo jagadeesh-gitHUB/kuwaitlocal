@@ -1,0 +1,31 @@
+<ion-view title="Kuwait local" class="detailservice_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider row has-header padding-bottom">
+        <ul class="checkineach">
+            <li ng-show="!checkins.length > 0 && loadComplete" class="font_roboto align_center">You havent checked in anywhere yet</li>
+            <li ng-repeat="checkin in checkins track by $index" class="list group">
+                <div ng-show="checkin"><i class="icon ion-location font_color_blue_override font_size_30 v_align_mid margin_r_10"></i><b class="font_color_blue_override v_align_mid">{{checkin.FacebookCheckin.business_name}}</b></div>
+                <div ng-show="checkin.FacebookCheckin.checkin_message.length > 0" class="margin_t_10 margin_b_10 user_checkin_text padding_l_30">{{checkin.FacebookCheckin.checkin_message}}</div>
+                <ul class="friendlist group" ng-show="checkin.FacebookCheckinTaggedfriend">
+                    <li class="marginless"><i class="icon ion-person-stalker font_color_blue_override font_size_24 margin_r_10"></i></li>
+                    <li ng-repeat="frnd in checkin.FacebookCheckinTaggedfriend track by $index" class="marginless">{{frnd}}</li>
+                </ul>
+                <ul class="group checkin_thumbs" ng-show="checkin.FacebookCheckinImage">
+                    <li class="marginless float_left"><i class="icon ion-image font_color_blue_override font_size_24 margin_r_10"></i></li>
+                    <li ng-repeat="img in checkin.FacebookCheckinImage track by $index" class="marginless">
+                        <img ng-src="{{'http://188.166.55.96/img/' + img.image_dir}}"/>
+                    </li>
+                </ul>
+                <div class="group w_set_bar"><span class="float_right font_roboto font_size_14 font_color_gray">on {{checkin.FacebookCheckin.created | badDateToISO | date:'shortDate'}}</span></div>
+            </li>
+        </ul>
+        <div class="p70_dummybar"></div>
+    </ion-content>
+    <footer class="bar bar-footer align_center padding split_50 hide-on-keyboard-open" animation="no-animation">
+        <div class="row">
+            <button class="button button-block ucase green_button col marginless" ng-click="checkmein()">Check in</button>
+        </div>
+    </footer>
+</ion-view>

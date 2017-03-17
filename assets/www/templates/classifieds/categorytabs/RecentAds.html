@@ -1,0 +1,18 @@
+<!--<div class="adsclass" style="height:250px;">-->
+    <!--<img ng-src="{{classfieds.logo}}"width="180px" id="adsimgsid" style="height:100%;" ng-click="getclassifiedsubtypes($event,classfieds)"/>-->
+<!--</div>-->
+<ion-content class="tab_top full_section has-footer cathomeclass" overflow-scroll="true" style="top:30px;margin:-1px;">
+
+    <div class="adsclass" ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+
+        <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+    </div>
+    <ul class="rig columns-2 classfied_ulcls" style="height:600px;position:relative;top:2px;">
+    <li  ng-repeat="cat in classifiedtypes" class="classideli"  ng-click="getclassifiedsubtypes($event,cat)">
+        <img ng-src="{{cat.logo}}" />
+    </li>
+</ul>
+    <div class="p350_dummybar"></div>
+</ion-content>

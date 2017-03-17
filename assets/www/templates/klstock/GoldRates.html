@@ -1,0 +1,353 @@
+<ion-view title="Kuwait local" class="Goldrate_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    
+    <ion-nav-buttons side="right">
+        <button ng-click="goldrateshare();" class="button button-icon icon ion-share" style="color:white;"></button>
+    </ion-nav-buttons>
+    
+<!--    <ion-header-bar class="bar bar-subheader bar-header disable-user-behavior" style="background: none; height: auto;width: 100%;padding: 0px;">-->
+<!--        <div class="adsclass" onclick="window.open('http://virtualoffice.servcorp.com.kw', '_blank');">-->
+<!--            -->
+<!--            -->
+<!--            <img ng-src="img/Kuwaitlocaladspace-com.gif"width="180px" id="adsimgsid" style="height:100%;"/>-->
+<!--            -->
+<!--        </div>-->
+<!--       -->
+<!--        -->
+<!--    </ion-header-bar>-->
+
+    <ion-content class="has-header has-footer" style="top:50px;" ng-hide="gold_content_cls">
+        
+        <div class="adsclass" ng-click=" ADSlinkopen(Ads_Array.url_link)">
+            
+            
+            <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+            
+        </div>
+        <p style="text-align: center;margin: 0px;"> Gold Price in Kuwait</p>
+
+        <div class="row list" style="text-align:center;padding:2px;margin-bottom: 0px;">
+            
+            
+            <div class="col col-50 exchange-item-class item" style="background:#ed9734;color:white;border: 0.5px solid #ebe6c0;" >Gold Unit</div>
+            <div class="col col-50 rate-item-class item" style="background:#87bd31;color:white;border: 0.5px solid #8fb870;"> Gold Price in KWD</div>
+        </div>
+        <div ng-repeat="gold in gold_pricelist_today" >
+            
+            <div class="row list" style="text-align:center;padding:0px;">
+                <div class="col col-50  item-class"  ng-class-odd="'gald-name-odd'" ng-class-even="'gald-name-even'">{{gold.name.replace('Gold','')}}</div>
+                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'">{{gold.price}}</div>
+                </div>
+            </div>
+        
+        
+        <div style="width: 98.3%; padding: 5px; text-align: center; background: #141e29; margin-left: 2px; margin-top: 6px;color:white;" >
+            
+            <label>Last updated : <i class="icon ion-calendar"></i> {{gold_pricelist_today_date}} kuwait time <p>Note:Live rates may be difffenet from last updated</p>
+            </label>
+            
+        </div>
+        
+        <button class="button button-block  blue_button col" style="width:95%;margin-top:7px;margin-left:5px;background:#95cf3e;" ng-click="goldshopop();">Gold shop  Locator</button>
+        
+        <button class="button button-block  blue_button col" style="width:95%;margin-top:7px;margin-left:5px;background:orange;" ng-click="goldcalculatorpop();">Gold Price  calculator</button>
+        
+         <button class="button button-block  blue_button col" style="width:95%;margin-top:7px;margin-left:5px;background:#95cf3e;" ng-click="goldsubscribepop();">Subscribe Gold price alerts</button>
+        
+        
+        <button class="button button-block  blue_button col" style="width:95%;margin-top:7px;margin-left:5px;background:orange;" ng-click="goldmonthpop();">Gold Price  in last 30days</button>
+        
+          <div id="container" >Placeholder for chart</div>
+          
+<!--          <div>-->
+<!--       -->
+<!--         <highchart id="chart1" config="chartConfig" class="span10"></highchart>-->
+<!--          </div>-->
+
+
+        
+<!--        <div class="row list" style="text-align:center;padding:2px;margin-bottom: 0px;">-->
+<!--            <div class="col col-50 exchange-item-class item" style="background:#ed9734;color:white;border: 0.5px solid #ebe6c0;" >Date</div>-->
+<!--            <div class="col col-50 rate-item-class item" style="background:#87bd31;color:white;border: 0.5px solid #8fb870;">-->
+<!--                <select  ng-model="select_goldname"  ng-options="gold.name as gold.name for gold in gold_pricelist_today" style="width: 100%; background: white; padding: 5px; margin-bottom: 10px; border-radius: 6px;">-->
+<!--                    <option value="">Select a Gold unit</option>-->
+<!--                </select>-->
+<!---->
+<!--            </div>-->
+<!--        </div>-->
+<!--        -->
+<!--<!--        <p>{{select_goldname}}</p>-->
+<!---->
+<!--        <div ng-repeat="gold in gold_rates_monthlist_all | orderBy:'-created' " >-->
+<!--            -->
+<!--            <div class="row list" style="text-align:center;padding:0px;">-->
+<!--                <div class="col col-50  item-class"  ng-class-odd="'gald-name-odd'" ng-class-even="'gald-name-even'" ng-bind="goldCreatedDate(gold.created)"></div>-->
+<!--                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'"  ng-if="select_goldname=='1 Gold Ounce'">{{gold.gold_ounce}}</div>-->
+<!--                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'"  ng-if="select_goldname=='1 Gold Kilogram'">{{gold.gold_kg}}</div>-->
+<!--                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'"  ng-if="select_goldname=='10 Gold Tolas Bar'">{{gold.gold_tolas}}</div>-->
+<!--                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 24'">{{gold.gold_g_carat_24}}</div>-->
+<!--                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 22'">{{gold.gold_g_carat_22}}</div>-->
+<!--                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 21'">{{gold.gold_g_carat_21}}</div>-->
+<!--                <div class="col col-50  item"  ng-class-odd="'gald-price-odd'" ng-class-even="'gald-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 18'">{{gold.gold_g_carat_18}}</div>-->
+<!--                -->
+<!--            </div>-->
+        </div>
+        
+        <h4>Comments</h4>
+        <!----------------------- comments comes here-------------------------->
+        
+        <div class="list" >
+            
+            <a class="item item-avatar"  ng-repeat="comment in gold_commets " style="border-width:0px;">
+                <img ng-src="{{userlog}}/{{comment.user_logo}}" fallback-src='img/defaultuser.png'/>
+                <h2>{{comment.username}}</h2>
+                <label style="white-space: pre-wrap;word-break: break-all;font-size: 12px;">{{comment.comments}}</label>
+            </a>
+        </div>
+        </div>
+        <button id="loadMore" class="button button-block ucase blue_button col" ng-if="temp_gold_commets.length >5" ng-click="goldloadmoreAdComments($event);" style="width:95%;position:relative;left:3%;">Load More</button>
+        
+        <div style="height:50px;"></div>
+        
+           <div style="height:50px;"></div>
+        
+    </ion-content>
+    
+    
+    <footer class="bar bar-footer align_center  split_50 bizEnq_cls"  style="height:auto;">
+        <div class="row" style="padding:0px;">
+            <button class="button button-block  blue_button col "  style="background:orange;" ng-click="GoldComments();">Post Comment</button>
+        </div>
+        
+        
+   
+    </footer>
+    
+</ion-view>
+
+
+<script id="goldshoLocator.html" type="text/ng-template">
+    <div>
+    
+    <select  ng-model="shop_locator_name"
+    
+            ng-options="type.name as type.name for type in shop_locator | unique : 'name'   "
+             
+             style="width: 100%; background: white; padding: 5px; margin-bottom: 10px; border-radius: 6px;border:none;"
+              class="select_dd-class"
+             >
+   
+           <option value="">Select shop</option>
+  
+  </select>
+    <select  ng-model="curreny_code_locator.branch_link"
+    
+           
+    
+            ng-options="type.link as type.branch_name for type in shop_locator | filter : { name: shop_locator_name }  "
+           
+           style="width: 100%; background: white; padding: 5px; margin-bottom: 10px; border-radius: 6px;border:none;"
+            class="select_dd-class"
+           >
+  
+  <option value="">Select a Branch</option>
+   
+   </select>
+   
+   </div>
+    </script>
+
+
+
+<script id="goldcalculator.html" type="text/ng-template">
+    <div>
+    
+    
+    <select  ng-model="gold_carat"
+            ng-options="type.gold_name as type.carat for type in carat_name "
+            style="width: 100%; background: white; padding: 5px; margin-bottom: 10px; border-radius: 6px;"
+            class="select_dd-class"
+            >
+            
+            <option value="">Select a  carat </option>
+            
+            </select>
+    
+    <input type="number" ng-model="user_number" Placeholder="No of Grams"  style="line-height: 40px;height: 40px" />
+    <br/>
+    <p ng-hide="user_number == '' ? true:false " style="color:orange;"> Result: </p>
+    
+    <div  ng-repeat="gold in gold_pricelist_today | filter : gold_carat "  ng-hide="gold_carat == null ? true:false " > <h3 ng-hide="user_number == '' ? true:false " style="color:orange;">{{gold.price  *  user_number}} KWD</h3></div>
+
+    </div>
+    </script>
+
+
+
+<script id="goldmonth.html" type="text/ng-template">
+    <ion-modal-view>
+    <ion-header-bar>
+    <h1 class="title">Last 30 days Gold Price list</h1>
+    <button ng-click="cityclosemodalview()" class="button button-icon icon ion-arrow-left-c" style="float:right;"></button>
+ 
+    </ion-header-bar>
+       <ion-header-bar class="bar bar-subheader bar-header disable-user-behavior" style="background: none; height: auto;width: 100%;padding: 0px;">
+      
+      <div
+      style="width: 98%;border: 1px solid gray;position: relative;margin: 3px;background: blue;color: white;height: 42px">
+      
+      <!--     <i class="icon ion-arrow-down-b"></i>-->
+      <select  ng-model="select_goldname"
+      
+      class="select_dd-class"
+      
+      ng-options="gold.name as gold.name for gold in gold_pricelist_today"
+      
+      style="width: 100%; background: white; padding: 5px; margin-bottom: 10px; border-radius:0px;border:0px solid white;height:40px;">
+      <option value="">Select a Gold unit</option>
+      </select>
+      
+      </div>
+      
+      </ion-header-bar>
+    
+   
+    <ion-content style="top:94px;">
+   
+    
+    
+    <div class="row list" style="text-align:center;margin-bottom: 0px;">
+    <div class="col col-50 exchange-item-class item" style="background:#0995d6;color:white;border: 0.5px solid #ebe6c0;" >Date</div>
+    <div class="col col-50 rate-item-class item" style="background:#0995d6;color:white;border: 0.5px solid #8fb870;">{{select_goldname.replace('Gold','')}}
+   
+    
+    </div>
+    </div>
+    
+    <!--        <p>{{select_goldname}}</p>-->
+    
+    <div ng-repeat="gold in gold_rates_monthlist_all | orderBy:'-created' " >
+    
+    <div class="row list" style="text-align:center;padding:0px;">
+    
+    <div class="col col-50  item-class" ng-class-odd="'goldmonth-name-odd'" ng-class-even="'goldmonth-name-even'" ng-bind="goldCreatedDate(gold.created)"></div>
+    
+    <div class="col col-50  item"  ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="select_goldname=='1 Gold Ounce'">{{gold.gold_ounce}}</div>
+    
+    <div class="col col-50  item"  ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="select_goldname=='1 Gold Kilogram'">{{gold.gold_kg}}</div>
+    
+    <div class="col col-50  item"  ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="select_goldname=='10 Gold Tolas Bar'">{{gold.gold_tolas}}</div>
+    
+    <div class="col col-50  item"  ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 24'">{{gold.gold_g_carat_24}}</div>
+    
+    <div class="col col-50  item"  ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 22'">{{gold.gold_g_carat_22}}</div>
+    
+    <div class="col col-50  item"  ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 21'">{{gold.gold_g_carat_21}}</div>
+    
+    <div class="col col-50  item"  ng-class-odd="'goldmonth-price-odd'" ng-class-even="'goldmonth-price-even'"  ng-if="select_goldname=='1 Gold Gram Carat 18'">{{gold.gold_g_carat_18}}</div>
+    
+    
+    </div>
+    </div>
+    </ion-content>
+    </ion-modal-view>
+    </script>
+
+
+<style>
+    
+    .gald-name-even{
+       background:#fff8d9 !important;
+       color:#d49d55;
+       border: 0.5px solid #d49d55;
+    }
+    .gald-name-odd{
+        background:white !important;
+        color:#d49d55;
+        border: 0.5px solid #d49d55;
+    }
+
+.gald-price-even{
+    background:#e7fac5 !important;
+    color:#8fb870;
+    border: 0.5px solid #8fb870;
+}
+.gald-price-odd{
+    background:white !important;
+    color:#8fb870;
+    border: 0.5px solid #8fb870;
+}
+
+div#container{
+padding: 5px;
+width: 100%;
+position: relative;
+
+}
+
+
+
+.item{margin:0px !important;}
+
+<!--div.popup.popup-showing.active{-->
+<!---->
+<!--background: #95cf3e;-->
+<!--width: 90%;-->
+<!--top: 57%;-->
+<!--border-radius: 5px;-->
+<!--height:206px;-->
+<!---->
+<!---->
+<!--}-->
+<!---->
+<!---->
+<!--.popup-head{-->
+<!---->
+<!--border-bottom: 0px solid #eee;-->
+<!--}-->
+<!---->
+<!--h3.popup-title.ng-binding{-->
+<!---->
+<!--color: white;-->
+<!--font-weight: bolder;-->
+<!--font-size: 1.5-->
+<!--}-->
+<!---->
+<!--.platform-ios .popup-buttons.row{-->
+<!---->
+<!--padding: 0px;-->
+<!--width: 95%;-->
+<!--height: 40px;-->
+<!--position: relative;-->
+<!--left: 2.5%;-->
+<!---->
+<!--}-->
+<!--button.button.col.ng-binding.button-default,.popup-buttons .button.button-positive{-->
+<!---->
+<!--background: #ebffcc;-->
+<!--color: #78ad28-->
+<!--}-->
+<!---->
+<!--footer.split_50 .button.button-block:last-child, .split_50 .button.button-block:last-child{margin-left:0px;}-->
+<!---->
+<!---->
+<!--.Locator-class .popup-body{-->
+<!---->
+<!--border:10px solid red;-->
+<!---->
+<!--}-->
+
+.select_dd-class{
+ background: url('img/dropdown_arrow.png') no-repeat right #FEFEFE !important;
+
+}
+
+
+
+
+
+
+
+</style>

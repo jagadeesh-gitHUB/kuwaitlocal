@@ -1,0 +1,115 @@
+<ion-view title="Classifieds" class="detail_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <!--<button class="button button-icon font_robotoM ucase back_btn" style="border: 1px white solid;width: 35%; border-radius: 75px; height: 25px; position: relative;top: 5px;color:orange !important;">+</button>-->
+        <button ng-click="gotohomeview()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-imageslider" animation="no-animation">
+       <div class="classified_logo pos_relative ">
+            <img src="{{detailData.Ad_ogo}}" ng-if="logoImg"/>
+            <div class="divider_bottom floating_classified_detail padding" style="border-bottom:0px solid #e4e4e4;">
+                <h3 class="header_3 classified_header_3 font_roboto line_format_medium" ng-bind="createddatebind(detailData.classified.created)"></h3>
+                <h5 class="font_color_white font_size_18 font_roboto marginless margin_b_5 padding_t_10">
+                    <span>Category :  {{detailData.classified.classified_type}}</span>
+                </h5>
+
+
+            </div>
+        </div>
+
+        <div style="text-align: center;position: relative;top: 2px;">
+            <h3 style="color:#40bbed">{{detailData.classified.title}}</h3>
+
+        </div>
+
+        <div class="padding font_roboto reset_anchors">
+
+            <div class="group block_set two_tiled_block" ng-if="detailData.address !=null">
+                <div class="float_left ion-location" style="font-size:larger;"></div>
+                <div style="float: left;position: relative;left: 3%;width:95%;">{{detailData.address.land_mark}} {{detailData.address.city_name + ', ' + detailData.address.gname}}</div>
+            </div>
+            <div class="group block_set two_tiled_block" >
+
+                <div class="float_left" style="width:65%;">Price : <span style="color:#40bbed;" ng-if="detailData.classified.price">(KWD){{detailData.classified.price}}</span></div>
+               <div class="my_klverified float_right" ng-hide="detailData.classified.is_premium == 0"></div>
+            </div>
+            <div class="group block_set two_tiled_block"  ng-hide="detailData.address.distance == 99999" ng-if="detailData.address !=null">
+                <div class="float_left"  style="width:65%;">Distance :<span style="color:#40bbed;">{{detailData.address.distance}}KM</span></div>
+
+                <div class="float_right"><a browse-to="{{geo_directions}}" ng-click="openMapview()"><i class="icon ion-model-s" style="color:#40bbed;"></i> Directions</a></div>
+            </div>
+
+            <div class="divider_bottom pos_relative" ng-if="detailData.classified.mobile_no.length > 0" ng-click="phonecall(detailData.mobile_no)" >
+                <span class=" left_icon_bar detailiconcls" ng-click="phonecall(detailData.classified.mobile_no)" >  <i class="icon ion-android-call" style="font-size:18px;top: 4px;position: absolute;"></i>
+              </span>
+                <p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls">
+                    <a href="tel:{{detailData.classified.mobile_no}}">{{detailData.classified.mobile_no}}</a>
+                    <!-- <abbr ng-show="detailData.more_contacts || detailData.more_contacts.length > 0 || detailData.more_contacts != 0">,</abbr>-->
+                   </p>
+
+            </div>
+
+            <div class="divider_bottom pos_relative" ng-if="detailData.user_email.length > 0" ng-click="detailendquert(detailData.user_email,detailData.classified.slug,detailData.classified.id)" >
+                <span class=" left_icon_bar detailiconcls" > <i class="icon ion-email detailiconcls"></i>
+               </span><p class="disp_iblock padding_l_35 font_size_16 font_roboto font_color_gray margin_t_15 iconpaddcls">
+                <a href="mailto:{{detailData.classified.email}}">{{detailData.user_email}}</a>
+
+                <!--<abbr ng-if="detailData.more_email.length > 0">,</abbr>-->
+                <a class="comma_preceded" ng-repeat="detailNumber in detailData.more_email" href="mailto:{{detailNumber}}">{{detailNumber}}</a></p>
+            </div>
+
+
+
+        </div>
+
+        <div class="row">
+            <button class="button button-block ucase blue_button col" style="left:-1%;" ng-click="shareADS(detailData.classified)">Share Ad</button>
+            <button class="button button-block ucase blue_button col margin_r_10" ng-click="openAdsgallery();" ng-if="detailData.Ads_gallery != '0' ">Gallery</button>
+            <button class="button button-block ucase blue_button col margin_r_10" style="right:-1%;" ng-disabled="true"> Report Ad</button>
+        </div>
+
+        <div class="font_robotoB font_size_15 ucase font_color_blue flat_bar light_gray_bg group margin_b_10" style="text-align:center;">
+            <span class="float_left m_width_40">AD Description</span>
+        </div>
+        <div id="Ads_descrpID" style="text-align:justify;padding:15px;"></div>
+        <div class="font_robotoB font_size_15 ucase font_color_blue flat_bar light_gray_bg group margin_b_10">
+            <span class="float_left m_width_40">Comments</span>
+        </div>
+
+        <div class="list" ng-if="AdsComments.length >0" id="AdsComments_div">
+
+            <a class="item item-avatar AdsComemt_Cls"  ng-repeat="comment in AdsComments " style="border-width:0px;">
+                <img ng-src="{{userlog}}/{{comment.user_logo}}" fallback-src='img/defaultuser.png'/>
+                <h2>{{comment.username}}</h2>
+                <label style="white-space: pre-wrap;">{{comment.comments}}</label>
+            </a>
+        </div>
+
+        <button id="loadMore" class="button button-block ucase blue_button col" ng-if="temp_ADscomments.length >5" ng-click="loadmoreAdComments($event);" style="width:95%;position:relative;left:3%;">Load More</button>
+
+
+
+        <p ng-if="AdsComments.length==0" style="text-align:center;">No comments given yet</p>
+
+
+    </ion-content>
+    <footer class="bar bar-footer dark_footer  align_center row" style="background:white !important;">
+
+
+        <div class="row">
+            <button class="button button-block ucase blue_button col" ng-click="openCommentPop()" style="background:orange;">Post Your Comment</button>
+            <!--<button class="button button-block ucase blue_button col margin_r_10"  style="background:orange;"> Related Ads</button>-->
+        </div>
+
+    </footer>
+</ion-view>
+<style>
+    #Ads_descrpID p{
+
+    margin : 0px !important;
+    }
+
+    </style>

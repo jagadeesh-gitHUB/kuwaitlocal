@@ -1,0 +1,195 @@
+<ion-view title="Kuwait local" class="Bizlist_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="gotohomeview()"class="button button-icon font_robotoM ucase back_btn">Back</button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" style="height:auto;margin:0px;padding:0px;top:50px;">
+
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;" >
+            <label class="item-input-wrapper" style="height:25px;top:-4px;" ng-click="searchfiledclickd()">
+                <p style="width: 100%;text-align: initial;padding-top:9px;color:gray;">{{entersearchtxt.length > 35 ? entersearchtxt.substr(0,35)+'...':entersearchtxt}}</p>
+                <!--<input placeholder="Search..."  type="text" ng-model="entersearchtxt"  ng-click="searchfiledclickd()" />-->
+
+            </label>
+
+        </div>
+
+
+
+        <div class="button-bar" style="position: relative;top: 1px;width: 100%;padding: 0px;" ng-if="mainListings.length > 5" >
+            <a class="button barbuttonselted" data-ng-click="bizlistsortbybuttonclick('rating',$event)" >Popular</a>
+            <a class="button" data-ng-click="bizlistsortbybuttonclick('near',$event)" >Near By</a>
+            <a class="button" data-ng-click="bizlistsortbybuttonclick('recent',$event)">Recent</a>
+        </div>
+    </div>
+    <ion-content class="tab_top full_section has-footer" style="margin: -2px;" ng-style="{top:mainListings.length > 5 ?'125px':'90px'}">
+
+        <div class="adsclass"  ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+            <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+        </div>
+        <div class="list ratinglist" style="background:#c0c0c0;margin: 0px;" ng-if="mainListings.length>0">
+            <div class="main_div" ng-repeat="item in mainListings  | unique:'id' | orderBy:['-is_premium','-view_count']" ng-click="gotoMainDetail(item.id,item.title)">
+
+                <div style="width:100%;height:auto;margin-top: 2%;background:white;">
+
+                    <table style="width:100%;">
+                        <tr>
+                            <td class="leftTd">
+                                <img class="imag_div" ng-src="{{item.buslogo}}">
+                            </td>
+
+                            <td class="rightTd">
+                                <span style="font-size: 15px;">{{item.title}}</span></br>
+                                <!--<span>{{item.business_overallrating}}<vn-ratings value="item.business_overallrating"></vn-ratings></span>-->
+                                <span class="star-rating" star-rating rating-value="item.business_overallrating" data-max="5"></span>
+
+                                <div class="rf_div">
+                                    <div style="width:50%;float:left;border-right: 2px solid #30B0EC;height: 39px;">
+                                        <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                            <span class="icon rounded_icon bg_orange ion-heart" ng-click="fastTrack(item.id,'fav',item.title); $event.stopPropagation();"></span>
+                                        </div>
+                                    </div>
+
+                                    <div style="width:50%;float:left;height: 39px;">
+                                        <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                            <span class="icon rounded_icon bg_red ion-android-star" ng-click="fastTrack(item.id, 'rate',item.title); $event.stopPropagation();"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="addressTd">
+                                <p style="font-size: 15px;padding-top: 2px;margin-bottom: 4px;">{{item.city_name}} , {{item.governorate_name}}</p>
+                                <p class="my_klverified" ng-hide="item.is_premium == 0" style="float:right;position:relative;right: 2%;bottom:15px"></p>
+                                <p style="font-size: 15px;">distance :  <strong>{{item.distance== 99999 ?'Not Available':item.distance}} KM</strong></p>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div><!--mail_div-->
+        </div>
+
+        <div class="list nearlist" style="background:#c0c0c0;margin: 0px;display:none;" ng-if="mainListings.length>0">
+            <div class="main_div" ng-repeat="item in mainListings  | unique:'id' | orderBy:'distance'" ng-click="gotoMainDetail(item.id,item.title)" ng-hide="item.distance == 99999">
+
+                <div style="width:100%;height:auto;margin-top: 2%;background:white;">
+
+                    <table style="width:100%;">
+                        <tr>
+                            <td class="leftTd">
+                                <img class="imag_div" ng-src="{{item.buslogo}}">
+                            </td>
+
+                            <td class="rightTd">
+                                <span style="font-size: 15px;">{{item.title}}</span></br>
+                                <!--<span>{{item.business_overallrating}}<vn-ratings value="item.business_overallrating"></vn-ratings></span>-->
+                                <span class="star-rating" star-rating rating-value="item.business_overallrating" data-max="5"></span>
+
+                                <div class="rf_div">
+                                    <div style="width:50%;float:left;border-right: 2px solid #30B0EC;height: 39px;">
+                                        <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                            <span class="icon rounded_icon bg_orange ion-heart" ng-click="fastTrack(item.id,'fav',item.title); $event.stopPropagation();"></span>
+                                        </div>
+                                    </div>
+
+                                    <div style="width:50%;float:left;height: 39px;">
+                                        <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                            <span class="icon rounded_icon bg_red ion-android-star" ng-click="fastTrack(item.id, 'rate',item.title); $event.stopPropagation();"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="addressTd">
+                                <p style="font-size: 15px;padding-top: 2px;margin-bottom: 4px;">{{item.city_name}} , {{item.governorate_name}}</p>
+                                <p class="my_klverified" ng-hide="item.is_premium == 0" style="float:right;position:relative;right: 2%;bottom:15px"></p>
+
+                                <p style="font-size: 15px;">distance :  <strong>{{item.distance}} KM</strong></p>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div><!--mail_div-->
+        </div>
+
+        <div class="list recentlist" style="background:#c0c0c0;margin: 0px;display:none" ng-if="mainListings.length>0">
+            <div class="main_div" ng-repeat="item in mainListings  | unique:'id' | orderBy:'-created'" ng-click="gotoMainDetail(item.id,item.title)">
+
+                <div style="width:100%;height:auto;margin-top: 2%;background:white;">
+
+                    <table style="width:100%;">
+                        <tr>
+                            <td class="leftTd">
+                                <img class="imag_div" ng-src="{{item.buslogo}}">
+                            </td>
+
+                            <td class="rightTd">
+                                <span style="font-size: 15px;">{{item.title}}</span></br>
+                                <!--<span>{{item.business_overallrating}}<vn-ratings value="item.business_overallrating"></vn-ratings></span>-->
+                                <span class="star-rating" star-rating rating-value="item.business_overallrating" data-max="5"></span>
+
+                                <div class="rf_div">
+                                    <div style="width:50%;float:left;border-right: 2px solid #30B0EC;height: 39px;">
+                                        <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                            <span class="icon rounded_icon bg_orange ion-heart" ng-click="fastTrack(item.id,'fav',item.title); $event.stopPropagation();"></span>
+                                        </div>
+                                    </div>
+
+                                    <div style="width:50%;float:left;height: 39px;">
+                                        <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                            <span class="icon rounded_icon bg_red ion-android-star" ng-click="fastTrack(item.id, 'rate',item.title); $event.stopPropagation();"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="addressTd">
+                                <p style="font-size: 15px;padding-top: 2px;margin-bottom: 4px;">{{item.city_name}} , {{item.governorate_name}}</p>
+                                <p class="my_klverified" ng-hide="item.is_premium == 0" style="float:right;position:relative;right: 2%;bottom:15px"></p>
+
+                                <p style="font-size: 15px;">distance :  <strong>{{item.distance == 99999?'Not Available':item.distance}} KM</strong></p>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div><!--mail_div-->
+        </div>
+
+        <h3 ng-if="mainListings.length==0">No results found</h3>
+
+        <ion-infinite-scroll on-infinite="limitarrloadScroll()"  distance="10%"  icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+        <!--<button class="button  button-positive loadmorelistclass" data-ng-click="limitarrload()"style="width:100%;margin-top: 126px;display:none;" >load More</button>-->
+
+
+
+    </ion-content>
+
+</ion-view>
+
+<style>
+
+    div.main_div{
+
+    position:relative;
+    top:-6px;
+
+    }
+
+</style>

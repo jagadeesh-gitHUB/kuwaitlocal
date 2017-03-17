@@ -1,0 +1,29 @@
+<ion-view title="Classifieds" class="classtypes" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="gotohomeview()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" style="padding:0px;padding-top:5px;" ng-click="openclassifiedsearchview($event)">
+        <div class="item-input-inset" ng-show="true"  style="background-color:white;text-align:center;border-radius:9px;position:relative;height:40px;" >
+            <label class="item-input-wrapper" style="opacity:0.6;font-size: large;">{{parentname}}</label>
+            <button class="ion-android-search kuwait-search"  style="top:0px;"></button>
+        </div>
+        <img ng-src="{{parentlogo}}" class="maincatimgclass" style="margin-top:1px;margin-left:-0.1%;">
+    </div>
+    <ion-content class="tab_top full_section has-footer hometype_cls" overflow-scroll="true">
+        <ion-list class="subcatclass">
+            <ion-item ng-repeat="cat in subcategories track by $index" ng-click="gotoclassifedlist(cat)" class="ADstyps_cls">
+                <a>{{cat.name}}<i class="icon ion-chevron-right" style="float:right;"></i></a>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+        <style>
+
+            .hometype_cls{top:330px !important;}
+            .platform-android4_4 .hometype_cls{top:310px !important;}
+
+            </style>

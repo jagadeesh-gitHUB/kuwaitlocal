@@ -1,0 +1,80 @@
+<ion-view title="{{viewtitle}}" class="relatedforum_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider" animation="no-animation">
+        <div class="adsclass" ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+
+            <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+        </div>
+
+        <div class="list" ng-hide="formuslistshow" style="margin-bottom:0px">
+
+            <a class="item item-thumbnail-left"  ng-repeat="forumlist in forumlists track by $index" ng-click="getforumdetails(forumlist)">
+
+                <img  ng-src="{{forumlist.userlogo}}" style="border-radius: 10px;height: 60px">
+
+                <h2>{{forumlist.title}}</h2>
+                <p ng-bind="forumdes(forumlist.description)"></p>
+                <p style="color: orange; position: absolute;left: 6%; bottom:5px;width: 100%;" ng-bind="klforumSubstr(forumlist.created_user)"></p>
+                <p style="position:relative;top:7px;">  <span style="color:green;position:relative;left:15%">{{forumlist.view_count}} {{forumlist.view_count == '0'? 'View' :'Views'}}</span> <span  style="color:orange;position:relative;left:16%">{{forumlist.comments_count}} {{forumlist.comments_count == '0'?'Comment':'Comments'}}</span>
+                    <span class="icon rounded_icon  ion-android-share-alt" ng-click="shareForm(forumlist);$event.stopPropagation();" style="float:right;color:black;font-size:20px;"></span>
+
+                </p>
+            </a>
+
+
+        </div>
+
+
+
+        <!--<ion-list ng-hide="relatedblogs_class">-->
+            <!--<ion-item ng-repeat="forumlist in forumlists track by $index" ng-click="getforumdetails(forumlist)">-->
+
+                <!--<img  ng-src="{{forumlist.userlogo}}" style="width:0.6in;height:0.6in;float:left;position:relative;right:12px;">-->
+
+                <!--<section class="group">-->
+                    <!--<div class="top_large_section">-->
+                        <!--<h4>{{forumlist.title}}</h4>-->
+                        <!--<span ng-bind="forumdes(forumlist.description)"></span>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;<div>{{forumlist.created_user}}</div>&ndash;&gt;-->
+                    <!--<div class="bot_small_section margin_t_15">-->
+                        <!--<span class="icon rounded_icon bg_orange ion-android-share"></span>-->
+                        <!--&lt;!&ndash;<span class="icon rounded_icon bg_red ion-android-comments">c</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="icon rounded_icon bg_green ion-view">v</span>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</section>-->
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+
+
+
+
+        <div ng-show="usercomments.length > 0">
+            <ion-list ng-hide="comments_class">
+                <ion-item ng-repeat="blogcomment in usercomments track by $index">
+                    <!--<div class="badge_placement" style="float:right;"></div>-->
+                    <img ng-if="blogcomment.user_logo!=null" ng-src="{{userlog}}/{{blogcomment.user_id}}_{{blogcomment.user_logo}}" style="width:0.6in;height:0.6in;float:left;position:relative;right:12px;">
+                    <img  ng-if="blogcomment.user_logo==null" src="img/no-img.png" style="width:0.6in;height:0.6in;float:left;position:relative;right:12px;">
+                    <a>{{blogcomment.comments}}</a>
+
+                </ion-item>
+            </ion-list>
+
+        </div>
+
+        <!--<div ng-show="!blogcomments.length > 0">No Comments given yet</div>-->
+    </ion-content>
+
+    <footer class="bar bar-footer blue_footer hide-on-keyboard-open" ng-click="Postcomments()" ng-hide="postcomments_class">
+        <a href="#" class="checkmein"></a>
+        <span class="checkin_text ucase" >Post Your Comment</span>
+        <footer>
+
+</ion-view>

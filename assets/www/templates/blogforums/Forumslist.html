@@ -1,0 +1,74 @@
+<ion-content class="tab_top full_section has-footer" animation="no-animation" style="margin:-1px;"  ng-style="{top:forumlists.length > 5? '4px':'4px'}">
+
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="formslistRefresh()"
+            ng-show="searchBack_btn"
+            >
+    </ion-refresher>
+
+    <!--<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>-->
+
+
+    <div class="adsclass" ng-click=" ADSlinkopen(Ads_Array.url_link)">
+
+
+        <img ng-src="{{Ads_Array.Ad_image}}"width="180px" id="adsimgsid"   style="height:100%;"/>
+
+    </div>
+
+    <div class="list" ng-hide="formuslistshow" style="margin-bottom:0px">
+
+
+        <div  ng-repeat="forumlist in forumlists | limitTo : ForumSLoadmore_count " ng-click="getforumdetails(forumlist)" ng-show="searchBack_btn">
+            <a class="item item-thumbnail-left" >
+                <img  ng-src="{{forumlist.userlogo}}" fallback-src='img/defaultuser.png' style="border-radius: 10px;height: 60px">
+                <h2 style="color:#74a305;">{{forumlist.title}}</h2>
+                <p ng-bind="forumdes(forumlist.description)"></p>
+                <p style="color:#ff6e19; position: absolute;left: 6%; bottom:5px;width: 100%;" ng-bind="klforumSubstr(forumlist.created_user)"></p>
+                <p style="position:relative;top:7px;float:right;">
+                    <span class="icon rounded_icon  ion-android-share-alt" ng-click="shareForm(forumlist);$event.stopPropagation();" style="color:black;"></span>
+                    <span  style="color:#74a305;position:relative;">{{forumlist.comments_count}} {{forumlist.comments_count == '0'?'Comment':'Comments'}}</span>
+                    <span style="color:#ff6e19;position:relative;">{{forumlist.view_count}} {{forumlist.view_count == '0'? 'View' :'Views'}}</span>
+                </p>
+            </a>
+
+        </div>
+
+
+        <div ng-hide="searchBack_btn" ng-repeat="forumlist in forumlists | limitTo : ForumSLoadmore_count | orderBy :serach_orderby:!searchBack_btn" ng-click="getforumdetails(forumlist)">
+
+
+            <a class="item item-thumbnail-left"  >
+                <img  ng-src="{{forumlist.userlogo}}" fallback-src='img/defaultuser.png' style="border-radius: 10px;height: 60px">
+                <h2 style="color:#74a305;">{{forumlist.title}}</h2>
+                <p ng-bind="forumdes(forumlist.description)"></p>
+                <p style="color:#ff6e19; position: absolute;left: 6%; bottom:5px;width: 100%;" ng-bind="klforumSubstr(forumlist.created_user)"></p>
+                <p style="position:relative;top:7px;float:right;">
+                    <span class="icon rounded_icon  ion-android-share-alt" ng-click="shareForm(forumlist);$event.stopPropagation();" style="color:black;"></span>
+                    <span  style="color:#74a305;position:relative;">{{forumlist.comments_count}} {{forumlist.comments_count == '0'?'Comment':'Comments'}}</span>
+                    <span style="color:#ff6e19;position:relative;">{{forumlist.view_count}} {{forumlist.view_count == '0'? 'View' :'Views'}}</span>
+                </p>
+            </a>
+
+
+        </div>
+
+    </div>
+
+    <!--------------blogs cATEGORIES LIST VIEW------------------->
+    <div  ng-show="searchBack_btn">
+        <ion-list ng-hide="forumcatshow">
+
+
+            <ion-item ng-repeat="forumcat in forumcategoires" ng-click="categoryforumsbasedonid(forumcat.id)">
+                <!--<div class="badge_placement" style="float:right;"></div>-->
+                <a>{{forumcat.category_name}}</a>
+            </ion-item>
+        </ion-list>
+    </div>
+    <!--<button class="button  button-positive loadmorelistclass" ng-hide="formuslistshow" data-ng-click="ForumsloadMore()"style="width:100%;" >load More</button>-->
+
+    <ion-infinite-scroll on-infinite="ForumsloadMore()"  distance="10%" ng-if="forumlists.length> 10 " icon="ion-loading-c" >Loading.....</ion-infinite-scroll>
+
+</ion-content>

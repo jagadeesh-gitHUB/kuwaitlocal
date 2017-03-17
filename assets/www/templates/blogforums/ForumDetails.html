@@ -1,0 +1,77 @@
+<ion-view title="Forum Details" class="Forumdetail_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider" animation="no-animation" overflow-scroll="true" id="forum_detail_id">
+        <div class="list forumdetail_acls"  style="margin-bottom:0px;padding: 5px;">
+
+            <a class="item item-thumbnail-left ">
+
+                <img ng-src="{{formumdetails.userlogo}}" style="border-radius: 10px;height:100px">
+
+                <h2 style="white-space: normal !important;">{{formumdetails.title}}</h2>
+                <p  ng-bind="autosllidecreated(formumdetails.created)"></p>
+                <span class="klforum_user_cls" >{{formumdetails.created_user}}</span>
+
+            </a>
+            <!--<p style="position:relative;right:4%;width:100%;top:13px;">  <span style="color:green;position:relative;left:21%">{{formumdetails.view_count}} {{formumdetails.view_count == '0'? 'View' :'Views'}}</span> <span  style="color:orange;position:relative;left:25%">{{formumdetails.comments_count}} {{formumdetails.comments_count == '0'?'Comment':'Comments'}}</span>-->
+                <!--<span class="icon rounded_icon  ion-android-share forum_sharecls" ng-click="shareForm(formumdetails);$event.stopPropagation();" style="float:right;color:black;font-size:20px;"></span>-->
+
+            <!--</p>-->
+            <table style="width:100%;">
+                <tr>
+                    <td style="color:green;position:relative;left:5%">{{formumdetails.forums_category_name}}</td>
+                    <td style="color:green;position:relative;left:5%">{{formumdetails.view_count}} {{formumdetails.view_count == '0'? 'View' :'Views'}}</td>
+                    <td style="color:orange;position:relative;left:5%;">{{temp_Forumcomments.length}} {{temp_Forumcomments.length <= 1 ?'Comment':'Comments'}}</td>
+                    <td class="icon rounded_icon  ion-android-share-alt" ng-click="shareForm(formumdetails);$event.stopPropagation();" style="color:black;font-size:20px;"></td>
+
+                </tr>
+
+            </table>
+
+
+
+        </div>
+
+        <div  style="padding: 10px;font-family: serif;text-align: justify;" class="forum_keyshowhide_class" id="forum_desc_id"></div>
+
+        <div ng-hide="forumusercomments.length==0?true:false" class="blog_commentcls forum_keyshowhide_class" id="forum_comment_id">
+            <h3 style="font-weight: bold;">Comments</h3>
+            <!-----------------------blogs comments commes here-------------------------->
+
+            <div class="list">
+
+                <a class="item item-avatar"  ng-repeat="comment in forumusercomments " style="border-width:0px;">
+                    <img ng-src="{{userlog}}/{{comment.user_logo}}"  fallback-src='img/defaultuser.png' />
+                    <h2>{{comment.username}}</h2>
+                    <label style="white-space:pre-wrap;">{{comment.comments}}</label>
+                </a>
+            </div>
+        </div>
+        <button id="loadMore" class="button button-block ucase blue_button col" ng-if="temp_Forumcomments.length >5" ng-click="loadmoreAdComments($event);" style="width:95%;position:relative;left:3%;">Load More</button>
+<div class="p350_dummybar" style="height:50px;"></div>
+
+        <!--<div id="bottom_empty"></div>-->
+        <!--<h3 style="font-size:100%" class="forum_keyshowhide_class" ng-show="check_gustornot">Post comment here</h3>-->
+        <!--<div style="height:500px;" class="forum_keyshowform_class" >-->
+            <!--<form novalidate name="formHandlerforum" style="width:100%" ng-show="check_gustornot">-->
+
+                <!--<textarea ng-model="postcomnet.comment" type="text" placeholder=" Enter comment" class="blogpost_cls" required ng-change="checkcomment()" id="forum_txt_id" ng-focus="forumtextfocus($event);" ng-blur="forumtextblur($event);"></textarea>-->
+
+            <!--</form>-->
+            <!--<button class="button postsend_cls" ng-show="check_gustornot" ng-disabled="postcomnet.comment.length==0" ng-click="forumPostcomments()" style="top:5px;"><p style="position: relative;top: -5px;">post</p></button>-->
+        <!--</div>-->
+
+
+    </ion-content>
+    <ion-footer  class="bar bar-footer align_center bar-balanced split_50 hide-on-keyboard-open blogd_cls">
+        <div class="row"  style="padding:0px">
+            <button class="button  ucase col"  ng-click="getuserComments()" style="border: 1px solid #66cc33;border-right-color: ivory; ">Post Comments</button>
+            <button class="button  ucase  col margin_r_10"  ng-click="getrelatedforums()" style="border:none;">Related Forums</button>
+        </div>
+    </ion-footer>
+
+</ion-view>

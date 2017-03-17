@@ -1,0 +1,39 @@
+<ion-tabs class="tabs-icon-top microtabs blogtabs news_paneClass">
+
+    <ion-tab title="Recent" ng-click="recentblog($event)" class="blogtabcls button" style="display:none;">
+        <ion-nav-view name="recent-tab"></ion-nav-view>
+    </ion-tab>
+    <!---->
+    <!--    <ion-tab title="Popular" ng-click="popularblogs($event)" class="blogtabcls button">-->
+    <!---->
+    <!--    </ion-tab>-->
+    <!---->
+    <!--    <ion-tab title="Category" ng-click="blogscategorieslist($event)" class="blogtabcls button">-->
+    <!---->
+    <!--    </ion-tab>-->
+    <div class="button-bar" style="position: relative;top: 2px;width: 100%;padding: 0px;" ng-show="searchBack_btn">
+        <a class="button barbuttonselted" data-ng-click="recentblog($event)" id="recent_tab_id">Recent</a>
+        <a class="button" data-ng-click="popularblogs($event)" >Popular</a>
+        <a class="button" data-ng-click="blogscategorieslist($event)">Category</a>
+    </div>
+
+    <div class="button-bar" style="position: relative;top: 2px;width: 100%;padding: 0px;" ng-hide="searchBack_btn" ng-if="seachblogslists.length >5 ? true : false">
+        <a class="button barbuttonselted" id="serachrecent_tab_id" data-ng-click="getSearchrecentblog($event)" >Recent</a>
+        <a class="button" data-ng-click="getSearchpopularblog($event)" >Popular</a>
+
+    </div>
+
+
+</ion-tabs>
+
+<style>
+    .blogtabs .tabs{
+
+    top:92px !important;
+    }
+
+    a.blogtabcls{
+    display:none;
+
+    }
+</style>

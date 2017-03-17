@@ -1,0 +1,34 @@
+<ion-content class="" animation="no-animation">
+
+<div class="padding margin_t_10">
+    <div class="picture_container" ng-click="togglePhotoModal()">
+        <i class="user_logo_upload icon ion-upload" ng-if="user_profile === ''"></i>
+        <img ng-src="{{user_profile}}" ng-if="user_profile.length > 0"/>
+    </div>
+    <div class="align_center font_roboto font_color_blue margin_b_15" style="font-size:18px;">Tap to upload your profile picture</div>
+    <form name="defaultForm" vn-check-validity novalidate class="regular_form">
+        <input type="text" placeholder="First Name" class="font_roboto" required ng-model="user.fname" ng-pattern="/^[ A-Za-z ]*$/">
+        <input type="text" placeholder="Last Name" class="font_roboto" required ng-model="user.lname" ng-pattern="/^[ A-Za-z ]*$/">
+        <input type="text" placeholder="Screen Name"  class="font_roboto" required ng-model="user.sname" ng-pattern="/^[ A-Za-z0-9@_]*$/">
+        <input type="email" placeholder="Email" class="font_roboto" required ng-model="user.email" ng-blur="checkEmail()"/>
+        <input type="password" placeholder="Password" class="font_robot" required ng-model="user.pword"/>
+    </form>
+    <div class="icon-left custom_info_red font_roboto" ng-if="emailInvalid"  style="color:white;font-size:15px">
+        <i class="icon ion-information-circled"></i>
+        This Email is already being used/invalid , Please try another one
+    </div>
+    <div class="icon-left custom_info_red font_roboto" ng-if="!defaultFormValid" style="color:white;font-size:15px">
+      <i class="icon ion-information-circled"></i>
+      Please make sure the form is not empty and valid
+    </div>
+
+</div>
+    <button class="button button-block button-positive marginless font_robotoB join_btn join_btnewcls"  ng-disabled="!defaultFormValid && !emailInvalid" ng-click="signUp()" >JOIN KUWAIT LOCAL</button>
+
+    <div class="p70_dummybar">
+
+</div>
+</ion-content>
+<!--<ion-footer-bar class="borderless_footer larger_footer hide-on-keyboard-open" animation="no-animation">-->
+    <!--<button class="button button-block marginless font_robotoB join_btn"  ng-disabled="!defaultFormValid && !emailInvalid" ng-click="signUp()">JOIN KUWAIT LOCAL</button>-->
+<!--</ion-footer-bar>-->

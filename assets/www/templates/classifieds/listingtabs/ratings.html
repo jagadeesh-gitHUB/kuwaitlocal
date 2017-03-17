@@ -1,0 +1,61 @@
+<ion-content class="tab_top full_section has-footer">
+
+    <ul class="roboto">
+        <li ng-if="!listnearclassifieds.length > 0" class="align_center">No listings Found</li>
+        <li ng-repeat="item in listnearclassifieds" class="group" style="padding:4px !important;">
+            <!--<a style="float: left;width:100%;text-align:left;"  >{{item.title}}</a>-->
+            <section class="classified1_img_box">
+                <img ng-src="img/no-img.png" ng-if="!item.logo.length"/>
+                <img ng-src="{{classifiedlogurl}}{{item.id}}_{{item.logo}}" ng-if="item.logo.length > 0"/>
+            </section>
+            <section>
+                <section class="group">
+                    <div class="top_large_section margin_b_15">
+                        <h4 ng-bind="classdesc(item.title)"></h4>
+                        <p ng-bind="classdesc(item.description)"></p>
+                        <p>Distance:{{item.distance}}Km</p>
+                    </div>
+                    <div class="top_small_section ion-ribbon-b" ng-hide="item.is_premium == 0">
+                    </div>
+                </section>
+
+            </section>
+            <section class="group" style="position:relative;top:-9px;">
+
+                <div class="bot_small_section margin_t_15" style="width:100% !important;">
+                    <span style="float:left;">Posted By : {{item.username}}</span>
+                    <span class="icon rounded_icon bg_orange ion-android-share"></span>
+                    <span class="icon rounded_icon bg_red ion-android-location"></span>
+
+                </div>
+            </section>
+        </li>
+    </ul>
+
+
+
+    <!--<ul class="roboto">-->
+        <!--<li ng-if="!mainListings.length > 0" class="align_center">No listings Found</li>-->
+        <!--<li ng-repeat="item in mainListings" ng-click="gotoMainDetail(item.id)">-->
+            <!--<section class="group">-->
+                <!--<div class="top_large_section">-->
+                    <!--<h4>{{item.title}}</h4>-->
+                    <!--<span>{{item.city_name}} , {{item.governorate_name}}</span>-->
+                <!--</div>-->
+                <!--<div class="top_small_section ion-ribbon-b" ng-hide="item.is_premium == 0">-->
+                <!--</div>-->
+            <!--</section>-->
+            <!--<section class="group">-->
+                <!--<div class="bot_large_section">-->
+                    <!--<p class="listing_phone" ng-if="item.land_line_no.length > 0"><span class="icon ion-ipad font_color_orange margin_r_5"></span>{{item.land_line_no}}<span ng-if="item.land_line_no"> , </span>{{item.mobile_no}}</p>-->
+                    <!--<vn-ratings value="{{item.business_overallrating}}"></vn-ratings>-->
+                <!--</div>-->
+                <!--<div class="bot_small_section margin_t_15">-->
+                    <!--<span class="icon rounded_icon bg_orange ion-android-star"></span>-->
+                    <!--<span class="icon rounded_icon bg_red ion-android-location"></span>-->
+                    <!--<span class="icon rounded_icon bg_green ion-edit"></span>-->
+                <!--</div>-->
+            <!--</section>-->
+        <!--</li>-->
+    <!--</ul>-->
+</ion-content>

@@ -1,0 +1,47 @@
+
+
+
+<ion-tabs class="tabs-icon-top microtabs forumtabs forum_paneClass">
+
+    <ion-tab title="Recent" ng-click="getrecentforums($event)" class="blogtabcls button-positive" style="display:none;">
+        <ion-nav-view name="recent-tab"></ion-nav-view>
+    </ion-tab>
+
+    <!--    <ion-tab title="Popular" ng-click="getpopularforums($event)" class="blogtabcls button-positive" >-->
+    <!---->
+    <!--    </ion-tab>-->
+    <!---->
+    <!--    <ion-tab title="Category" ng-click="getforumcategories($event)" class="blogtabcls button-positive">-->
+    <!---->
+    <!--    </ion-tab>-->
+
+
+    <div class="button-bar" style="position: relative;top: 2px;width: 100%;padding: 0px;" ng-show="searchBack_btn">
+        <a class="button barbuttonselted" id="recent_tab_id" data-ng-click="getrecentforums($event)" >Recent</a>
+        <a class="button" data-ng-click="getpopularforums($event)" >Popular</a>
+        <a class="button" data-ng-click="getforumcategories($event)">Category</a>
+    </div>
+
+
+    <div class="button-bar" style="position: relative;top: 2px;width: 100%;padding: 0px;" ng-hide="searchBack_btn" ng-if="forumlists.length >5 ? true : false">
+        <a class="button barbuttonselted" id="serachrecent_tab_id" data-ng-click="getSearchrecentforum($event)" >Recent</a>
+        <a class="button" data-ng-click="getSearchpopularforum($event)" >Popular</a>
+
+
+    </div>
+
+</ion-tabs>
+
+
+<style>
+    .forumtabs .tabs{
+
+    top:92px !important;
+    height: 40px !important;
+    }
+
+    a.blogtabcls{
+    display:none;
+
+    }
+</style>

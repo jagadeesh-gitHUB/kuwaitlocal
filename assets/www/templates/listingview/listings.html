@@ -1,0 +1,40 @@
+<ion-view title="Kuwait local">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button  class="button button-icon icon ion-arrow-left-c" ng-hide="seachdataclass" ng-click="hidelists()"></button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" ng-click="searchfiledclickd()" >
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;" >
+            <label class="item-input-wrapper" style="opacity:0.6">
+                {{startcurrentgname == "" ? 'Kuwait' : startcurrentgname}}
+            </label>
+            <button class="ion-android-search kuwait-search" ng-click="flashSearch()" style="top:0px;">
+            </button>
+        </div >
+
+        <div class="item-input-inset"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;top: 8px;display:none;" id="areaseltid"> </div>
+    </div>
+    <div class="fixedlisticondiv" ng-click="openpopularcategories();$event.stopPropagation();" ng-hide="popularcatlistdiv"><button class="button button-icon icon ion-navicon-round"></button></div>
+    <ion-nav-view animation="slide-left-right" class="has-header has-subheader has-footer" name="tabContent">
+        <!-- Center content -->
+    </ion-nav-view>
+    <footer class="bar bar-footer blue_footer hide-on-keyboard-open"  ng-hide=true>
+        <a href="#" class="checkmein ion-android-location" ui-sref="menuView.locationBasedPlaces"></a>
+        <span class="checkin_text ucase" >Check in</span>
+        <footer>
+</ion-view>
+
+<style>
+    div.bar.bar-subheader.search-subheader{
+
+    height: 41px;
+    padding: 0px;
+    top:50px;
+    /* background: rgba(101, 101, 101, 0.78);*/
+
+    }
+
+    .defaulttabs .tabs+.pane {top: 90px;}
+</style>

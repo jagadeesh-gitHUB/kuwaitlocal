@@ -1,0 +1,54 @@
+<ion-view title="Kuwait local" class="keyword_view" animation="no-animation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()" class="button button-icon icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button  class="button button-icon icon ion-arrow-left-c" ng-hide="seachdataclass" ng-click="hidelists()"></button>
+
+    </ion-nav-buttons>
+
+
+
+    <div class="bar bar-subheader search-subheader">
+        <!--<div class="button-bar">-->
+        <!--<a class="button">First</a>-->
+        <!--<a class="button">Second</a>-->
+        <!--<a class="button">Third</a>-->
+        <!--</div>-->
+
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;top:2px;" >
+            <label class="item-input-wrapper" style="height:25px;top:-4px;">
+                <input placeholder="Search..."  type="text"  ng-model="entersearchtext" ng-keyup="searchkeyup()" ng-click="searchfiledclickd()" onclick="checkareadivvisible(this)" id="searchtxtid"/>
+
+            </label>
+            <button class="ion-android-search kuwait-search" ng-click="flashSearch()" style="height:20px;top:2px;">
+            </button>
+        </div>
+
+        <div class="item-input-inset"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;top: 8px;display:none;" id="areaseltid">
+            <div>
+                <select name="repeatSelect" id="repeatSelect" ng-model="register.governorateId" ng-options="govern.id as govern.name for govern in register.governorates" ng-change="changegovernate()" style="position:relative;background:none;border:none;-webkit-appearance:none"></select>
+                <button class="ion-android-location kuwait-search" style="top:1px;right:132px;" ng-click="getcurrentgover()"></button>
+            </div>
+            <div></div>
+            <div style="width:35%;text-align:left;position: relative;top:-2px;" ng-hide="zerogovernorate">
+                <span class="areasearchcls" ng-click="getareaslist()" >{{selectgoverareaname}}</span>
+                <button class="ion-close kuwait-search" ng-click="clearareaclivk()" style="height:10px;top:-10px;">
+            </div>
+        </div>
+    </div>
+
+
+    <ion-content class="has-imageslider" animation="no-animation">
+
+    </ion-content>
+</ion-view>

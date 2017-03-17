@@ -1,0 +1,91 @@
+<ion-view title="Classifieds" class="ClassifiedSearch_view">
+
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon-round"></button>
+
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button  class="button button-icon icon ion-arrow-left-c"  ng-click="setbackview()"></button>
+
+    </ion-nav-buttons>
+
+
+
+    <div class="bar bar-subheader search-subheader" style="padding: 0px;top: 50px;height: 84px;">
+        <div class="item-input-inset" ng-show="true"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;" >
+            <label class="item-input-wrapper" style="height:25px;top:-4px;">
+                <input autofocus placeholder="Search..."  type="search"  ng-model="entersearchtext" ng-keyup="classsearchkeyup($event)"  id="searchtxtid"  />
+            </label>
+            <button class="ion-android-search kuwait-search"   ng-click="classsearchkeyupbtn()" style="height:20px;top:2px;">
+            </button>
+        </div>
+
+        <div class="item-input-inset"  style="height:40px;background-color:white;text-align:center;border-radius:9px;position:relative;top:3px;" >
+            <div>
+                <select name="repeatSelect" id="repeatSelect" ng-model="register.governorateId" ng-options="govern.id as govern.alias_name for govern in register.governorates" ng-change="changegovernate()" style="position:relative;background:none;border:none;-webkit-appearance:none"></select>
+                <button class="ion-android-location kuwait-search govertcls" style="top:1px;" ng-click="getcurrentgover()" ng-hide="register.governorateId==0?true:false" ></button>
+            </div>
+            <div></div>
+            <div style="width:35%;text-align:left;position: relative;top:-2px;left:5%;"  ng-click="getareaslist()" ng-hide="register.governorateId==0?true:false">
+                <span class="areasearchcls" >{{selectgoverareaname}}</span>
+                <!--<button class="ion-close kuwait-search" ng-click="clearareaclivk()" style="height:10px;top:-10px;">-->
+            </div>
+        </div>
+    </div>
+
+
+
+    <ion-content class="tab_top full_section has-footer cathomeclass" overflow-scroll="true">
+
+
+
+        <ion-list class="search_class" >
+            <!--<ion-item ng-hide="searcherrorlist" ng-if="!searchresultdatas.length > 0" class="align_center">No search result  Found with <strong style="color:red;">{{entersearchtext}}</strong></ion-item>-->
+            <ion-item ng-repeat="searchresultdata in searchresultdatas track by $index "  ng-hide="searchresultdata.count == 0">
+                <a>{{searchresultdata.title}}
+
+                    <!--<p class="ion-ribbon-b" ng-hide="searchresultdata.is_premium == 0" style="font-size:23px;margin:0px;float:right;color:#40bbed;position:relative;right:10%"></p>-->
+
+                </a>
+
+            </ion-item>
+        </ion-list>
+
+
+        <div class="p350_dummybar"></div>
+    </ion-content>
+
+</ion-view>
+
+<script id="governoratecities.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">Choose City From List</h1>
+            <button ng-click="cityclosemodalview()" class="button button-icon icon ion-arrow-left-c" style="float:right;"></button>
+        </ion-header-bar>
+        <ion-content overflow-scroll="true">
+            <div class="list">
+
+                <label class="item item-radio" ng-repeat="governoratearea in governorateareas" ng-click="selectgoverarea('{{governoratearea.id}}','{{governoratearea.name}}')">
+                    <input type="radio" name="group">
+                    <div class="item-content">
+                        {{governoratearea.name}}
+                    </div>
+                    <i class="radio-icon ion-checkmark"></i>
+                </label>
+
+
+
+            </div>
+
+            <!--<ion-list >-->
+            <!--<ion-item ng-repeat="governoratearea in governorateareas" ng-click="selectgoverarea('{{governoratearea.id}}','{{governoratearea.name}}')">-->
+            <!--<a style="float: left;width:100%;text-align:left;" >{{governoratearea.name}}</a>-->
+            <!--</ion-item>-->
+            <!--</ion-list>-->
+        </ion-content>
+    </ion-modal-view>
+</script>
+

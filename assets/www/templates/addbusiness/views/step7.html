@@ -1,0 +1,506 @@
+<ion-content class="addbusiness_form" style="padding:0px !important;">
+<button class="button button-full button-positive btnheadercls" >Working Hours</button>
+
+<!--<h2 class="blue_underlined_box">Working Hours</h2>-->
+
+<div class="dayblock_holder">
+<h5 class="group"><span class="workdaycls">24/7</span>
+    <label class="checkbox float_right" style="position: relative;right: 10%;padding: 0px 0px !important;">
+
+        <input id="hourscheckbox_id" type="checkbox" ng-model ="checkboxModel.always_open" value="{{checkboxModel.always_open}}"ng-checked="checkboxModel.always_open"  ng-change="alwayschange(event);" style="opacity:1;">
+        <!--<div class="track">-->
+        <!--<div class="handle">{{checkboxModel.always_open ? "" : ""}}</div>-->
+
+    <!--</div>-->
+    </label>
+</h5>
+</div>
+
+<!--<div ng-hide="checkboxModel.always_open">-->
+<div>
+<!--                               S U N D A Y                                    -->
+<div class="dayblock_holder">
+    <h5 class="group"><span class="workdaycls">Sunday</span>
+        <label class="toggle float_right">
+           <input type="checkbox" ng-model ="hourData[0].is_closed" value="on">
+           <div class="track">
+             <div class="handle">{{hourData[0].is_closed ? "open" : "closed"}}</div>
+           </div>
+        </label>
+    </h5>
+    <div class="day_block group" ng-show="hourData[0].is_closed && !checkboxModel.always_open">
+        <div class="select_box">
+          <select ng-model="hourData[0].from.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[0].from.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[0].to.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[0].to.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-plus-circled addmore_btn ucase col-10" ng-disabled="hourData[0].is_dual_timing" ng-click="hourData[0].is_dual_timing = (hourData[0].is_dual_timing) ? false : true"></button>
+    </div>
+    <div class="day_block group margin_t_10" ng-show="hourData[0].is_dual_timing">
+        <div class="select_box">
+          <select ng-model="hourData[0].from1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[0].from1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[0].to1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[0].to1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-close-circled addmore_btn ucase col-10" ng-click="hourData[0].is_dual_timing = (hourData[0].is_dual_timing) ? false : true"></button>
+    </div>
+</div>
+<!--                               M O N D A Y                                    -->
+<div class="dayblock_holder">
+    <h5 class="group"><span class="workdaycls">Monday</span>
+        <label class="toggle float_right">
+           <input type="checkbox" ng-model="hourData[1].is_closed">
+           <div class="track">
+             <div class="handle">{{hourData[1].is_closed ? "open" : "closed"}}</div>
+           </div>
+        </label>
+    </h5>
+    <div class="day_block group" ng-show="hourData[1].is_closed && !checkboxModel.always_open">
+        <div class="select_box">
+          <select ng-model="hourData[1].from.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[1].from.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[1].to.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[1].to.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-plus-circled addmore_btn ucase col-10" ng-disabled="hourData[1].is_dual_timing" ng-click="hourData[1].is_dual_timing = (hourData[1].is_dual_timing) ? false : true"></button>
+    </div>
+    <div class="day_block group margin_t_10" ng-show="hourData[1].is_dual_timing">
+        <div class="select_box">
+          <select ng-model="hourData[1].from1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[1].from1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[1].to1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[1].to1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-close-circled addmore_btn ucase col-10" ng-click="hourData[1].is_dual_timing = (hourData[1].is_dual_timing) ? false : true"></button>
+    </div>
+</div>
+<!--                               T U E S D A Y                                    -->
+<div class="dayblock_holder">
+    <h5 class="group"><span class="workdaycls">Tuesday</span>
+        <label class="toggle float_right">
+           <input type="checkbox" ng-model="hourData[2].is_closed">
+           <div class="track">
+             <div class="handle">{{hourData[2].is_closed ? "open" : "closed"}}</div>
+           </div>
+        </label>
+    </h5>
+    <div class="day_block group" ng-show="hourData[2].is_closed && !checkboxModel.always_open">
+        <div class="select_box">
+          <select ng-model="hourData[2].from.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[2].from.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[2].to.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[2].to.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-plus-circled addmore_btn ucase col-10" ng-disabled="hourData[2].is_dual_timing" ng-click="hourData[2].is_dual_timing = (hourData[2].is_dual_timing) ? false : true"></button>
+    </div>
+    <div class="day_block group margin_t_10" ng-show="hourData[2].is_dual_timing">
+        <div class="select_box">
+          <select ng-model="hourData[2].from1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[2].from1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[2].to1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[2].to1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-close-circled addmore_btn ucase col-10" ng-click="hourData[2].is_dual_timing = (hourData[2].is_dual_timing) ? false : true"></button>
+    </div>
+</div>
+<!--                               W E D N E S D A Y                                    -->
+<div class="dayblock_holder">
+    <h5 class="group"><span class="workdaycls">Wednesday</span>
+        <label class="toggle float_right">
+           <input type="checkbox" ng-model="hourData[3].is_closed">
+           <div class="track">
+             <div class="handle">{{hourData[3].is_closed ? "open" : "closed"}}</div>
+           </div>
+        </label>
+    </h5>
+    <div class="day_block group" ng-show="hourData[3].is_closed && !checkboxModel.always_open">
+        <div class="select_box">
+          <select ng-model="hourData[3].from.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[3].from.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[3].to.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[3].to.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-plus-circled addmore_btn ucase col-10" ng-disabled="hourData[3].is_dual_timing" ng-click="hourData[3].is_dual_timing = (hourData[3].is_dual_timing) ? false : true"></button>
+    </div>
+    <div class="day_block group margin_t_10" ng-show="hourData[3].is_dual_timing">
+        <div class="select_box">
+          <select ng-model="hourData[3].from1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[3].from1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[3].to1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[3].to1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-close-circled addmore_btn ucase col-10" ng-click="hourData[3].is_dual_timing = (hourData[3].is_dual_timing) ? false : true"></button>
+    </div>
+</div>
+<!--                               T H U R S D A Y                                    -->
+<div class="dayblock_holder">
+    <h5 class="group"><span class="workdaycls">Thursday</span>
+        <label class="toggle float_right">
+           <input type="checkbox" ng-model="hourData[4].is_closed">
+           <div class="track">
+             <div class="handle">{{hourData[4].is_closed ? "open" : "closed"}}</div>
+           </div>
+        </label>
+    </h5>
+    <div class="day_block group" ng-show="hourData[4].is_closed && !checkboxModel.always_open">
+        <div class="select_box">
+          <select ng-model="hourData[4].from.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[4].from.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[4].to.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[4].to.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-plus-circled addmore_btn ucase col-10" ng-disabled="hourData[4].is_dual_timing" ng-click="hourData[4].is_dual_timing = (hourData[4].is_dual_timing) ? false : true"></button>
+    </div>
+    <div class="day_block group margin_t_10" ng-show="hourData[4].is_dual_timing">
+        <div class="select_box">
+          <select ng-model="hourData[4].from1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[4].from1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[4].to1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[4].to1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-close-circled addmore_btn ucase col-10" ng-click="hourData[4].is_dual_timing = (hourData[4].is_dual_timing) ? false : true"></button>
+    </div>
+</div>
+<!--                               F R I D A Y                                    -->
+<div class="dayblock_holder">
+    <h5 class="group"><span class="workdaycls">Friday</span>
+        <label class="toggle float_right">
+           <input type="checkbox" ng-model="hourData[5].is_closed">
+           <div class="track">
+             <div class="handle">{{hourData[5].is_closed ? "open" : "closed"}}</div>
+           </div>
+        </label>
+    </h5>
+    <div class="day_block group" ng-show="hourData[5].is_closed && !checkboxModel.always_open">
+        <div class="select_box">
+          <select ng-model="hourData[5].from.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[5].from.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[5].to.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[5].to.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-plus-circled addmore_btn ucase col-10" ng-disabled="hourData[5].is_dual_timing" ng-click="hourData[5].is_dual_timing = (hourData[5].is_dual_timing) ? false : true"></button>
+    </div>
+    <div class="day_block group margin_t_10" ng-show="hourData[5].is_dual_timing">
+        <div class="select_box">
+          <select ng-model="hourData[5].from1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[5].from1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[5].to1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[5].to1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-close-circled addmore_btn ucase col-10" ng-click="hourData[5].is_dual_timing = (hourData[5].is_dual_timing) ? false : true"></button>
+    </div>
+</div>
+<!--                               S A T U R D A Y                                    -->
+<div class="dayblock_holder">
+    <h5 class="group"><span class="workdaycls">Saturday</span>
+        <label class="toggle float_right">
+           <input type="checkbox" ng-model="hourData[6].is_closed">
+           <div class="track">
+             <div class="handle">{{hourData[6].is_closed ? "open" : "closed"}}</div>
+           </div>
+        </label>
+    </h5>
+    <div class="day_block group" ng-show="hourData[6].is_closed && !checkboxModel.always_open">
+        <div class="select_box">
+          <select ng-model="hourData[6].from.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[6].from.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[6].to.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[6].to.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-plus-circled addmore_btn ucase col-10" ng-disabled="hourData[6].is_dual_timing" ng-click="hourData[6].is_dual_timing = (hourData[6].is_dual_timing) ? false : true"></button>
+    </div>
+    <div class="day_block group margin_t_10" ng-show="hourData[6].is_dual_timing">
+        <div class="select_box">
+          <select ng-model="hourData[6].from1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[6].from1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <span class="colon_seperator col-center float_left margin_t_7"> : </span>
+        <div class="select_box">
+          <select ng-model="hourData[6].to1.hour">
+              <option ng-repeat="time in generatedHours">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="select_box">
+          <select ng-model="hourData[6].to1.min">
+              <option ng-repeat="time in generatedMins">{{time}}</option>
+          </select>
+          <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <button class="ion-close-circled addmore_btn ucase col-10" ng-click="hourData[6].is_dual_timing = (hourData[6].is_dual_timing) ? false : true"></button>
+    </div>
+</div>
+</div>
+<div class="p350_dummybar"></div>
+</ion-content>
+
+<ion-footer class="bar bar-footer align_center  split_50 "  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row" ng-if="isPremium">
+        <button class="button button-block ucase blue_button col" ui-sref="menuView.addBusiness.step4" ng-click="backAnalytics(4);">Back</button>
+        <button class="button button-block ucase blue_button col" ng-click="updateHours();AnalyticsNext(4);">Next</button>
+    </div>
+    <div class="row" ng-if="!isPremium">
+        <button class="button button-block ucase blue_button col" ui-sref="menuView.addBusiness.step5" ng-click="backAnalytics(5);">Back</button>
+        <button class="button button-block ucase blue_button col" ng-click="updateHours();AnalyticsNext(5);">Next</button>
+    </div>
+
+</ion-footer>
+
+

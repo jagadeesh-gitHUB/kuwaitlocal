@@ -1,0 +1,29 @@
+<ion-view title="Kuwait local" class="eventEnquiry_view" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+<!--    <ion-nav-buttons side="right">-->
+<!--        <button ng-click="setBackAction()"class="button button-icon font_robotoM ucase back_btn">Back</button>-->
+<!--    </ion-nav-buttons>-->
+
+    
+    
+    <ion-content class="has-imageslider row content_formatting has-header has-footer inner-footer padding-bottom" overflow-scroll="true" >
+        <h4 class="font_robotoM padding_bottom font_size_18 ucase font_color_black ucase" style="text-align:center;">send enquiry</h4>
+        <form name="enquiry_form" novalidate style="padding:7px">
+            <div class="list list-inset marginless">
+                <input type="text" placeholder="Name" ng-model="formEntry.uname" class="font_roboto font_color_gray input_for_validity margin_b_15" required  readonly ng-disabled="true">
+                <input type="email" placeholder="Email Address" ng-model="formEntry.email" required ng-change="formUpdate()" class=" input_for_validity margin_b_15" id="enquiryemail">
+                <input type="text" placeholder="Mobile Number" ng-model="formEntry.number" required ng-change="formUpdate()" class=" input_for_validity margin_b_15" ng-minlength="8" ng-maxlength="8" ng-pattern="/^[0-9]*$/">
+                <textarea placeholder="Message" ng-model="formEntry.msg" required ng-change="formUpdate()" class=" input_for_validity margin_b_15"></textarea>
+            </div>
+        </form>
+        <div class="content_placeholder"></div>
+    </ion-content>
+    <footer class="bar bar-footer align_center padding split_50 bizEnq_cls" style="height:auto;">
+        <div class="row" style="padding:0px;">
+            <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="enquiryIntegrity" ng-click="sendEnquiry()">Send Enquiry</button>
+            <button class="button button-block ucase blue_button col gray_button" ng-click="goBackToDetail()">Cancel</button>
+        </div>
+    </footer>
+</ion-view>

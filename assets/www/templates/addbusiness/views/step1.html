@@ -1,0 +1,23 @@
+<ion-content class="addbusiness_form" style="padding:0px !important;">
+  <button class="button button-full button-positive btnheadercls">Business Details</button>
+  <div class="hasStatbar" style="padding:10px;">
+      <form novalidate name="formHandler" vn-check-validity>
+          <div flo-List="false">
+              <h2 class="mandatory">Title</h2>
+              <input type="text" placeholder="Business Title" ng-minlength="4" ng-maxlength="150" class="margin_b_10" ng-model="setterData.formFieldTitle" name="fftitle" required ng-init="setterData.formFieldTitle = setTitle" ng-pattern="/^[ A-Za-z0-9&-]*$/" />
+              <h2>Description</h2>
+              <textarea type="text" placeholder="Business Description" class="margin_b_10" ng-model="setterData.formFieldText" ng-init="setterData.formFieldText = setDescription" required ng-minlength="5"   style="max-height: 280px;min-height: 250px;"></textarea>
+          </div>
+          {{step1Valid}}
+          <div class="p70_dummybar">
+          </div>
+
+      </form>
+  </div>
+</ion-content>
+<ion-footer class="bar bar-footer align_center  split_50"  ng-hide="keyboardOpen" ng-class="{'has-footer': !keyboardOpen}">
+    <div class="row">
+        <button class="button button-block ucase blue_button col" ng-click="preemptiveBack()">Back</button>
+        <button class="button button-block ucase blue_button col margin_r_10" ng-disabled="!formValid" ng-click="getData(setterData, 0);bizdupCheck(setterData.formFieldTitle);analyticcodeforAddsteps(1,'f');">Next</button>
+    </div>
+</ion-footer>

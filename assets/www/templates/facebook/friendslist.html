@@ -1,0 +1,85 @@
+<ion-view title="Kuwait local" class="addbusiness_form" padding="true">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-imageslider row has-header padding-bottom">
+        <div class="marker" ng-show="friendInvites">
+            New Invites
+        </div>
+        <ul class="list enabled_checkbox bordered_list even_padding">
+            <li class="pos_relative" ng-repeat="invite in friendInvites" ng-show="friendInvites">
+                <i class="icon ion-close-round box_close_button" ng-click="cancelFriendship()"></i>
+                <div class="row">
+                    <div class="col col-20 col-center">
+                        <span class="icon_container">
+                            <i class="icon ion-person font_size_30 font_color_gray"></i>
+                        </span>
+                    </div>
+                    <div class="col col-center">
+                        <b>{{invite.invite_owner.first_name}} {{invite.invite_owner.last_name}}</b> wants to be your friend
+                    </div>
+                </div>
+                <div class="align_right">
+                    <button class="badge-green custom-accept-buttom font_color_white icon-left ion-checkmark margin_r_10" ng-click="acceptFriendship(invite.invite_owner.id, invite.invite_user.id, invite.invite_user.facebook_friend_id)"></button>
+                </div>
+            </li>
+        </ul>
+        <div class="marker" style="text-align:center;">
+            My FaceBook Friends who used KLApp
+        </div>
+
+        <ul class="list enabled_checkbox bordered_list">
+            <li class="row" ng-repeat="friend in FBFriends" ng-show="FBFriends.length > 0" class="item row">
+                <div class="col col-20 col-center">
+
+                        <!--<i class="icon ion-person font_size_30 font_color_gray"></i>-->
+                        <img ng-src="{{friend.picture.data.url}}" style="border-radius:35px;border:1px solid gray;"/>
+
+                </div>
+                <div class="col col-center">
+
+                   {{friend.first_name}} {{friend.last_name}}
+                </div>
+            </li>
+            <li ng-show="!FBFriends.length > 0" class="align_center">
+                No friends present
+            </li>
+        </ul>
+
+        <!--<ul class="list enabled_checkbox bordered_list">-->
+            <!--<li class="row" ng-repeat="friend in friends_all.accepted_list" ng-show="friends_all.accepted_list.length > 0" class="item row">-->
+                <!--<div class="col col-20 col-center">-->
+                    <!--<span class="icon_container">-->
+                        <!--<i class="icon ion-person font_size_30 font_color_gray"></i>-->
+                    <!--</span>-->
+                <!--</div>-->
+                <!--<div class="col col-center">-->
+                    <!--{{friend.first_name}} {{friend.last_name}}-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li ng-show="!friends_all.accepted_list.length > 0" class="align_center">-->
+                <!--No friends present-->
+            <!--</li>-->
+        <!--</ul>-->
+        <!--<div class="marker">-->
+            <!--Invited friends-->
+        <!--</div>-->
+        <!--<ul>-->
+            <!--<li class="row user_portrait2 no_padding margin_b_20" ng-repeat="friend in friends_all.invited_friends_list" ng-show="friends_all.invited_friends_list.length > 0">-->
+                <!--<span class="icon_container col col-20">-->
+                    <!--<img src="{{friend.FacebookFriend.friend_userlogo}}"/>-->
+                <!--</span>-->
+                <!--<div class="col col-center font_roboto capitalize">-->
+                    <!--{{friend.FacebookFriend.friend_firstname}} {{friend.FacebookFriend.friend_lastname}}-->
+                    <!--<span class="badge badge-green float_right">invited</span>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <div class="p70_dummybar"></div>
+    </ion-content>
+    <footer class="bar bar-footer align_center padding split_50 hide-on-keyboard-open height_fix" animation="no-animation">
+        <div class="row">
+            <button class="button button-block ucase green_button col marginless" ng-click="inviteFriends()">Invite Friends</button>
+        </div>
+    </footer>
+</ion-view>

@@ -1,0 +1,25 @@
+<ion-content class="addbusiness_form no_edges" animation="no-animation">
+    <div class="marker">
+        Tag friends
+    </div>
+    <ul class="list enabled_checkbox padding bordered_list">
+        <li class="row" ng-repeat="person in friendList">
+            <div class="col col-20 col-center">
+                <span class="icon_container">
+                    <i class="icon ion-person font_size_30 font_color_gray"></i>
+                </span>
+            </div>
+            <div class="col col-center">
+                {{person.first_name + person.last_name}}
+            </div>
+            <label class="checkbox col col-13 col-center margin_r_10 col-center right_aligned" ng-click="checkmein(person.id, person.first_name + person.last_name)">
+               <input type="checkbox" ng-model="personChk" ng-checked="checkboxCheck(person.id, person.first_name + person.last_name)" ng-init="personChk = checkData(person.id)">
+            </label>
+        </li>
+    </ul>
+</ion-content>
+<footer class="bar bar-footer align_center padding split_50 hide-on-keyboard-open" animation="no-animation">
+    <div class="row">
+        <button class="button button-block ucase green_button col marginless" ng-click="consolidateFriends()">Done</button>
+    </div>
+</footer>

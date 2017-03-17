@@ -1,0 +1,141 @@
+<ion-view title="Kuwait local" class="myevent_view" padding="true">
+    <!--<ion-nav-buttons side="left">-->
+        <!--<button menu-toggle="left"class="button button-icon icon ion-navicon-round"></button>-->
+    <!--</ion-nav-buttons>-->
+    <ion-nav-buttons side="right">
+        <button ng-click="setBackAction()"class="button button-icon font_robotoM ucase back_btn">back</button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader search-subheader" style="height:auto;margin:0px;padding:0px;">
+
+    <div class="button-bar" style="position: relative;top:8px;width: 100%;padding: 0px;height:40px">
+        <a class="button barbuttonselted" data-ng-click="myeventlistingsfun($event)" >Listings</a>
+        <a class="button" data-ng-click="myeventreviewsfun($event)">Reviews</a>
+            <a class="button" data-ng-click="myeventenquiresfun($event)">Enquires</a>
+            <a class="button" data-ng-click="myeventgalleryfun($event)">Gallery</a>
+
+    </div>
+</div>
+    <ion-content class="tab_top full_section has-footer">
+
+                          <!-----------listing view------------->
+
+        <div class="notify_listing even_setting listing_class"  style="position:relative;top:95px;">
+            <a class="item item-avatar"  ng-repeat="item in allLists | orderBy:'-created'">
+
+                <img ng-src="{{item.thumb_path}}"  fallback-src='img/defaultuser.png' />
+                <h2>{{item.name}}</h2>
+                <button class="button ion-trash-a" ng-click="eventdelete(item,$event)" style="float:right;position: relative;bottom:0px;line-height: 20px;"></button>
+
+                <p ng-bind="datevalue(item.created)"></p>
+
+
+            </a>
+
+
+
+            <a ng-if="allLists.length == 0 " class="nolisting noresultfound_cls">
+                No Events found
+            </a>
+
+        </div>
+        <!--------------listing end here--------------------->
+        <!-----------review view------------->
+ <ul class="notify_listing even_setting review_class" style="position:relative;top:100px;display:none;">
+            <li class="group"  ng-repeat="listItem in myreviews |  orderBy: '-created'">
+
+                <div class="auth_list_info margin_r_10 float_left col-center" style="width:100%;">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.event_title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">
+                        <span ng-bind="datevalue(listItem.created)"></span>
+                        <span style="position:relative;float:right;"><vn-ratings value="{{listItem.rater_star}}"></vn-ratings></span>
+
+                    </div>
+                   <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.rater_message}}</div>
+                </div>
+
+            </li>
+
+            <li ng-if="myreviews.length == 0 " class="nolisting ">
+                No Reviews found
+            </li>
+        </ul>
+        <!--------------reviews end here--------------------->
+
+
+
+
+
+
+        <!-----------enquires view------------->
+
+        <ul class="notify_listing even_setting enquiry_class" style="position:relative;top:100px;display:none;">
+            <li class="group" ng-repeat="listItem in myenquires |  orderBy: '-created'">
+
+                <div class="auth_list_info margin_r_10 float_left col-center" style="width:100%;">
+                    <div class="font_size_16 font_robotoM font_color_lblack capitalize">{{listItem.event_title}}</div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">
+
+
+                    </div>
+                    <div class="floating_date font_roboto font_size_12 font_color_ash">{{listItem.enquirer_message}}</div>
+                </div>
+
+            </li>
+
+            <li ng-if="myenquires .length == 0 " class="nolisting">
+                No Enquiries found
+            </li>
+        </ul>
+        <!--------------enquires end here--------------------->
+
+        <div class="list classnear gallery_class" style="top:95px;display:none">
+
+            <!--<a class="item " ng-repeat="item in mygallery | orderBy:'-gallery_created'">-->
+
+                <!--<img ng-src="{{item.gallery_img_path}}"  class="classifed_imgcls"/>-->
+                <!--<h2 style="color:#31b3eb;">{{item.biz_title}}</h2>-->
+                <!--<p ng-bind="datevalue(item.gallery_created)"></p>-->
+                <!--<button style="position: relative;width: 50%; text-align: center;left: 10%;" ng-click="showimgaedelete(item.gallery_bizid,item.gallery_name,item.biz_id,item.biz_title)">Remove</button>-->
+                <!--<!--<p style="color:black;">Posted By : {{item.gallery_postedby}}</p>-->
+                <!--<!--<p style="color:black;">{{item.gallery_user_email}}</p>-->
+
+
+            <!--</a>-->
+
+
+
+            <a class="item item-avatar"  ng-repeat="item in mygallery | orderBy:'-created'">
+
+                <img ng-src="{{item.gallery_thumbnail}}"  />
+                <h2>{{item.name}}</h2>
+                <button class="button ion-trash-a" ng-click="eventimgaedelete(item,$event)" style="float:right;position: relative;bottom: 20px;line-height: 20px;"></button>
+
+                <p ng-bind="datevalue(item.created)"></p>
+
+
+            </a>
+
+
+
+            <a ng-if="mygallery.length == 0 " class="nolisting noresultfound_cls">
+                No Gallery list found
+            </a>
+
+
+        </div>
+
+
+<div class="p350_dummybar"></div>
+
+
+    </ion-content>
+
+    <!--<!--<ion-footer class="bar bar-footer align_center  hide-on-keyboard-open" ng-if="allLists.length == 0" style="height:50px;background: orange;">-->-->
+        <!--<ion-footer class="bar bar-footer align_center  hide-on-keyboard-open"  style="height:50px;background: orange;">-->
+
+            <!--<button class="button button-block ucase blue_button col" ui-sref="menuView.main" style="background: orange;">Add Listing</button>-->
+
+    <!--</ion-footer>-->
+
+
+</ion-view>

@@ -1,0 +1,136 @@
+<ion-nav-buttons side="right">
+    <button  class="button button-icon icon ion-arrow-left-c" ng-click="gobacktoprevies()"></button>
+
+</ion-nav-buttons>
+<ion-content class="tab_top full_section has-footer">
+
+    <div class="list" style="background:#c0c0c0;" ng-show="listviewwithbg">
+        <div class="main_div" ng-repeat="item in mainListings | filter:item | orderBy:'-is_premium'" ng-click="gotoMainDetail(item.id)">
+
+            <div style="width:100%;height:auto;margin-top: 2%;background:white;">
+
+                <table style="width:100%;">
+                    <tr>
+                        <td class="leftTd">
+                            <img class="imag_div" ng-src="{{imageurl}}{{item.id}}_{{item.logo}}">
+                        </td>
+
+                        <td class="rightTd">
+                            <span style="font-size: 15px;">{{item.title}}</span></br>
+                            <span><vn-ratings value="{{item.business_overallrating}}"></vn-ratings></span>
+                            <div class="rf_div">
+                                <div style="width:50%;float:left;border-right: 2px solid #30B0EC;height: 39px;">
+                                    <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                        <span class="icon rounded_icon bg_orange ion-heart" ng-click="fastTrack(item.id,'fav'); $event.stopPropagation();"></span>
+                                    </div>
+                                </div>
+
+                                <div style="width:50%;float:left;height: 39px;">
+                                    <div class="margin_t_15" style="width:100%;margin-top: 6px;margin-left: 31%;">
+                                        <span class="icon rounded_icon bg_red ion-android-star" ng-click="fastTrack(item.id, 'rate'); $event.stopPropagation();"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="addressTd">
+                            <p style="font-size: 15px;padding-top: 2px;margin-bottom: 4px;">{{item.city_name}} , {{item.governorate_name}}</p>
+                            <p class="my_klverified" ng-hide="item.is_premium == 0" style="font-size:23px;margin:0px;float:right;color:#40bbed;position:relative;right:10%"></p>
+
+                            <p style="font-size: 15px;">distance :  <strong>{{item.distance}} KM</strong></p>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div><!--mail_div-->
+    </div>
+
+
+
+    <!--<ion-infinite-scroll-->
+            <!--on-infinite="fetchmoredata()"-->
+            <!--distance="1%">-->
+    <!--</ion-infinite-scroll>-->
+    <!--<ul class="rig " ng-hide="listviewwithbg">-->
+        <!--<li ng-if="!mainListings.length > 0 && loadComplete" class="align_center">No listings Found</li>-->
+        <!--<li ng-repeat="item in mainListings | filter:item | orderBy:'-is_premium'" ng-click="gotoMainDetail(item.id)" >-->
+
+            <!--<img ng-src="{{imageurl}}{{item.id}}_{{item.logo}}"/>-->
+            <!--&lt;!&ndash;<img ng-if="cat.logo != null" ng-src="{{imgbaseURL + cat.id + '_' + cat.logo}}"/>&ndash;&gt;-->
+            <!--<p>{{item.title}}</p>-->
+            <!--<vn-ratings value="{{item.business_overallrating}}"></vn-ratings>-->
+            <!--<div ng-hide="item.is_premium == 0"> <i class="icon bg_green rounded_icon ion-thumbsup"></i>-->
+                <!--<span>KL Verified</span>-->
+            <!--</div>-->
+            <!--<p>{{item.city_name}} , {{item.governorate_name}}</p>-->
+            <!--<p class="font_size_13 font_color_lgray">{{item.distance}} KM<i class="icon rounded_icon bg_red ion-android-location"></i></p>-->
+
+        <!--</li>-->
+    <!--</ul>-->
+
+    <!--<div class="list" ng-hide="listviewwithbg">-->
+
+        <!--<a class="item item-thumbnail-left" ng-repeat="item in mainListings | filter:item | orderBy:'-is_premium'" ng-click="gotoMainDetail(item.id)">-->
+            <!--<img ng-src="{{imageurl}}{{item.id}}_{{item.logo}}">-->
+            <!--<div class="top_small_section ion-ribbon-b" ng-hide="item.is_premium == 0"></div>-->
+                <!--<h2>{{item.title}}</h2>-->
+            <!--<vn-ratings value="{{item.business_overallrating}}"></vn-ratings>-->
+                <!--<p>{{item.city_name}} , {{item.governorate_name}}</p>-->
+            <!--<p>distance :  <strong>{{item.distance}} KM</strong></p>-->
+            <!--<div class="margin_t_15" style="width:100%;">-->
+                <!--<span class="icon rounded_icon bg_orange ion-heart" ng-click="fastTrack(item.id,'fav'); $event.stopPropagation();"></span>-->
+                <!--<span class="icon rounded_icon bg_red ion-android-location" ng-click="fastTrack(item.id, 'locate'); $event.stopPropagation();"></span>-->
+                <!--<span class="icon rounded_icon bg_red ion-android-star" ng-click="fastTrack(item.id, 'rate'); $event.stopPropagation();"></span>-->
+
+            <!--</div>-->
+            <!--</a>-->
+    <!--</div>-->
+
+
+    <!--<ul  class="roboto" ng-hide="listviewwithbg">-->
+    <!--<li ng-if="!mainListings.length > 0 && loadComplete" class="align_center">No listings Found</li>-->
+    <!--<li ng-repeat="item in mainListings | filter:item | orderBy:'-is_premium'" ng-click="gotoMainDetail(item.id)" >-->
+    <!--<div class="background_div">-->
+        <!--<div class="whiteBackground">-->
+            <!--<div class="opacity_background"></div>-->
+            <!--<img ng-src="{{imageurl}}{{item.id}}_{{item.logo}}" style="width:368px;padding:8px;height:191px"/>-->
+            <!--<div style="position:absolute;top:35px;margin-left: 269px;">-->
+                <!--<img src="favoriate.png"/>-->
+                <!--<img src="Call.png"/>-->
+            <!--</div>-->
+
+            <!--<div style="position:absolute;top:161px;margin-left: 2opx;">-->
+                <!--<div style="float:left;margin-left: 13px;">-->
+                    <!--<label style="color:white;font-family:Candara;font-size:23px;">{{item.title}}</label><br>-->
+                    <!--<vn-ratings value="{{item.business_overallrating}}" style="width: 170px;top: 6px;position: relative;"></vn-ratings>-->
+                   <!--</div>-->
+
+                <!--<div class="kltrusted" ng-hide="item.is_premium == 0">-->
+                    <!--<img src="KlTrusted.png">-->
+                <!--</div>-->
+
+
+            <!--</div>-->
+            <!--<div>-->
+                <!--<div class="text_div">-->
+                    <!--<span>{{item.city_name}} , {{item.governorate_name}} </span>-->
+                <!--</div>-->
+
+                <!--<div style="float:right">-->
+
+                    <!--<span style="position: relative;left: -14px;"><b> {{item.distance}} KM </b></span>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+    <!--</li>-->
+<!--</ul>-->
+
+    <button class="button  button-positive" data-ng-click="limitarrload()"style="width:100%;" >load</button>
+    <!--<button  class="button  button-positive"  data-ng-click="fetchmoredata()" style="width:100%;">Load More</button>-->
+</ion-content>
